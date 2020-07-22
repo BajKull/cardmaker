@@ -1,0 +1,12 @@
+@mixin flexColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin breakpoint($width) {
+  @media screen {
+    @content;
+  }
+}
