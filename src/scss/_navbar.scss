@@ -1,0 +1,17 @@
+.navbar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  color: white;
+  font-weight: 500;
+  font-size: 1.5em;
+
+  ul {
+    display: flex;
+    list-style-type: none;
+
+    li {
+      margin: 0 15px 0 15px;
+    }
+  }
+}

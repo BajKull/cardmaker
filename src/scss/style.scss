@@ -1,7 +1,12 @@
 @import "fonts";
 @import "mixins";
+@import "colors";
+@import "navbar";
 @import "mainPage";
-
+@import "choice";
+@import "cards";
+@import "steps";
+@import "ideas";
 body {
   margin: 0;
   padding: 0;
