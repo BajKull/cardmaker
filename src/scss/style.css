@@ -71,10 +71,28 @@
   padding: 10px 35px;
   position: absolute;
   bottom: 10vh;
+  width: 350px;
+  left: 50%;
+  margin-left: -175px;
   color: white;
   background: none;
   border-radius: 50px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  .mainPage .mainBtn {
+    border: 3px solid white;
+    width: 250px;
+    margin-left: -125px;
+  }
+}
+
+.mainPage .mainBtn:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .mainPage h1 {
@@ -121,6 +139,8 @@
   border-radius: 10px;
   max-width: 25%;
   min-width: 480px;
+  text-decoration: none;
+  color: white;
 }
 
 @media only screen and (max-width: 600px) {
@@ -190,6 +210,12 @@
   margin: 0 auto 50px auto;
 }
 
+.steps a {
+  text-decoration: none;
+  display: contents;
+  margin: auto;
+}
+
 .steps .stepsImg {
   max-width: 720px;
   width: 50%;
@@ -239,6 +265,15 @@
   font-weight: 500;
   font-size: 2rem;
   border-radius: 35px;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.steps .stepsBtn:hover {
+  background: #25a0c0;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .steps .stepsHelpStep {
@@ -278,13 +313,19 @@
 }
 
 .ideas .ideasCards {
-  width: 80%;
+  width: 90%;
   margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 600px) {
+  .ideas .ideasCards {
+    width: 100%;
+  }
 }
 
 .ideas .ideasTitle {
@@ -295,8 +336,16 @@
 
 .ideas .idea {
   width: 30%;
+  min-width: 530px;
   position: relative;
-  margin: 25px;
+  margin: 25px auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .ideas .idea {
+    min-width: 0;
+    width: 100%;
+  }
 }
 
 .ideas .idea .ideaBtn {

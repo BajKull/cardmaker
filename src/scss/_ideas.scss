@@ -5,10 +5,14 @@
   color: white;
 
   .ideasCards {
-    width: 80%;
+    width: 90%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
+
+    @include breakpoint(600px) {
+      width: 100%;
+    }
   }
 
   .ideasTitle {
@@ -19,8 +23,14 @@
 
   .idea {
     width: 30%;
+    min-width: 530px;
     position: relative;
-    margin: 25px;
+    margin: 25px auto;
+
+    @include breakpoint(600px) {
+      min-width: 0;
+      width: 100%;
+    }
 
     .ideaBtn {
       position: absolute;

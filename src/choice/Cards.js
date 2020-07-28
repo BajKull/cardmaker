@@ -7,19 +7,19 @@ export default function Cards() {
       title: "Birthday card",
       desc: "Show someone you care about that you remember about him/her!",
       img: "img",
-      link: "link",
+      link: "/create/birthday",
     },
     {
       title: "Invitation card",
       desc: "Invite someone to a wedding, party or anything else!",
       img: "img",
-      link: "link",
+      link: "/create/invitation",
     },
     {
       title: "Custom card",
       desc: "Sky is the limit, create anything that comes to your mind!",
       img: "img",
-      link: "link",
+      link: "/create/custom",
     },
   ];
   return (

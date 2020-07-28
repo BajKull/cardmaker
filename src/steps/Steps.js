@@ -1,9 +1,11 @@
 import React from "react";
 import StepsImage from "./portfolio1.jpg";
+import { Link } from "react-router-dom";
+import { Element } from "react-scroll";
 
 export default function Steps() {
   return (
-    <div className="steps">
+    <Element name="steps" className="steps">
       <h1 className="stepsTitle">Create your card within a minute!</h1>
       <div className="stepsIntro">
         <img className="stepsImg" src={StepsImage} alt="" />
@@ -37,7 +39,9 @@ export default function Steps() {
         </div>
       </div>
 
-      <button className="stepsBtn">Create card</button>
-    </div>
+      <Link to="/create">
+        <button className="stepsBtn">Create card</button>
+      </Link>
+    </Element>
   );
 }

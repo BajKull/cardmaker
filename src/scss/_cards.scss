@@ -15,6 +15,9 @@
   max-width: 25%;
   min-width: 480px;
 
+  text-decoration: none;
+  color: white;
+
   h1 {
     @include breakpoint(600px) {
       margin-top: 0;
