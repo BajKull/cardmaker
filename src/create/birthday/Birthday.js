@@ -1,9 +1,10 @@
 import React from "react";
+import Editor from "../Editor";
 
 export default function Birthday() {
   return (
     <div className="birthday">
-      <h1>Birthday</h1>
+      <Editor />
     </div>
   );
 }

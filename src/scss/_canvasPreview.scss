@@ -1,0 +1,33 @@
+.elementPreview {
+  display: flex;
+  padding: 10px 25px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: lighten($lightBlue, 30);
+  }
+
+  img {
+    width: 16px;
+  }
+
+  h1 {
+    margin: 0;
+    margin-left: 15px;
+    font-weight: 400;
+    font-size: 1.5rem;
+    width: 70%;
+  }
+
+  .elementBtns {
+    display: flex;
+    align-items: center;
+  }
+
+  button {
+    border: 0;
+    background: 0;
+    justify-self: flex-end;
+  }
+}

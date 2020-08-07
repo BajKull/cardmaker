@@ -92,7 +92,7 @@
     transition: 0.3s;
 
     &:hover {
-      background: darken($lightBlue, 15);
+      background: darken($lightBlue, 10);
       transform: scale(1.1);
     }
   }

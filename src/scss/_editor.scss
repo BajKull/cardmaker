@@ -1,0 +1,57 @@
+.editor {
+  width: 90%;
+  height: 85vh;
+  min-height: 720px;
+  min-width: 1280px;
+  overflow: hidden;
+  margin: auto;
+  background: none;
+  position: relative;
+  display: flex;
+  padding: 100px 0 25px 0;
+
+  .editorMenu {
+    @include flexColumn;
+    justify-content: flex-start;
+    width: 50px;
+    height: 100%;
+    background: rgb(245, 245, 245);
+
+    button {
+      width: 50px;
+      height: 50px;
+      padding: 10px;
+      margin: 0;
+      border: 0;
+      background: rgb(245, 245, 245);
+
+      img {
+        width: 24px;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .activeButton {
+      border: 2px solid black;
+    }
+  }
+
+  .editorCanvas {
+    z-index: 5;
+  }
+
+  .editorView {
+    width: 75%;
+    height: 100%;
+    background-color: white;
+  }
+
+  .editorOptions {
+    width: 25%;
+    height: 100%;
+    background-color: rgb(245, 245, 245);
+  }
+}

@@ -6,6 +6,7 @@
   color: white;
   font-weight: 500;
   font-size: 1.5em;
+  z-index: 999;
 }
 
 .navbar ul {
@@ -129,18 +130,28 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   position: relative;
 }
 
 .card {
   padding: 25px;
-  margin: 25px auto;
+  margin: 20px;
   background: rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   max-width: 25%;
   min-width: 480px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
   text-decoration: none;
   color: white;
+}
+
+.card:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 @media only screen and (max-width: 600px) {
@@ -271,7 +282,7 @@
 }
 
 .steps .stepsBtn:hover {
-  background: #25a0c0;
+  background: #29b2d6;
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
@@ -367,6 +378,232 @@
   width: 100%;
 }
 
+.editor {
+  width: 90%;
+  height: 85vh;
+  min-height: 720px;
+  min-width: 1280px;
+  overflow: hidden;
+  margin: auto;
+  background: none;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 100px 0 25px 0;
+}
+
+.editor .editorMenu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 50px;
+  height: 100%;
+  background: whitesmoke;
+}
+
+.editor .editorMenu button {
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  margin: 0;
+  border: 0;
+  background: whitesmoke;
+}
+
+.editor .editorMenu button img {
+  width: 24px;
+}
+
+.editor .editorMenu button:focus {
+  outline: none;
+}
+
+.editor .editorMenu .activeButton {
+  border: 2px solid black;
+}
+
+.editor .editorCanvas {
+  z-index: 5;
+}
+
+.editor .editorView {
+  width: 75%;
+  height: 100%;
+  background-color: white;
+}
+
+.editor .editorOptions {
+  width: 25%;
+  height: 100%;
+  background-color: whitesmoke;
+}
+
+.birthday {
+  min-height: 100vh;
+  min-width: 1280px;
+  background-color: #54c1de;
+}
+
+.canvasText {
+  padding: 25px;
+}
+
+.canvasText input,
+.canvasText select {
+  width: 100%;
+  padding: 0;
+  padding-bottom: 3px;
+  margin: 0;
+  border: none;
+  border-bottom: 1px solid #c8c8c8;
+  background: none;
+}
+
+.canvasText input:focus,
+.canvasText select:focus {
+  outline: none;
+  border-bottom: 1px solid #54c1de;
+}
+
+.canvasText .canvasMsg {
+  margin-bottom: 15px;
+}
+
+.canvasText .textSizePos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.canvasText .textSize,
+.canvasText .textPos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.canvasText .textSize p,
+.canvasText .textPos p {
+  margin: 0;
+  margin-right: 5px;
+}
+
+.canvasText .textSize input,
+.canvasText .textPos input {
+  margin-right: 5px;
+}
+
+.canvasText .textSize .textWidth,
+.canvasText .textSize .textHeight,
+.canvasText .textSize .textX,
+.canvasText .textSize .textY,
+.canvasText .textPos .textWidth,
+.canvasText .textPos .textHeight,
+.canvasText .textPos .textX,
+.canvasText .textPos .textY {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 50px;
+}
+
+.canvasText .textFont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 25px;
+}
+
+.canvasText .textFont .textFSize {
+  width: 10%;
+}
+
+.canvasText .textFont .textFontFam {
+  width: 80%;
+  margin-left: 10%;
+}
+
+.canvasText .textAlignment {
+  margin-top: 25px;
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.canvasText .textAlignment button {
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #54c1de;
+  border-radius: 3px;
+  background: 0;
+}
+
+.elementPreview {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px 25px;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.elementPreview:hover {
+  background-color: #d4f0f7;
+}
+
+.elementPreview img {
+  width: 16px;
+}
+
+.elementPreview h1 {
+  margin: 0;
+  margin-left: 15px;
+  font-weight: 400;
+  font-size: 1.5rem;
+  width: 70%;
+}
+
+.elementPreview .elementBtns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.elementPreview button {
+  border: 0;
+  background: 0;
+  justify-self: flex-end;
+}
+
+html,
 body {
   margin: 0;
   padding: 0;
