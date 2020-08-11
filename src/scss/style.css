@@ -458,12 +458,12 @@
   background-color: #54c1de;
 }
 
-.canvasText {
-  padding: 25px;
+.canvasOptionsContainer {
+  position: relative;
 }
 
-.canvasText input,
-.canvasText select {
+.canvasOptionsContainer input,
+.canvasOptionsContainer select {
   width: 100%;
   padding: 0;
   padding-bottom: 3px;
@@ -473,24 +473,30 @@
   background: none;
 }
 
-.canvasText input:focus,
-.canvasText select:focus {
+.canvasOptionsContainer input:focus,
+.canvasOptionsContainer select:focus {
   outline: none;
   border-bottom: 1px solid #54c1de;
 }
 
-.canvasText .canvasMsg {
-  margin-bottom: 15px;
+.canvasOptionsContainer .canvasOptionsClose {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 16px;
+  border: 0;
+  background: 0;
+  padding: 0;
 }
 
-.canvasText .textSizePos {
+.canvasElSP {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.canvasText .textSize,
-.canvasText .textPos {
+.canvasElSize,
+.canvasElPos {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -500,25 +506,25 @@
           flex-direction: column;
 }
 
-.canvasText .textSize p,
-.canvasText .textPos p {
+.canvasElSize p,
+.canvasElPos p {
   margin: 0;
   margin-right: 5px;
 }
 
-.canvasText .textSize input,
-.canvasText .textPos input {
+.canvasElSize input,
+.canvasElPos input {
   margin-right: 5px;
 }
 
-.canvasText .textSize .textWidth,
-.canvasText .textSize .textHeight,
-.canvasText .textSize .textX,
-.canvasText .textSize .textY,
-.canvasText .textPos .textWidth,
-.canvasText .textPos .textHeight,
-.canvasText .textPos .textX,
-.canvasText .textPos .textY {
+.canvasElSize .canvasElWidth,
+.canvasElSize .canvasElHeight,
+.canvasElSize .canvasElX,
+.canvasElSize .canvasElY,
+.canvasElPos .canvasElWidth,
+.canvasElPos .canvasElHeight,
+.canvasElPos .canvasElX,
+.canvasElPos .canvasElY {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -526,6 +532,14 @@
       -ms-flex-align: center;
           align-items: center;
   height: 50px;
+}
+
+.canvasText {
+  padding: 25px;
+}
+
+.canvasText .canvasMsg {
+  margin-bottom: 15px;
 }
 
 .canvasText .textFont {
@@ -544,6 +558,16 @@
   margin-left: 10%;
 }
 
+.canvasText .textColor {
+  margin-top: 25px;
+  height: 35px;
+  border: 0;
+}
+
+.canvasText .textColor:focus {
+  border: 0;
+}
+
 .canvasText .textAlignment {
   margin-top: 25px;
   width: 50%;
@@ -560,6 +584,125 @@
   border: 1px solid #54c1de;
   border-radius: 3px;
   background: 0;
+}
+
+.canvasRect {
+  padding: 25px;
+}
+
+.canvasRect .rectBorderRadius,
+.canvasRect .rectBorderWidth {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 25px;
+}
+
+.canvasRect .rectBorderRadius p,
+.canvasRect .rectBorderWidth p {
+  margin: 0;
+  width: 105px;
+}
+
+.canvasRect .rectBorderRadius input,
+.canvasRect .rectBorderWidth input {
+  width: 25px;
+  margin-left: 15px;
+}
+
+.canvasRect .rectColors {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.canvasRect .rectColors .rectFillColor,
+.canvasRect .rectColors .rectBorderColor {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.canvasRect .rectColors .rectFillColor p,
+.canvasRect .rectColors .rectBorderColor p {
+  margin: 0;
+  margin-left: 15px;
+}
+
+.canvasRect .rectColors .rectFillColor input,
+.canvasRect .rectColors .rectBorderColor input {
+  border: 0;
+  width: 50px;
+}
+
+.canvasRect .rectFillColor {
+  margin-top: 25px;
+}
+
+.canvasRect .rectBorderColor {
+  margin-top: 15px;
+}
+
+.canvasCircle {
+  padding: 25px;
+}
+
+.canvasCircle .circleColors {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.canvasCircle .circleColors .circleFillColor,
+.canvasCircle .circleColors .circleBorderColor {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.canvasCircle .circleColors .circleFillColor p,
+.canvasCircle .circleColors .circleBorderColor p {
+  margin: 0;
+  margin-left: 15px;
+}
+
+.canvasCircle .circleColors .circleFillColor input,
+.canvasCircle .circleColors .circleBorderColor input {
+  border: 0;
+  width: 50px;
+}
+
+.canvasCircle .circleBorderWidth {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 25px;
+}
+
+.canvasCircle .circleBorderWidth p {
+  margin: 0;
+  width: 105px;
+}
+
+.canvasCircle .circleBorderWidth input {
+  width: 25px;
+  margin-left: 15px;
+}
+
+.canvasCircle .circleFillColor {
+  margin-top: 25px;
+}
+
+.canvasCircle .circleBorderColor {
+  margin-top: 15px;
 }
 
 .elementPreview {
@@ -586,6 +729,8 @@
   font-weight: 400;
   font-size: 1.5rem;
   width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .elementPreview .elementBtns {
@@ -595,6 +740,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  z-index: 5;
 }
 
 .elementPreview button {

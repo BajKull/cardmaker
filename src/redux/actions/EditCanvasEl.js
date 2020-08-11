@@ -1,5 +1,4 @@
 export const editCanvasEl = (data) => {
-  console.log(data);
   return {
     type: "EDIT_CANVAS_EL",
     payload: {

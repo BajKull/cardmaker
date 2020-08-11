@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addCanvasEl } from "../redux/actions/AddCanvasEl";
+import { editCanvasEl } from "../redux/actions/EditCanvasEl";
 import { setSelectedEl } from "../redux/actions/setSelectedEl";
 
 export default function Canvas({ activeBtn }) {
@@ -9,6 +10,7 @@ export default function Canvas({ activeBtn }) {
   const [selectedElBorder, setSelectedElBorder] = useState(null);
 
   const elements = useSelector((state) => state.canvasEls);
+  const elIndex = useSelector((state) => state.canvasElIndex);
   const dispatch = useDispatch();
 
   const resizeCanvas = () => {
@@ -26,12 +28,12 @@ export default function Canvas({ activeBtn }) {
       x: event.clientX - rect.left,
       y: event.clientY - rect.top,
     });
-    if (activeBtn === "select") canvasFunctions(event);
+    if (activeBtn === "select") canvasSelect(event);
   };
 
   const canvasEndAction = (event) => {
     setAction(false);
-    setSelectedElBorder(null);
+    if (activeBtn !== "select") setSelectedElBorder(null);
     if (selectedElBorder) canvasFunctions(event);
   };
 
@@ -43,7 +45,7 @@ export default function Canvas({ activeBtn }) {
   };
 
   const canvasFunctions = (event) => {
-    if (activeBtn === "select") canvasSelect(event);
+    if (activeBtn === "select") canvasSelectMove(event);
     if (activeBtn === "move") canvasMove();
     if (activeBtn === "text") canvasText(event);
     if (activeBtn === "rectangle") canvasRectangle(event);
@@ -85,12 +87,44 @@ export default function Canvas({ activeBtn }) {
 
     if (el) {
       const index = elements.findIndex((element) => element === el);
+      setSelectedElBorder({
+        x: el.posX,
+        y: el.posY,
+        w: el.width,
+        h: el.height,
+      });
       dispatch(setSelectedEl(index));
     } else {
       dispatch(setSelectedEl(null));
+      setSelectedElBorder(null);
     }
   };
-  const canvasMove = () => {};
+
+  const canvasSelectMove = (event) => {
+    if (elIndex === null) return;
+
+    const canvas = document.querySelector(".editorCanvas");
+    const rect = canvas.getBoundingClientRect();
+
+    const newEl = { ...elements[elIndex] };
+    newEl.posX += event.clientX - rect.left - newElPos.x;
+    newEl.posY += event.clientY - rect.top - newElPos.y;
+    setNewElPos({
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top,
+    });
+    setSelectedElBorder({
+      x: newEl.posX,
+      y: newEl.posY,
+      w: newEl.width,
+      h: newEl.height,
+    });
+    dispatch(editCanvasEl({ index: elIndex, el: newEl }));
+  };
+
+  const canvasMove = () => {
+    if (!elIndex) return;
+  };
   const canvasText = () => {
     const amount = elements.filter((el) => el.type === "text").length;
 
@@ -105,8 +139,20 @@ export default function Canvas({ activeBtn }) {
       posY: newElPos.y,
       width: selectedElBorder.w,
       height: selectedElBorder.h,
-      color: "black",
+      color: "#000000",
+      visible: true,
     };
+
+    if (myEl.width < 0) {
+      const width = (myEl.width *= -1);
+      myEl.width = width;
+      myEl.posX -= width;
+    }
+    if (myEl.height < 0) {
+      const height = (myEl.height *= -1);
+      myEl.height = height;
+      myEl.posY -= height;
+    }
 
     dispatch(addCanvasEl(myEl));
   };
@@ -122,9 +168,22 @@ export default function Canvas({ activeBtn }) {
       width: selectedElBorder.w,
       height: selectedElBorder.h,
       lineWidth: 3,
-      color: "black",
-      fill: false,
+      borderRadius: 0,
+      color: "#000000",
+      fill: "#ffffff",
+      visible: true,
     };
+
+    if (myEl.width < 0) {
+      const width = (myEl.width *= -1);
+      myEl.width = width;
+      myEl.posX -= width;
+    }
+    if (myEl.height < 0) {
+      const height = (myEl.height *= -1);
+      myEl.height = height;
+      myEl.posY -= height;
+    }
 
     dispatch(addCanvasEl(myEl));
   };
@@ -137,11 +196,25 @@ export default function Canvas({ activeBtn }) {
       posX: newElPos.x,
       posY: newElPos.y,
       width: selectedElBorder.w,
-      height: selectedElBorder.h,
+      height: selectedElBorder.w,
+      radius: selectedElBorder.w / 2,
       lineWidth: 3,
-      color: "black",
-      fill: false,
+      color: "#000000",
+      fill: "#ffffff",
+      visible: true,
     };
+
+    if (myEl.width < 0) {
+      const width = (myEl.width *= -1);
+      myEl.width = width;
+      myEl.posX -= width;
+    }
+    if (myEl.height < 0) {
+      const height = (myEl.height *= -1);
+      myEl.height = height;
+      myEl.posY -= height;
+    }
+    if (myEl.radius < 0) myEl.radius *= -1;
 
     dispatch(addCanvasEl(myEl));
   };
@@ -155,14 +228,54 @@ export default function Canvas({ activeBtn }) {
     const drawText = (el) => {
       ctx.font = el.size + "px " + el.font;
       ctx.textAlign = el.align;
-      ctx.fillText(el.msg, el.posX + el.width / 2, el.posY + el.height / 2);
+      ctx.fillStyle = el.color;
+      if (el.align === "left")
+        ctx.fillText(el.msg, el.posX, el.posY + el.height / 2);
+      if (el.align === "center")
+        ctx.fillText(el.msg, el.posX + el.width / 2, el.posY + el.height / 2);
+      if (el.align === "right")
+        ctx.fillText(el.msg, el.posX + el.width, el.posY + el.height / 2);
     };
     const drawRectangle = (el) => {
       ctx.beginPath();
       ctx.lineWidth = el.lineWidth;
       ctx.setLineDash([0]);
       ctx.strokeStyle = el.color;
-      ctx.rect(el.posX, el.posY, el.width, el.height);
+      if (el.borderRadius === 0)
+        ctx.rect(el.posX, el.posY, el.width, el.height);
+      else {
+        ctx.moveTo(el.posX + el.borderRadius, el.posY);
+        ctx.lineTo(el.posX + el.width - el.borderRadius, el.posY);
+        ctx.quadraticCurveTo(
+          el.posX + el.width,
+          el.posY,
+          el.posX + el.width,
+          el.posY + el.borderRadius
+        );
+        ctx.lineTo(el.posX + el.width, el.posY + el.height - el.borderRadius);
+        ctx.quadraticCurveTo(
+          el.posX + el.width,
+          el.posY + el.height,
+          el.posX + el.width - el.borderRadius,
+          el.posY + el.height
+        );
+        ctx.lineTo(el.posX + el.borderRadius, el.posY + el.height);
+        ctx.quadraticCurveTo(
+          el.posX,
+          el.posY + el.height,
+          el.posX,
+          el.posY + el.height - el.borderRadius
+        );
+        ctx.lineTo(el.posX, el.posY + el.borderRadius);
+        ctx.quadraticCurveTo(
+          el.posX,
+          el.posY,
+          el.posX + el.borderRadius,
+          el.posY
+        );
+      }
+      ctx.fillStyle = el.fill;
+      ctx.fill();
       ctx.closePath();
       ctx.stroke();
     };
@@ -170,6 +283,7 @@ export default function Canvas({ activeBtn }) {
       ctx.beginPath();
       ctx.lineWidth = el.lineWidth;
       ctx.setLineDash([0]);
+      ctx.strokeStyle = el.color;
       ctx.arc(
         el.posX + el.width / 2,
         el.posY + el.height / 2,
@@ -177,6 +291,8 @@ export default function Canvas({ activeBtn }) {
         0,
         2 * Math.PI
       );
+      ctx.fillStyle = el.fill;
+      ctx.fill();
       ctx.closePath();
       ctx.stroke();
     };
@@ -197,9 +313,11 @@ export default function Canvas({ activeBtn }) {
     };
 
     elements.forEach((el) => {
-      if (el.type === "text") drawText(el);
-      if (el.type === "rectangle") drawRectangle(el);
-      if (el.type === "circle") drawCircle(el);
+      if (el.visible) {
+        if (el.type === "text") drawText(el);
+        if (el.type === "rectangle") drawRectangle(el);
+        if (el.type === "circle") drawCircle(el);
+      }
     });
 
     if (selectedElBorder) drawBorder();

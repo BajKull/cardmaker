@@ -1,6 +1,4 @@
-.canvasText {
-  padding: 25px;
-
+@mixin inputOptions {
   input,
   select {
     width: 100%;
@@ -14,40 +12,59 @@
     &:focus {
       outline: none;
       border-bottom: 1px solid $lightBlue;
-      // color: $darkBlue;
     }
   }
+}
+
+.canvasOptionsContainer {
+  position: relative;
+
+  @include inputOptions;
+
+  .canvasOptionsClose {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 16px;
+    border: 0;
+    background: 0;
+    padding: 0;
+  }
+}
+
+.canvasElSP {
+  display: flex;
+}
+
+.canvasElSize,
+.canvasElPos {
+  display: flex;
+  flex-direction: column;
+
+  p {
+    margin: 0;
+    margin-right: 5px;
+  }
+
+  input {
+    margin-right: 5px;
+  }
+
+  .canvasElWidth,
+  .canvasElHeight,
+  .canvasElX,
+  .canvasElY {
+    display: flex;
+    align-items: center;
+    height: 50px;
+  }
+}
+
+.canvasText {
+  padding: 25px;
 
   .canvasMsg {
     margin-bottom: 15px;
-  }
-
-  .textSizePos {
-    display: flex;
-  }
-
-  .textSize,
-  .textPos {
-    display: flex;
-    flex-direction: column;
-
-    p {
-      margin: 0;
-      margin-right: 5px;
-    }
-
-    input {
-      margin-right: 5px;
-    }
-
-    .textWidth,
-    .textHeight,
-    .textX,
-    .textY {
-      display: flex;
-      align-items: center;
-      height: 50px;
-    }
   }
 
   .textFont {
@@ -60,6 +77,15 @@
     .textFontFam {
       width: 80%;
       margin-left: 10%;
+    }
+  }
+
+  .textColor {
+    margin-top: 25px;
+    height: 35px;
+    border: 0;
+    &:focus {
+      border: 0;
     }
   }
 
@@ -77,5 +103,95 @@
       border-radius: 3px;
       background: 0;
     }
+  }
+}
+
+.canvasRect {
+  padding: 25px;
+
+  .rectBorderRadius,
+  .rectBorderWidth {
+    display: flex;
+    margin-top: 25px;
+
+    p {
+      margin: 0;
+      width: 105px;
+    }
+
+    input {
+      width: 25px;
+      margin-left: 15px;
+    }
+  }
+
+  .rectColors {
+    display: flex;
+    flex-direction: column;
+
+    .rectFillColor,
+    .rectBorderColor {
+      display: flex;
+
+      p {
+        margin: 0;
+        margin-left: 15px;
+      }
+
+      input {
+        border: 0;
+        width: 50px;
+      }
+    }
+  }
+  .rectFillColor {
+    margin-top: 25px;
+  }
+  .rectBorderColor {
+    margin-top: 15px;
+  }
+}
+
+.canvasCircle {
+  padding: 25px;
+
+  .circleColors {
+    display: flex;
+    flex-direction: column;
+
+    .circleFillColor,
+    .circleBorderColor {
+      display: flex;
+
+      p {
+        margin: 0;
+        margin-left: 15px;
+      }
+
+      input {
+        border: 0;
+        width: 50px;
+      }
+    }
+  }
+  .circleBorderWidth {
+    display: flex;
+    margin-top: 25px;
+
+    p {
+      margin: 0;
+      width: 105px;
+    }
+
+    input {
+      width: 25px;
+      margin-left: 15px;
+    }
+  }
+  .circleFillColor {
+    margin-top: 25px;
+  }
+  .circleBorderColor {
+    margin-top: 15px;
   }
 }

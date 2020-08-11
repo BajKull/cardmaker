@@ -18,11 +18,14 @@
     font-weight: 400;
     font-size: 1.5rem;
     width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .elementBtns {
     display: flex;
     align-items: center;
+    z-index: 5;
   }
 
   button {

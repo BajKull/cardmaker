@@ -10,6 +10,12 @@ const CanvasElementsReducer = (state = [], action) => {
           ...action.payload.element,
         };
       });
+    case "DELETE_CANVAS_EL":
+      // payload == index
+      return [
+        ...state.slice(0, action.payload),
+        ...state.slice(action.payload + 1),
+      ];
     default:
       return state;
   }
