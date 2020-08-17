@@ -1,4 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
 .navbar {
   position: absolute;
   top: 0;
@@ -7,6 +28,14 @@
   font-weight: 500;
   font-size: 1.5em;
   z-index: 999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
 }
 
 .navbar ul {
@@ -18,6 +47,22 @@
 
 .navbar ul li {
   margin: 0 15px 0 15px;
+}
+
+.navbar ul a:hover,
+.navbar ul li:hover {
+  color: #1c86a0;
+}
+
+.navbar .navbarLogin {
+  width: 100%;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.navbar .navbarLogin li {
+  cursor: pointer;
 }
 
 .mainPage {
@@ -747,6 +792,171 @@
   border: 0;
   background: 0;
   justify-self: flex-end;
+}
+
+.login,
+.register {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.login .loginForm,
+.login .registerForm,
+.register .loginForm,
+.register .registerForm {
+  position: fixed;
+  top: 15%;
+  left: 40%;
+  width: 20%;
+  padding: 25px;
+  border-radius: 10px;
+  background-color: white;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.login .loginForm form,
+.login .registerForm form,
+.register .loginForm form,
+.register .registerForm form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.login .loginForm .loginRecovery,
+.login .registerForm .loginRecovery,
+.register .loginForm .loginRecovery,
+.register .registerForm .loginRecovery {
+  text-align: end;
+  font-size: 12px;
+  margin: 5px;
+  font-weight: 500;
+}
+
+.login .loginForm .loginRecovery:hover,
+.login .registerForm .loginRecovery:hover,
+.register .loginForm .loginRecovery:hover,
+.register .registerForm .loginRecovery:hover {
+  color: #1c86a0;
+  cursor: pointer;
+}
+
+.login .loginForm span,
+.login .registerForm span,
+.register .loginForm span,
+.register .registerForm span {
+  color: #1c86a0;
+  cursor: pointer;
+}
+
+.login a,
+.register a {
+  text-decoration: none;
+  color: #1c86a0;
+}
+
+.login h1,
+.register h1 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.login p,
+.register p {
+  margin: 5px;
+}
+
+.login input,
+.register input {
+  height: 35px;
+  border: 0;
+  padding: 5px 15px;
+  margin: 5px;
+  background-color: #ebebeb;
+  border-radius: 5px;
+}
+
+.login input::-webkit-input-placeholder,
+.register input::-webkit-input-placeholder {
+  color: #7d7d7d;
+}
+
+.login input:-ms-input-placeholder,
+.register input:-ms-input-placeholder {
+  color: #7d7d7d;
+}
+
+.login input::-ms-input-placeholder,
+.register input::-ms-input-placeholder {
+  color: #7d7d7d;
+}
+
+.login input::placeholder,
+.register input::placeholder {
+  color: #7d7d7d;
+}
+
+.login .submit,
+.register .submit {
+  width: 30%;
+  height: auto;
+  padding: 10px 0;
+  margin: 25px auto;
+  border: 0;
+  background: #1c86a0;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login .error,
+.register .error {
+  background: #ff9494;
+  border: 1px solid #ff4848;
+  border-left: 5px solid #ff4848;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: #c70000;
+}
+
+.login .loading,
+.register .loading {
+  margin: 10px auto;
+  border: 4px solid #c8c8c8;
+  border-top: 4px solid #54c1de;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+}
+
+.login .closeBtn,
+.register .closeBtn {
+  width: 32px;
+  height: 32px;
+  background: 0;
+  border: 0;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  cursor: pointer;
 }
 
 html,

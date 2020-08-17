@@ -1,6 +1,7 @@
 @import "fonts";
 @import "mixins";
 @import "colors";
+@import "animations";
 @import "navbar";
 @import "mainPage";
 @import "choice";
@@ -11,6 +12,7 @@
 @import "birthday";
 @import "canvasElements";
 @import "canvasPreview";
+@import "login";
 
 html,
 body {

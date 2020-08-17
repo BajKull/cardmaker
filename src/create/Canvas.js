@@ -6,6 +6,7 @@ import { setSelectedEl } from "../redux/actions/setSelectedEl";
 
 export default function Canvas({ activeBtn }) {
   const [action, setAction] = useState(false);
+  const [moveOrResize, setMoveOrResize] = useState("move");
   const [newElPos, setNewElPos] = useState(null);
   const [selectedElBorder, setSelectedElBorder] = useState(null);
 
@@ -31,15 +32,26 @@ export default function Canvas({ activeBtn }) {
     if (activeBtn === "select") canvasSelect(event);
   };
 
+  const selElBorder = (posX, posY, width, height, res) => {
+    setSelectedElBorder({
+      x: posX,
+      y: posY,
+      w: width,
+      h: height,
+      resize: res,
+    });
+  };
+
   const canvasEndAction = (event) => {
+    if (!action) return;
     setAction(false);
     if (activeBtn !== "select") setSelectedElBorder(null);
     if (selectedElBorder) canvasFunctions(event);
+    if (moveOrResize !== "move") setMoveOrResize("move");
   };
 
   const canvasAction = (event) => {
     if (!action) return;
-
     if (activeBtn === "select" || activeBtn === "move") canvasFunctions(event);
     else canvasNewElSetup(event);
   };
@@ -57,16 +69,11 @@ export default function Canvas({ activeBtn }) {
     if (!newElPos) return;
     const canvas = document.querySelector(".editorCanvas");
     const rect = canvas.getBoundingClientRect();
-
     const startx = newElPos.x;
     const starty = newElPos.y;
-
-    setSelectedElBorder({
-      x: startx,
-      y: starty,
-      w: event.clientX - rect.left - startx,
-      h: event.clientY - rect.top - starty,
-    });
+    const width = event.clientX - rect.left - startx;
+    const height = event.clientY - rect.top - starty;
+    selElBorder(startx, starty, width, height, false);
   };
 
   const canvasSelect = (event) => {
@@ -87,12 +94,7 @@ export default function Canvas({ activeBtn }) {
 
     if (el) {
       const index = elements.findIndex((element) => element === el);
-      setSelectedElBorder({
-        x: el.posX,
-        y: el.posY,
-        w: el.width,
-        h: el.height,
-      });
+      selElBorder(el.posX, el.posY, el.width, el.height, true);
       dispatch(setSelectedEl(index));
     } else {
       dispatch(setSelectedEl(null));
@@ -102,23 +104,94 @@ export default function Canvas({ activeBtn }) {
 
   const canvasSelectMove = (event) => {
     if (elIndex === null) return;
+    if (moveOrResize === "move") {
+      const newEl = { ...elements[elIndex] };
+
+      const canvas = document.querySelector(".editorCanvas");
+      const rect = canvas.getBoundingClientRect();
+
+      const mouseX = event.clientX - rect.left;
+      const mouseY = event.clientY - rect.top;
+
+      if (
+        mouseX >= newEl.posX &&
+        mouseX <= newEl.posX + 7 &&
+        mouseY >= newEl.posY &&
+        mouseY <= newEl.posY + 7
+      )
+        setMoveOrResize("topleft");
+      else if (
+        mouseX >= newEl.posX + newEl.width - 7 &&
+        mouseX <= newEl.posX + newEl.width &&
+        mouseY >= newEl.posY &&
+        mouseY <= newEl.posY + 7
+      )
+        setMoveOrResize("topright");
+      else if (
+        mouseX >= newEl.posX + newEl.width - 7 &&
+        mouseX <= newEl.posX + newEl.width &&
+        mouseY >= newEl.posY + newEl.height - 7 &&
+        mouseY <= newEl.posY + newEl.height
+      )
+        setMoveOrResize("bottomright");
+      else if (
+        mouseX >= newEl.posX &&
+        mouseX <= newEl.posX + 7 &&
+        mouseY >= newEl.posY + newEl.height - 7 &&
+        mouseY <= newEl.posY + newEl.height
+      )
+        setMoveOrResize("bottomleft");
+      else {
+        newEl.posX += event.clientX - rect.left - newElPos.x;
+        newEl.posY += event.clientY - rect.top - newElPos.y;
+        setNewElPos({
+          x: event.clientX - rect.left,
+          y: event.clientY - rect.top,
+        });
+        selElBorder(newEl.posX, newEl.posY, newEl.width, newEl.height, true);
+        dispatch(editCanvasEl({ index: elIndex, el: newEl }));
+      }
+    } else {
+      canvasSelectResize(event);
+    }
+  };
+
+  const canvasSelectResize = (event) => {
+    const newEl = { ...elements[elIndex] };
 
     const canvas = document.querySelector(".editorCanvas");
     const rect = canvas.getBoundingClientRect();
 
-    const newEl = { ...elements[elIndex] };
-    newEl.posX += event.clientX - rect.left - newElPos.x;
-    newEl.posY += event.clientY - rect.top - newElPos.y;
-    setNewElPos({
-      x: event.clientX - rect.left,
-      y: event.clientY - rect.top,
-    });
-    setSelectedElBorder({
-      x: newEl.posX,
-      y: newEl.posY,
-      w: newEl.width,
-      h: newEl.height,
-    });
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+    if (moveOrResize === "topleft") {
+      newEl.width += newEl.posX - mouseX;
+      newEl.height += newEl.posY - mouseY;
+      if (newEl.width > 7) newEl.posX = mouseX;
+      if (newEl.height > 7) newEl.posY = mouseY;
+    } else if (moveOrResize === "topright") {
+      newEl.width = mouseX - newEl.posX;
+      newEl.height += newEl.posY - mouseY;
+      if (newEl.height > 7) newEl.posY = mouseY;
+    } else if (moveOrResize === "bottomright") {
+      newEl.width = mouseX - newEl.posX;
+      newEl.height = mouseY - newEl.posY;
+    } else if (moveOrResize === "bottomleft") {
+      newEl.width += newEl.posX - mouseX;
+      if (newEl.width > 7) newEl.posX = mouseX;
+      newEl.height = mouseY - newEl.posY;
+    }
+    if (newEl.width < 7) {
+      newEl.width = 7;
+    }
+    if (newEl.height < 7) {
+      newEl.height = 7;
+    }
+    if (newEl.type === "circle") {
+      newEl.height = newEl.width;
+      newEl.radius = newEl.width / 2;
+    }
+    selElBorder(newEl.posX, newEl.posY, newEl.width, newEl.height, true);
     dispatch(editCanvasEl({ index: elIndex, el: newEl }));
   };
 
@@ -303,13 +376,48 @@ export default function Canvas({ activeBtn }) {
       ctx.setLineDash([6]);
       ctx.strokeStyle = "gray";
       ctx.rect(
-        selectedElBorder.x,
-        selectedElBorder.y,
+        selectedElBorder.x + 0.5,
+        selectedElBorder.y + 0.5,
         selectedElBorder.w,
         selectedElBorder.h
       );
       ctx.closePath();
       ctx.stroke();
+      ctx.setLineDash([0]);
+      ctx.strokeStyle = "black";
+      if (selectedElBorder.resize) {
+        ctx.beginPath();
+        ctx.rect(selectedElBorder.x + 0.5, selectedElBorder.y + 0.5, 7, 7);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.rect(
+          selectedElBorder.x + selectedElBorder.w - 7 + 0.5,
+          selectedElBorder.y + 0.5,
+          7,
+          7
+        );
+        ctx.closePath();
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.rect(
+          selectedElBorder.x + selectedElBorder.w - 7 + 0.5,
+          selectedElBorder.y + selectedElBorder.h - 7 + 0.5,
+          7,
+          7
+        );
+        ctx.closePath();
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.rect(
+          selectedElBorder.x + 0.5,
+          selectedElBorder.y + selectedElBorder.h - 7 + 0.5,
+          7,
+          7
+        );
+        ctx.closePath();
+        ctx.stroke();
+      }
     };
 
     elements.forEach((el) => {
