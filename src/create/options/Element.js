@@ -15,8 +15,6 @@ export default function Element({ element }) {
     dispatch(setSelectedEl(null));
   };
 
-  // TE UPDATY SA ZLE, const newEl = element nie robi kopii a odnosi sie do statu!!
-
   const handleWidthChange = (e) => {
     const newEl = { ...element };
     if (isNaN(e.target.value) || e.target.value === "") newEl.width = 25;
@@ -49,7 +47,7 @@ export default function Element({ element }) {
     const newEl = { ...element };
     if (isNaN(e.target.value) || e.target.value === "") newEl.posX = 25;
     else newEl.posX = parseInt(e.target.value);
-    // dispatch(editCanvasEl({ index, el: newEl }));
+    dispatch(editCanvasEl({ index, el: newEl }));
   };
 
   const handlePosYChange = (e) => {
@@ -91,6 +89,12 @@ export default function Element({ element }) {
     dispatch(editCanvasEl({ index, el: newEl }));
   };
 
+  const handleFontChange = (e) => {
+    const newEl = { ...element };
+    newEl.font = e.target.value;
+    dispatch(editCanvasEl({ index, el: newEl }));
+  };
+
   const handleFontSChange = (e) => {
     const newEl = { ...element };
     if (isNaN(e.target.value) || e.target.value === "") newEl.size = 25;
@@ -120,6 +124,7 @@ export default function Element({ element }) {
     handleBorderColorChange,
     handleBorderRadiusChange,
     handleFillColorChange,
+    handleFontChange,
     handleFontSChange,
     handleLineWidthChange,
     handleTextChange,
@@ -138,7 +143,7 @@ export default function Element({ element }) {
         <CircEl element={element} functions={functions} />
       )}
       {element.type === "image" && (
-        <TextEl element={element} functions={functions} />
+        <ImgEl element={element} functions={functions} />
       )}
       <button className="canvasOptionsClose" onClick={closeElementOptions}>
         <img src={CloseIcon} alt="" />{" "}

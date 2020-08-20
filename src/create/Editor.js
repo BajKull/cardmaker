@@ -42,7 +42,7 @@ export default function Editor() {
         <Canvas activeBtn={activeBtn} />
       </div>
       <div className="editorOptions">
-        <Options />
+        <Options activeBtn={activeBtn} />
       </div>
     </div>
   );

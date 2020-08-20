@@ -29,20 +29,6 @@ export default function Register() {
     event.preventDefault();
     const { username, password, password2, email } = event.target.elements;
 
-    const actionCodeSettings = {
-      url: "https://www.google.com",
-      handleCodeInApp: true,
-      iOS: {
-        bundleId: "com.google.ios",
-      },
-      android: {
-        packageName: "com.google.android",
-        installApp: true,
-        minimumVersion: "12",
-      },
-      dynamicLinkDomain: "https://www.google.com",
-    };
-
     setLoading(true);
 
     if (password.value !== password2.value) {

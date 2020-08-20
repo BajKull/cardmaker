@@ -1,0 +1,17 @@
+.error {
+  background: $errorColor;
+  border: 1px solid darken($errorColor, 15);
+  border-left: 5px solid darken($errorColor, 15);
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: darken($errorColor, 40);
+}
+
+.information {
+  background: $lightBlue;
+  border: 1px solid darken($darkBlue, 5);
+  border-left: 5px solid darken($darkBlue, 5);
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: darken($darkBlue, 25);
+}

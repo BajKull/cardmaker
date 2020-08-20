@@ -2,6 +2,8 @@
 @import "mixins";
 @import "colors";
 @import "animations";
+@import "errors";
+@import "loading";
 @import "navbar";
 @import "mainPage";
 @import "choice";
@@ -13,6 +15,8 @@
 @import "canvasElements";
 @import "canvasPreview";
 @import "login";
+@import "canvasOptions";
+@import "imageGrid";
 
 html,
 body {

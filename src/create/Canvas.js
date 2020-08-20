@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addCanvasEl } from "../redux/actions/AddCanvasEl";
 import { editCanvasEl } from "../redux/actions/EditCanvasEl";
 import { setSelectedEl } from "../redux/actions/setSelectedEl";
+import { drawBorder } from "./drawing/drawBorder";
+import { drawImage } from "./drawing/drawImage";
+import { drawCircle } from "./drawing/drawCircle";
+import { drawRectangle } from "./drawing/drawRectangle";
+import { drawText } from "./drawing/drawText";
 
 export default function Canvas({ activeBtn }) {
   const [action, setAction] = useState(false);
@@ -10,20 +15,20 @@ export default function Canvas({ activeBtn }) {
   const [newElPos, setNewElPos] = useState(null);
   const [selectedElBorder, setSelectedElBorder] = useState(null);
 
+  const canvas = useRef(null);
+
   const elements = useSelector((state) => state.canvasEls);
   const elIndex = useSelector((state) => state.canvasElIndex);
   const dispatch = useDispatch();
 
   const resizeCanvas = () => {
-    const canvas = document.querySelector(".editorCanvas");
     const canvasContainer = document.querySelector(".editorView");
-    canvas.width = canvasContainer.offsetWidth;
-    canvas.height = canvasContainer.offsetHeight;
+    canvas.current.width = canvasContainer.offsetWidth;
+    canvas.current.height = canvasContainer.offsetHeight;
   };
 
   const canvasStartAction = (event) => {
-    const canvas = document.querySelector(".editorCanvas");
-    const rect = canvas.getBoundingClientRect();
+    const rect = canvas.current.getBoundingClientRect();
     setAction(true);
     setNewElPos({
       x: event.clientX - rect.left,
@@ -67,8 +72,7 @@ export default function Canvas({ activeBtn }) {
 
   const canvasNewElSetup = (event) => {
     if (!newElPos) return;
-    const canvas = document.querySelector(".editorCanvas");
-    const rect = canvas.getBoundingClientRect();
+    const rect = canvas.current.getBoundingClientRect();
     const startx = newElPos.x;
     const starty = newElPos.y;
     const width = event.clientX - rect.left - startx;
@@ -77,20 +81,22 @@ export default function Canvas({ activeBtn }) {
   };
 
   const canvasSelect = (event) => {
-    const canvas = document.querySelector(".editorCanvas");
-    const rect = canvas.getBoundingClientRect();
-    const el = elements.find((thing) => {
-      if (thing.width) {
-        if (
-          event.clientX - rect.left >= thing.posX &&
-          event.clientX - rect.left <= thing.posX + thing.width &&
-          event.clientY - rect.top >= thing.posY &&
-          event.clientY - rect.top <= thing.posY + thing.height
-        )
-          return true;
-      }
-      return false;
-    });
+    const rect = canvas.current.getBoundingClientRect();
+    const el = elements
+      .slice()
+      .reverse()
+      .find((thing) => {
+        if (thing.width) {
+          if (
+            event.clientX - rect.left >= thing.posX &&
+            event.clientX - rect.left <= thing.posX + thing.width &&
+            event.clientY - rect.top >= thing.posY &&
+            event.clientY - rect.top <= thing.posY + thing.height
+          )
+            return true;
+        }
+        return false;
+      });
 
     if (el) {
       const index = elements.findIndex((element) => element === el);
@@ -107,8 +113,7 @@ export default function Canvas({ activeBtn }) {
     if (moveOrResize === "move") {
       const newEl = { ...elements[elIndex] };
 
-      const canvas = document.querySelector(".editorCanvas");
-      const rect = canvas.getBoundingClientRect();
+      const rect = canvas.current.getBoundingClientRect();
 
       const mouseX = event.clientX - rect.left;
       const mouseY = event.clientY - rect.top;
@@ -159,8 +164,7 @@ export default function Canvas({ activeBtn }) {
   const canvasSelectResize = (event) => {
     const newEl = { ...elements[elIndex] };
 
-    const canvas = document.querySelector(".editorCanvas");
-    const rect = canvas.getBoundingClientRect();
+    const rect = canvas.current.getBoundingClientRect();
 
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
@@ -293,144 +297,6 @@ export default function Canvas({ activeBtn }) {
   };
   const canvasImage = () => {};
 
-  const reDraw = () => {
-    const canvas = document.querySelector(".editorCanvas");
-    const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    const drawText = (el) => {
-      ctx.font = el.size + "px " + el.font;
-      ctx.textAlign = el.align;
-      ctx.fillStyle = el.color;
-      if (el.align === "left")
-        ctx.fillText(el.msg, el.posX, el.posY + el.height / 2);
-      if (el.align === "center")
-        ctx.fillText(el.msg, el.posX + el.width / 2, el.posY + el.height / 2);
-      if (el.align === "right")
-        ctx.fillText(el.msg, el.posX + el.width, el.posY + el.height / 2);
-    };
-    const drawRectangle = (el) => {
-      ctx.beginPath();
-      ctx.lineWidth = el.lineWidth;
-      ctx.setLineDash([0]);
-      ctx.strokeStyle = el.color;
-      if (el.borderRadius === 0)
-        ctx.rect(el.posX, el.posY, el.width, el.height);
-      else {
-        ctx.moveTo(el.posX + el.borderRadius, el.posY);
-        ctx.lineTo(el.posX + el.width - el.borderRadius, el.posY);
-        ctx.quadraticCurveTo(
-          el.posX + el.width,
-          el.posY,
-          el.posX + el.width,
-          el.posY + el.borderRadius
-        );
-        ctx.lineTo(el.posX + el.width, el.posY + el.height - el.borderRadius);
-        ctx.quadraticCurveTo(
-          el.posX + el.width,
-          el.posY + el.height,
-          el.posX + el.width - el.borderRadius,
-          el.posY + el.height
-        );
-        ctx.lineTo(el.posX + el.borderRadius, el.posY + el.height);
-        ctx.quadraticCurveTo(
-          el.posX,
-          el.posY + el.height,
-          el.posX,
-          el.posY + el.height - el.borderRadius
-        );
-        ctx.lineTo(el.posX, el.posY + el.borderRadius);
-        ctx.quadraticCurveTo(
-          el.posX,
-          el.posY,
-          el.posX + el.borderRadius,
-          el.posY
-        );
-      }
-      ctx.fillStyle = el.fill;
-      ctx.fill();
-      ctx.closePath();
-      ctx.stroke();
-    };
-    const drawCircle = (el) => {
-      ctx.beginPath();
-      ctx.lineWidth = el.lineWidth;
-      ctx.setLineDash([0]);
-      ctx.strokeStyle = el.color;
-      ctx.arc(
-        el.posX + el.width / 2,
-        el.posY + el.height / 2,
-        el.width / 2,
-        0,
-        2 * Math.PI
-      );
-      ctx.fillStyle = el.fill;
-      ctx.fill();
-      ctx.closePath();
-      ctx.stroke();
-    };
-
-    const drawBorder = () => {
-      ctx.beginPath();
-      ctx.lineWidth = 1;
-      ctx.setLineDash([6]);
-      ctx.strokeStyle = "gray";
-      ctx.rect(
-        selectedElBorder.x + 0.5,
-        selectedElBorder.y + 0.5,
-        selectedElBorder.w,
-        selectedElBorder.h
-      );
-      ctx.closePath();
-      ctx.stroke();
-      ctx.setLineDash([0]);
-      ctx.strokeStyle = "black";
-      if (selectedElBorder.resize) {
-        ctx.beginPath();
-        ctx.rect(selectedElBorder.x + 0.5, selectedElBorder.y + 0.5, 7, 7);
-        ctx.closePath();
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.rect(
-          selectedElBorder.x + selectedElBorder.w - 7 + 0.5,
-          selectedElBorder.y + 0.5,
-          7,
-          7
-        );
-        ctx.closePath();
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.rect(
-          selectedElBorder.x + selectedElBorder.w - 7 + 0.5,
-          selectedElBorder.y + selectedElBorder.h - 7 + 0.5,
-          7,
-          7
-        );
-        ctx.closePath();
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.rect(
-          selectedElBorder.x + 0.5,
-          selectedElBorder.y + selectedElBorder.h - 7 + 0.5,
-          7,
-          7
-        );
-        ctx.closePath();
-        ctx.stroke();
-      }
-    };
-
-    elements.forEach((el) => {
-      if (el.visible) {
-        if (el.type === "text") drawText(el);
-        if (el.type === "rectangle") drawRectangle(el);
-        if (el.type === "circle") drawCircle(el);
-      }
-    });
-
-    if (selectedElBorder) drawBorder();
-  };
-
   useEffect(() => {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
@@ -441,11 +307,24 @@ export default function Canvas({ activeBtn }) {
   }, []);
 
   useEffect(() => {
-    reDraw();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const ctx = canvas.current.getContext("2d");
+    ctx.clearRect(0, 0, canvas.current.width, canvas.current.height);
+
+    elements.forEach((el) => {
+      if (el.visible) {
+        if (el.type === "text") drawText(ctx, el);
+        if (el.type === "rectangle") drawRectangle(ctx, el);
+        if (el.type === "circle") drawCircle(ctx, el);
+        if (el.type === "image") drawImage(ctx, el);
+      }
+    });
+
+    if (selectedElBorder) drawBorder(ctx, selectedElBorder);
   }, [elements, selectedElBorder]);
+
   return (
     <canvas
+      ref={canvas}
       className="editorCanvas"
       onMouseDown={canvasStartAction}
       onMouseUp={canvasEndAction}

@@ -71,9 +71,26 @@
     display: flex;
     margin-top: 25px;
 
-    .textFSize {
-      width: 10%;
+    .fontSizeContainer {
+      width: 15%;
+      position: relative;
+
+      select {
+        position: absolute;
+        width: 100%;
+        margin: 0;
+        z-index: 4;
+      }
+      input {
+        position: absolute;
+        margin: 0;
+        margin-top: 2px;
+        z-index: 5;
+        background: rgb(240, 240, 240);
+        width: 60%;
+      }
     }
+
     .textFontFam {
       width: 80%;
       margin-left: 10%;

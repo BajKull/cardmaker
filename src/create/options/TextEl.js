@@ -47,27 +47,55 @@ export default function TextEl({ element, functions }) {
         </div>
       </div>
       <div className="textFont">
-        <input
-          list="fontSize"
-          value={element.size}
-          onChange={(event) => functions.handleFontSChange(event)}
-          className="textFSize"
-        />
+        <div className="fontSizeContainer">
+          <select
+            className="textFontFam"
+            onChange={(event) => functions.handleFontSChange(event)}
+          >
+            <option>8</option>
+            <option>10</option>
+            <option>12</option>
+            <option>14</option>
+            <option>18</option>
+            <option>24</option>
+            <option>30</option>
+            <option>36</option>
+            <option>48</option>
+            <option>60</option>
+            <option>72</option>
+            <option>96</option>
+          </select>
 
-        <datalist id="fontSize">
-          <option value={8} />
-          <option value={12} />
-          <option value={24} />
-          <option value={36} />
-          <option value={48} />
-        </datalist>
-        <select className="textFontFam">
-          <option>font1</option>
-          <option>font2</option>
-          <option>font3</option>
-          <option>font4</option>
+          <input
+            type="text"
+            value={element.size}
+            onChange={(event) => functions.handleFontSChange(event)}
+            className="textFSize"
+          />
+        </div>
+        <select
+          className="textFontFam"
+          value={element.font}
+          onChange={(event) => functions.handleFontChange(event)}
+        >
+          <option>Cambria</option>
+          <option>Georgia</option>
+          <option>Palatino Linotype</option>
+          <option>Times New Roman</option>
+          <option>Arial</option>
+          <option>Calibri</option>
+          <option>Candara</option>
+          <option>Impact</option>
+          <option>Lucida Sans Unicode</option>
+          <option>Quicksand</option>
+          <option>Tahoma</option>
+          <option>Trebuchet MS</option>
+          <option>Verdana</option>
+          <option>Courier</option>
+          <option>Lucida Console</option>
         </select>
       </div>
+
       <input
         type="color"
         className="textColor"
