@@ -31,7 +31,13 @@ export default function Register() {
 
     setLoading(true);
 
-    if (password.value !== password2.value) {
+    if (username.value.length < 3) {
+      setError("Username must be at least 3 charachters long");
+      setLoading(false);
+    } else if (username.value.length > 24) {
+      setError("Username can only be 24 charachters long");
+      setLoading(false);
+    } else if (password.value !== password2.value) {
       setError("Passwords don't match");
       setLoading(false);
     } else {

@@ -1,4 +1,5 @@
 $spinAnimation: spin 2s linear infinite;
+$dropDownAnimation: dropDown 0.5s;
 
 @keyframes spin {
   0% {
@@ -6,5 +7,14 @@ $spinAnimation: spin 2s linear infinite;
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes dropDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }

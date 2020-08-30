@@ -3,16 +3,32 @@ import { useSelector, useDispatch } from "react-redux";
 import { addCanvasEl } from "../redux/actions/AddCanvasEl";
 import { editCanvasEl } from "../redux/actions/EditCanvasEl";
 import { setSelectedEl } from "../redux/actions/setSelectedEl";
-import { drawBorder } from "./drawing/drawBorder";
-import { drawImage } from "./drawing/drawImage";
-import { drawCircle } from "./drawing/drawCircle";
-import { drawRectangle } from "./drawing/drawRectangle";
-import { drawText } from "./drawing/drawText";
+import {
+  drawBorder,
+  drawImage,
+  drawCircle,
+  drawRectangle,
+  drawText,
+  drawLine,
+} from "./drawing/drawElements";
+import {
+  createCanvasText,
+  createCanvasRectangle,
+  createCanvasCircle,
+  createCanvasLine,
+} from "./options/elements/createCanvasElement";
 
-export default function Canvas({ activeBtn }) {
+export default function Canvas({ activeBtn, setActiveBtn }) {
   const [action, setAction] = useState(false);
   const [moveOrResize, setMoveOrResize] = useState("move");
   const [newElPos, setNewElPos] = useState(null);
+  const [newLine, setNewLine] = useState({
+    posX: null,
+    posY: null,
+    offsetX: 0,
+    offSetY: 0,
+    path: [],
+  });
   const [selectedElBorder, setSelectedElBorder] = useState(null);
 
   const canvas = useRef(null);
@@ -28,6 +44,7 @@ export default function Canvas({ activeBtn }) {
   };
 
   const canvasStartAction = (event) => {
+    if (activeBtn === "image") return;
     const rect = canvas.current.getBoundingClientRect();
     setAction(true);
     setNewElPos({
@@ -37,37 +54,47 @@ export default function Canvas({ activeBtn }) {
     if (activeBtn === "select") canvasSelect(event);
   };
 
-  const selElBorder = (posX, posY, width, height, res) => {
+  const selElBorder = (posX, posY, width, height, res, rot) => {
     setSelectedElBorder({
       x: posX,
       y: posY,
       w: width,
       h: height,
       resize: res,
+      rotation: rot,
     });
   };
 
   const canvasEndAction = (event) => {
     if (!action) return;
     setAction(false);
-    if (activeBtn !== "select") setSelectedElBorder(null);
     if (selectedElBorder) canvasFunctions(event);
     if (moveOrResize !== "move") setMoveOrResize("move");
+    if (activeBtn !== "select") setActiveBtn("select");
+    if (newLine.path.length !== 0) {
+      canvasLine();
+      setNewLine({
+        posX: null,
+        posY: null,
+        offsetX: 0,
+        offsetY: 0,
+        path: [],
+      });
+    }
   };
 
   const canvasAction = (event) => {
     if (!action) return;
-    if (activeBtn === "select" || activeBtn === "move") canvasFunctions(event);
+    if (activeBtn === "select" || activeBtn === "line") canvasFunctions(event);
     else canvasNewElSetup(event);
   };
 
   const canvasFunctions = (event) => {
     if (activeBtn === "select") canvasSelectMove(event);
-    if (activeBtn === "move") canvasMove();
+    if (activeBtn === "line") canvasLinePrepare(event);
     if (activeBtn === "text") canvasText(event);
     if (activeBtn === "rectangle") canvasRectangle(event);
     if (activeBtn === "circle") canvasCircle(event);
-    if (activeBtn === "image") canvasImage();
   };
 
   const canvasNewElSetup = (event) => {
@@ -77,7 +104,7 @@ export default function Canvas({ activeBtn }) {
     const starty = newElPos.y;
     const width = event.clientX - rect.left - startx;
     const height = event.clientY - rect.top - starty;
-    selElBorder(startx, starty, width, height, false);
+    selElBorder(startx, starty, width, height, false, 0);
   };
 
   const canvasSelect = (event) => {
@@ -100,7 +127,7 @@ export default function Canvas({ activeBtn }) {
 
     if (el) {
       const index = elements.findIndex((element) => element === el);
-      selElBorder(el.posX, el.posY, el.width, el.height, true);
+      selElBorder(el.posX, el.posY, el.width, el.height, true, el.rotation);
       dispatch(setSelectedEl(index));
     } else {
       dispatch(setSelectedEl(null));
@@ -153,7 +180,14 @@ export default function Canvas({ activeBtn }) {
           x: event.clientX - rect.left,
           y: event.clientY - rect.top,
         });
-        selElBorder(newEl.posX, newEl.posY, newEl.width, newEl.height, true);
+        selElBorder(
+          newEl.posX,
+          newEl.posY,
+          newEl.width,
+          newEl.height,
+          true,
+          newEl.rotation
+        );
         dispatch(editCanvasEl({ index: elIndex, el: newEl }));
       }
     } else {
@@ -172,11 +206,11 @@ export default function Canvas({ activeBtn }) {
       newEl.width += newEl.posX - mouseX;
       newEl.height += newEl.posY - mouseY;
       if (newEl.width > 7) newEl.posX = mouseX;
-      if (newEl.height > 7) newEl.posY = mouseY;
+      if (newEl.height > 7 && newEl.type !== "circle") newEl.posY = mouseY;
     } else if (moveOrResize === "topright") {
       newEl.width = mouseX - newEl.posX;
       newEl.height += newEl.posY - mouseY;
-      if (newEl.height > 7) newEl.posY = mouseY;
+      if (newEl.height > 7 && newEl.type !== "circle") newEl.posY = mouseY;
     } else if (moveOrResize === "bottomright") {
       newEl.width = mouseX - newEl.posX;
       newEl.height = mouseY - newEl.posY;
@@ -195,107 +229,66 @@ export default function Canvas({ activeBtn }) {
       newEl.height = newEl.width;
       newEl.radius = newEl.width / 2;
     }
-    selElBorder(newEl.posX, newEl.posY, newEl.width, newEl.height, true);
+    selElBorder(
+      newEl.posX,
+      newEl.posY,
+      newEl.width,
+      newEl.height,
+      true,
+      newEl.rotation
+    );
     dispatch(editCanvasEl({ index: elIndex, el: newEl }));
   };
 
-  const canvasMove = () => {
-    if (!elIndex) return;
-  };
-  const canvasText = () => {
-    const amount = elements.filter((el) => el.type === "text").length;
+  const canvasLinePrepare = (event) => {
+    const rect = canvas.current.getBoundingClientRect();
 
-    const myEl = {
-      id: `Text ${amount}`,
-      type: "text",
-      msg: "Text",
-      font: "Quicksand",
-      size: 30,
-      align: "center",
-      posX: newElPos.x,
-      posY: newElPos.y,
-      width: selectedElBorder.w,
-      height: selectedElBorder.h,
-      color: "#000000",
-      visible: true,
+    const newPoint = {
+      x: event.clientX - rect.left - newElPos.x,
+      y: event.clientY - rect.top - newElPos.y,
     };
 
-    if (myEl.width < 0) {
-      const width = (myEl.width *= -1);
-      myEl.width = width;
-      myEl.posX -= width;
-    }
-    if (myEl.height < 0) {
-      const height = (myEl.height *= -1);
-      myEl.height = height;
-      myEl.posY -= height;
-    }
+    setNewLine({
+      posX: newElPos.x,
+      posY: newElPos.y,
+      offsetX: 0,
+      offsetY: 0,
+      path: [...newLine.path, newPoint],
+    });
+  };
+
+  const canvasLine = () => {
+    const amount = elements.filter((el) => el.type === "line").length;
+    const myEl = createCanvasLine(amount, newLine);
 
     dispatch(addCanvasEl(myEl));
+    dispatch(setSelectedEl(elements.length));
+  };
+
+  const canvasText = () => {
+    const amount = elements.filter((el) => el.type === "text").length;
+    const myEl = createCanvasText(amount, newElPos, selectedElBorder);
+
+    dispatch(addCanvasEl(myEl));
+    dispatch(setSelectedEl(elements.length));
   };
 
   const canvasRectangle = () => {
     const amount = elements.filter((el) => el.type === "rectangle").length;
+    const myEl = createCanvasRectangle(amount, newElPos, selectedElBorder);
 
-    const myEl = {
-      id: `Rectangle ${amount}`,
-      type: "rectangle",
-      posX: newElPos.x,
-      posY: newElPos.y,
-      width: selectedElBorder.w,
-      height: selectedElBorder.h,
-      lineWidth: 3,
-      borderRadius: 0,
-      color: "#000000",
-      fill: "#ffffff",
-      visible: true,
-    };
-
-    if (myEl.width < 0) {
-      const width = (myEl.width *= -1);
-      myEl.width = width;
-      myEl.posX -= width;
-    }
-    if (myEl.height < 0) {
-      const height = (myEl.height *= -1);
-      myEl.height = height;
-      myEl.posY -= height;
-    }
+    console.log(myEl);
 
     dispatch(addCanvasEl(myEl));
+    dispatch(setSelectedEl(elements.length));
   };
   const canvasCircle = () => {
     const amount = elements.filter((el) => el.type === "circle").length;
-
-    const myEl = {
-      id: `Circle ${amount}`,
-      type: "circle",
-      posX: newElPos.x,
-      posY: newElPos.y,
-      width: selectedElBorder.w,
-      height: selectedElBorder.w,
-      radius: selectedElBorder.w / 2,
-      lineWidth: 3,
-      color: "#000000",
-      fill: "#ffffff",
-      visible: true,
-    };
-
-    if (myEl.width < 0) {
-      const width = (myEl.width *= -1);
-      myEl.width = width;
-      myEl.posX -= width;
-    }
-    if (myEl.height < 0) {
-      const height = (myEl.height *= -1);
-      myEl.height = height;
-      myEl.posY -= height;
-    }
-    if (myEl.radius < 0) myEl.radius *= -1;
+    const myEl = createCanvasCircle(amount, newElPos, selectedElBorder);
 
     dispatch(addCanvasEl(myEl));
+    dispatch(setSelectedEl(elements.length));
   };
-  const canvasImage = () => {};
 
   useEffect(() => {
     resizeCanvas();
@@ -313,6 +306,7 @@ export default function Canvas({ activeBtn }) {
     elements.forEach((el) => {
       if (el.visible) {
         if (el.type === "text") drawText(ctx, el);
+        if (el.type === "line") drawLine(ctx, el);
         if (el.type === "rectangle") drawRectangle(ctx, el);
         if (el.type === "circle") drawCircle(ctx, el);
         if (el.type === "image") drawImage(ctx, el);
@@ -320,7 +314,21 @@ export default function Canvas({ activeBtn }) {
     });
 
     if (selectedElBorder) drawBorder(ctx, selectedElBorder);
-  }, [elements, selectedElBorder]);
+    if (newLine) drawLine(ctx, newLine);
+  }, [elements, selectedElBorder, newLine]);
+
+  useEffect(() => {
+    if (elIndex !== null)
+      setSelectedElBorder({
+        x: elements[elIndex].posX,
+        y: elements[elIndex].posY,
+        w: elements[elIndex].width,
+        h: elements[elIndex].height,
+        resize: true,
+        rotation: elements[elIndex].rotation,
+      });
+    else setSelectedElBorder(null);
+  }, [elIndex, elements]);
 
   return (
     <canvas

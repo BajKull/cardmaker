@@ -19,7 +19,30 @@
     font-size: 1.5rem;
     width: 70%;
     overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
+  }
+
+  input {
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    margin-left: 15px;
+    font-family: $mainFont;
+    font-size: 1.5rem;
+    font-weight: 400;
+    width: 70%;
+    border: 0;
+    background: 0;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:disabled {
+      color: black;
+    }
   }
 
   .elementBtns {

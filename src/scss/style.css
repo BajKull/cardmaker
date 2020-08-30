@@ -20,6 +20,28 @@
   }
 }
 
+@-webkit-keyframes dropDown {
+  0% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes dropDown {
+  0% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
 .error {
   background: #ffa9a9;
   border: 1px solid #ff5d5d;
@@ -99,6 +121,7 @@
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  margin-right: 25px;
 }
 
 .navbar .navbarLogin li {
@@ -465,7 +488,7 @@
 
 .editor {
   width: 90%;
-  height: 85vh;
+  height: 75vh;
   min-height: 720px;
   min-width: 1280px;
   overflow: hidden;
@@ -528,7 +551,7 @@
 .editor .editorView {
   width: 75%;
   height: 100%;
-  background-color: white;
+  background-color: #f0f0f0;
 }
 
 .editor .editorOptions {
@@ -540,6 +563,7 @@
 .editor .editorOptions .canvasOptions {
   width: 100%;
   height: 100%;
+  overflow-y: auto;
 }
 
 .birthday {
@@ -550,6 +574,7 @@
 
 .canvasOptionsContainer {
   position: relative;
+  height: 100%;
 }
 
 .canvasOptionsContainer input,
@@ -561,6 +586,8 @@
   border: none;
   border-bottom: 1px solid #c8c8c8;
   background: none;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
 .canvasOptionsContainer input:focus,
@@ -577,6 +604,25 @@
   border: 0;
   background: 0;
   padding: 0;
+  cursor: pointer;
+}
+
+.canvasOptionsContainer .canvasDelete {
+  position: absolute;
+  width: 50%;
+  height: 50px;
+  bottom: 15px;
+  border-radius: 10px;
+  left: 25%;
+  background: 0;
+  border: 2px solid #ffa9a9;
+}
+
+.canvasOptionsContainer .canvasDelete .canvasDeleteIcon {
+  width: 24px;
+  height: 24px;
+  margin-top: 3px;
+  fill: #ff4343;
 }
 
 .canvasElSP {
@@ -594,12 +640,13 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 20%;
 }
 
 .canvasElSize p,
 .canvasElPos p {
   margin: 0;
-  margin-right: 5px;
+  margin-right: 14px;
 }
 
 .canvasElSize input,
@@ -624,12 +671,35 @@
   height: 50px;
 }
 
+.canvasElRot {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 50px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 20%;
+  position: relative;
+}
+
+.canvasElRot img {
+  width: 16px;
+  height: 16px;
+  margin-right: 14px;
+}
+
+.canvasElPos,
+.canvasElRot {
+  margin-left: 10%;
+}
+
 .canvasText {
   padding: 25px;
 }
 
 .canvasText .canvasMsg {
-  margin-bottom: 15px;
+  margin: 15px 0;
 }
 
 .canvasText .textFont {
@@ -639,14 +709,21 @@
   margin-top: 25px;
 }
 
+.canvasText .textFont img {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+}
+
 .canvasText .textFont .fontSizeContainer {
-  width: 15%;
+  width: 20%;
   position: relative;
 }
 
 .canvasText .textFont .fontSizeContainer select {
   position: absolute;
-  width: 100%;
+  right: 0;
+  width: 60%;
   margin: 0;
   z-index: 4;
 }
@@ -657,22 +734,42 @@
   margin-top: 2px;
   z-index: 5;
   background: #f0f0f0;
-  width: 60%;
+  width: 40%;
+}
+
+.canvasText .textFont .fontWeightContainer {
+  width: 20%;
+  margin-left: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .canvasText .textFont .textFontFam {
-  width: 80%;
+  width: 40%;
   margin-left: 10%;
 }
 
-.canvasText .textColor {
+.canvasText .fontColorContainer {
   margin-top: 25px;
-  height: 35px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.canvasText .fontColorContainer .textColor {
+  border: 0;
+  padding: 0;
+  width: 50px;
+}
+
+.canvasText .fontColorContainer .textColor:focus {
   border: 0;
 }
 
-.canvasText .textColor:focus {
-  border: 0;
+.canvasText .fontColorContainer p {
+  margin: 0;
+  margin-left: 15px;
 }
 
 .canvasText .textAlignment {
@@ -684,10 +781,10 @@
 }
 
 .canvasText .textAlignment button {
-  width: 50px;
-  height: 50px;
-  padding: 10px;
-  margin-right: 10px;
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+  margin-right: 5px;
   border: 1px solid #54c1de;
   border-radius: 3px;
   background: 0;
@@ -746,6 +843,14 @@
   width: 50px;
 }
 
+.canvasRect .rectColors .rectFillColor .rectFillCheckbox,
+.canvasRect .rectColors .rectBorderColor .rectFillCheckbox {
+  height: 12px;
+  width: 12px;
+  margin-top: 4px;
+  margin-left: 15px;
+}
+
 .canvasRect .rectFillColor {
   margin-top: 25px;
 }
@@ -785,6 +890,14 @@
 .canvasCircle .circleColors .circleBorderColor input {
   border: 0;
   width: 50px;
+}
+
+.canvasCircle .circleColors .circleFillColor .circleFillCheckbox,
+.canvasCircle .circleColors .circleBorderColor .circleFillCheckbox {
+  height: 12px;
+  width: 12px;
+  margin-top: 4px;
+  margin-left: 15px;
 }
 
 .canvasCircle .circleBorderWidth {
@@ -837,7 +950,30 @@
   font-size: 1.5rem;
   width: 70%;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.elementPreview input {
+  margin: 0;
+  padding: 0;
+  height: 30px;
+  margin-left: 15px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  width: 70%;
+  border: 0;
+  background: 0;
+  cursor: pointer;
+}
+
+.elementPreview input:focus {
+  outline: none;
+}
+
+.elementPreview input:disabled {
+  color: black;
 }
 
 .elementPreview .elementBtns {
@@ -879,6 +1015,8 @@
   border-radius: 10px;
   background-color: white;
   margin: auto;
+  -webkit-animation: dropDown 0.5s;
+          animation: dropDown 0.5s;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1064,8 +1202,11 @@
   height: 100vh;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.65);
   z-index: 999;
+}
+
+.uploadScreen .uploadForm {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1076,24 +1217,36 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-animation: dropDown 0.5s;
+          animation: dropDown 0.5s;
 }
 
-.uploadScreen .closeBtn {
+.uploadScreen .uploadForm .closeBtn {
   position: fixed;
   width: 42px;
   height: 42px;
   padding: 5px;
   border-radius: 5px;
-  background: white;
-  top: 10%;
+  background: 0;
   right: 9.5%;
+  -webkit-transform: translateY(300%);
+          transform: translateY(300%);
 }
 
-.uploadScreen h1 {
-  margin-top: 20vh;
+.uploadScreen .uploadForm .closeBtn .closeIcon {
+  fill: white;
 }
 
-.uploadScreen input {
+.uploadScreen .uploadForm .error {
+  margin-top: 25px;
+  width: 300px;
+}
+
+.uploadScreen .uploadForm h1 {
+  margin-top: 25vh;
+}
+
+.uploadScreen .uploadForm input {
   width: 80%;
   height: 50px;
   border: 0;
@@ -1102,11 +1255,11 @@
   font-size: 24px;
 }
 
-.uploadScreen button {
+.uploadScreen .uploadForm button {
   width: 200px;
 }
 
-.uploadScreen p {
+.uploadScreen .uploadForm p {
   color: white;
 }
 
@@ -1164,6 +1317,114 @@
   position: absolute;
   width: 80%;
   left: 5%;
+}
+
+.canvasResolution {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  overflow-y: scroll;
+}
+
+.canvasResolution .canvasResolutionContainer {
+  width: 80%;
+  margin: auto;
+}
+
+.canvasResolution .customResolution {
+  padding-top: 125px;
+  margin-bottom: 75px;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.canvasResolution .customResolution input,
+.canvasResolution .customResolution select {
+  width: 100%;
+  padding: 0;
+  padding-bottom: 3px;
+  margin: 0;
+  border: none;
+  border-bottom: 1px solid #c8c8c8;
+  background: none;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.canvasResolution .customResolution input:focus,
+.canvasResolution .customResolution select:focus {
+  outline: none;
+  border-bottom: 1px solid #54c1de;
+}
+
+.canvasResolution .customResolution h1 {
+  margin: 0 15px;
+}
+
+.canvasResolution .customResolution input {
+  width: 100px;
+  color: white;
+  margin: 0 15px;
+  text-align: center;
+  height: 25px;
+  margin-top: 6px;
+  padding-bottom: 0;
+}
+
+.canvasResolution .customResolution button {
+  width: 75px;
+  height: 25px;
+  margin-top: 7px;
+  border-radius: 5px;
+  border: 0;
+  background: #54c1de;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 700;
+}
+
+.canvasResolution .resolutionTitle {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.canvasResolution .resolutionCards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.canvasResolution .resolutionCard {
+  border: 1px solid white;
+  width: 20%;
+  height: 300px;
+  text-align: center;
+  margin: 15px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.canvasResolution .resolutionCard:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 html,

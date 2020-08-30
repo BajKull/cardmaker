@@ -2,6 +2,7 @@
 @import "mixins";
 @import "colors";
 @import "animations";
+@import "input";
 @import "errors";
 @import "loading";
 @import "navbar";
@@ -17,6 +18,7 @@
 @import "login";
 @import "canvasOptions";
 @import "imageGrid";
+@import "canvasResolution";
 
 html,
 body {

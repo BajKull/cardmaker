@@ -1,5 +1,7 @@
 import React from "react";
 
+import RotationIcon from "../icons/rotation.svg";
+
 export default function ImgEl({ element, functions }) {
   return (
     <div className="canvasRect">
@@ -35,6 +37,13 @@ export default function ImgEl({ element, functions }) {
               onChange={(event) => functions.handlePosYChange(event)}
             />
           </div>
+        </div>
+        <div className="canvasElRot">
+          <img src={RotationIcon} alt="" />
+          <input
+            value={element.rotation}
+            onChange={functions.handleRotationChange}
+          />
         </div>
       </div>
     </div>

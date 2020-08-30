@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function CircEl({ element, functions }) {
+  const [fillColor, setFillColor] = useState(element.fillColor);
+  const [borderColor, setBorderColor] = useState(element.color);
   return (
     <div className="canvasCircle">
       <div className="canvasElSP">
@@ -42,16 +44,24 @@ export default function CircEl({ element, functions }) {
         <div className="circleFillColor">
           <input
             type="color"
-            defaultValue={element.fill}
-            onBlur={functions.handleFillColorChange}
+            value={element.fillColor}
+            onChange={(e) => setFillColor(e.target.value)}
+            onBlur={() => functions.handleFillColorChange(fillColor)}
           />
           <p>Fill</p>
+          <input
+            type="checkbox"
+            className="circleFillCheckbox"
+            checked={element.fill}
+            onChange={functions.handleFillChange}
+          />
         </div>
         <div className="circleBorderColor">
           <input
             type="color"
-            defaultValue={element.color}
-            onBlur={functions.handleBorderColorChange}
+            value={element.color}
+            onChange={(e) => setBorderColor(e.target.value)}
+            onBlur={() => functions.handleBorderColorChange(borderColor)}
           />
           <p>Border</p>
         </div>

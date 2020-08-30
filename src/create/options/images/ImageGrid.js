@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCanvasEl } from "../../../redux/actions/AddCanvasEl";
+import { createCanvasImage } from "../elements/createCanvasElement";
+import { setSelectedEl } from "../../../redux/actions/setSelectedEl";
 
 export default function ImageGrid({
   images,
@@ -14,26 +16,10 @@ export default function ImageGrid({
 
   const addImage = (event) => {
     const amount = elements.filter((el) => el.type === "image").length;
-    const img = new Image();
-    img.src = event.target.src;
-    let divider = 1;
-    if (img.height > 512 || img.width > 512)
-      img.height > img.width
-        ? (divider = img.height / 512)
-        : (divider = img.width / 512);
+    const myEl = createCanvasImage(amount, event);
 
-    const myEl = {
-      id: `Image ${amount}`,
-      type: "image",
-      src: event.target.src,
-      image: img,
-      posX: 150,
-      posY: 150,
-      width: parseInt(img.width / divider),
-      height: parseInt(img.height / divider),
-      visible: true,
-    };
     dispatch(addCanvasEl(myEl));
+    dispatch(setSelectedEl(elements.length));
   };
 
   if (imagesSource === "global") {

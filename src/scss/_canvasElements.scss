@@ -1,23 +1,6 @@
-@mixin inputOptions {
-  input,
-  select {
-    width: 100%;
-    padding: 0;
-    padding-bottom: 3px;
-    margin: 0;
-    border: none;
-    border-bottom: 1px solid rgb(200, 200, 200);
-    background: none;
-
-    &:focus {
-      outline: none;
-      border-bottom: 1px solid $lightBlue;
-    }
-  }
-}
-
 .canvasOptionsContainer {
   position: relative;
+  height: 100%;
 
   @include inputOptions;
 
@@ -29,6 +12,25 @@
     border: 0;
     background: 0;
     padding: 0;
+    cursor: pointer;
+  }
+
+  .canvasDelete {
+    position: absolute;
+    width: 50%;
+    height: 50px;
+    bottom: 15px;
+    border-radius: 10px;
+    left: 25%;
+    background: 0;
+    border: 2px solid $errorColor;
+
+    .canvasDeleteIcon {
+      width: 24px;
+      height: 24px;
+      margin-top: 3px;
+      fill: darken($errorColor, 20);
+    }
   }
 }
 
@@ -40,10 +42,11 @@
 .canvasElPos {
   display: flex;
   flex-direction: column;
+  width: 20%;
 
   p {
     margin: 0;
-    margin-right: 5px;
+    margin-right: 14px;
   }
 
   input {
@@ -60,24 +63,48 @@
   }
 }
 
+.canvasElRot {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  width: 20%;
+  position: relative;
+  img {
+    width: 16px;
+    height: 16px;
+    margin-right: 14px;
+  }
+}
+
+.canvasElPos,
+.canvasElRot {
+  margin-left: 10%;
+}
+
 .canvasText {
   padding: 25px;
 
   .canvasMsg {
-    margin-bottom: 15px;
+    margin: 15px 0;
   }
 
   .textFont {
     display: flex;
     margin-top: 25px;
+    img {
+      width: 16px;
+      height: 16px;
+      margin-right: 10px;
+    }
 
     .fontSizeContainer {
-      width: 15%;
+      width: 20%;
       position: relative;
 
       select {
         position: absolute;
-        width: 100%;
+        right: 0;
+        width: 60%;
         margin: 0;
         z-index: 4;
       }
@@ -87,22 +114,38 @@
         margin-top: 2px;
         z-index: 5;
         background: rgb(240, 240, 240);
-        width: 60%;
+        width: 40%;
       }
     }
 
+    .fontWeightContainer {
+      width: 20%;
+      margin-left: 10%;
+      display: flex;
+    }
+
     .textFontFam {
-      width: 80%;
+      width: 40%;
       margin-left: 10%;
     }
   }
 
-  .textColor {
+  .fontColorContainer {
     margin-top: 25px;
-    height: 35px;
-    border: 0;
-    &:focus {
+    display: flex;
+
+    .textColor {
       border: 0;
+      padding: 0;
+      width: 50px;
+      &:focus {
+        border: 0;
+      }
+    }
+
+    p {
+      margin: 0;
+      margin-left: 15px;
     }
   }
 
@@ -112,10 +155,10 @@
     display: flex;
 
     button {
-      width: 50px;
-      height: 50px;
-      padding: 10px;
-      margin-right: 10px;
+      width: 32px;
+      height: 32px;
+      padding: 8px;
+      margin-right: 5px;
       border: 1px solid $lightBlue;
       border-radius: 3px;
       background: 0;
@@ -159,6 +202,13 @@
         border: 0;
         width: 50px;
       }
+
+      .rectFillCheckbox {
+        height: 12px;
+        width: 12px;
+        margin-top: 4px;
+        margin-left: 15px;
+      }
     }
   }
   .rectFillColor {
@@ -188,6 +238,13 @@
       input {
         border: 0;
         width: 50px;
+      }
+
+      .circleFillCheckbox {
+        height: 12px;
+        width: 12px;
+        margin-top: 4px;
+        margin-left: 15px;
       }
     }
   }

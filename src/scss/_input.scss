@@ -1,0 +1,18 @@
+@mixin inputOptions {
+  input,
+  select {
+    width: 100%;
+    padding: 0;
+    padding-bottom: 3px;
+    margin: 0;
+    border: none;
+    border-bottom: 1px solid rgb(200, 200, 200);
+    background: none;
+    transition: 0.2s;
+
+    &:focus {
+      outline: none;
+      border-bottom: 1px solid $lightBlue;
+    }
+  }
+}

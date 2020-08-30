@@ -94,7 +94,7 @@ export default function ElementImage() {
         />
         <button onClick={uploadFileReFun}>Upload file</button>
       </div>
-      {error && <p>{error}</p>}
+      {error && <p className="error">{error}</p>}
       {file && <ProgressBar file={file} setFile={setFile} />}
       {uploadScreen && (
         <UploadScreen

@@ -10,8 +10,10 @@ const drawCircle = (ctx, el) => {
     0,
     2 * Math.PI
   );
-  ctx.fillStyle = el.fill;
-  ctx.fill();
+  if (el.fill) {
+    ctx.fillStyle = el.fillColor;
+    ctx.fill();
+  }
   ctx.closePath();
   ctx.stroke();
 };

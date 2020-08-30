@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCanvasEl } from "../../../redux/actions/AddCanvasEl";
-import CloseIcon from "../../../create/icons/close.svg";
+import { ReactComponent as CloseIcon } from "../../../create/icons/close.svg";
 
 export default function UploadScreen({
   uploadUrl,
@@ -38,6 +38,7 @@ export default function UploadScreen({
             image: img,
             posX: 150,
             posY: 150,
+            rotation: 0,
             width: parseInt(img.width / divider),
             height: parseInt(img.height / divider),
             visible: true,
@@ -46,6 +47,7 @@ export default function UploadScreen({
           setUploadScreen(false);
         };
         img.src = uploadUrl;
+        img.onerror = () => setError("Invalid URL");
       } catch (er) {
         setError("Invalid URL");
       }
@@ -74,18 +76,20 @@ export default function UploadScreen({
       ref={focusWindow}
       tabIndex="0"
     >
-      <button className="closeBtn" onClick={closeScreen}>
-        <img className="closeClass" src={CloseIcon} alt="" />{" "}
-      </button>
-      <h1>Provide URL</h1>
-      <input
-        type="text"
-        placeholder="URL"
-        value={uploadUrl}
-        onChange={(e) => setUploadUrl(e.target.value)}
-      />
-      <button onClick={checkLink}>Submit</button>
-      {error && <p>{error}</p>}
+      <div className="uploadForm closeClass">
+        <button className="closeBtn" onClick={closeScreen}>
+          <CloseIcon className="closeIcon" />
+        </button>
+        <h1>Provide URL</h1>
+        <input
+          type="text"
+          placeholder="URL"
+          value={uploadUrl}
+          onChange={(e) => setUploadUrl(e.target.value)}
+        />
+        <button onClick={checkLink}>Submit</button>
+        {error && <p className="error">{error}</p>}
+      </div>
     </div>
   );
 }

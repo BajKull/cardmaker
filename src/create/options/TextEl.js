@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 import TextLeft from "../icons/text-align-left.svg";
 import TextMiddle from "../icons/text-align-middle.svg";
 import TextRight from "../icons/text-align-right.svg";
+import FontSize from "../icons/font-size.svg";
+import FontWeight from "../icons/font-weight.svg";
+import RotationIcon from "../icons/rotation.svg";
 
 export default function TextEl({ element, functions }) {
+  const [color, setlColor] = useState(element.color);
   return (
     <div className="canvasText">
       <input
@@ -45,12 +49,20 @@ export default function TextEl({ element, functions }) {
             />
           </div>
         </div>
+        <div className="canvasElRot">
+          <img src={RotationIcon} alt="" />
+          <input
+            value={element.rotation}
+            onChange={functions.handleRotationChange}
+          />
+        </div>
       </div>
       <div className="textFont">
         <div className="fontSizeContainer">
+          <img className="fontSizeIcon" src={FontSize} alt="" />
           <select
             className="textFontFam"
-            onChange={(event) => functions.handleFontSChange(event)}
+            onChange={(event) => functions.handleFontSizeChange(event)}
           >
             <option>8</option>
             <option>10</option>
@@ -69,8 +81,17 @@ export default function TextEl({ element, functions }) {
           <input
             type="text"
             value={element.size}
-            onChange={(event) => functions.handleFontSChange(event)}
+            onChange={(event) => functions.handleFontSizeChange(event)}
             className="textFSize"
+          />
+        </div>
+        <div className="fontWeightContainer">
+          <img className="fontWeightIcon" src={FontWeight} alt="" />
+          <input
+            type="text"
+            className="textWeight"
+            value={element.weight}
+            onChange={functions.handleFontWeightChange}
           />
         </div>
         <select
@@ -96,12 +117,6 @@ export default function TextEl({ element, functions }) {
         </select>
       </div>
 
-      <input
-        type="color"
-        className="textColor"
-        defaultValue={element.color}
-        onBlur={(event) => functions.handleColorChange(event)}
-      />
       <div className="textAlignment">
         <button onClick={() => functions.handleAlignChange("left")}>
           <img src={TextLeft} alt="" />
@@ -112,6 +127,16 @@ export default function TextEl({ element, functions }) {
         <button onClick={() => functions.handleAlignChange("right")}>
           <img src={TextRight} alt="" />
         </button>
+      </div>
+      <div className="fontColorContainer">
+        <input
+          type="color"
+          className="textColor"
+          value={element.color}
+          onChange={(e) => setlColor(e.target.value)}
+          onBlur={() => functions.handleColorChange(color)}
+        />
+        <p>Color</p>
       </div>
     </div>
   );
