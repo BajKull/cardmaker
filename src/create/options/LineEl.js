@@ -11,14 +11,14 @@ export default function LineEl({ element, functions }) {
           <div className="canvasElWidth">
             <p>W</p>
             <input
-              value={element.width}
+              value={parseInt(element.width)}
               onChange={functions.handleWidthChange}
             />
           </div>
           <div className="canvasElHeight">
             <p>H</p>
             <input
-              value={element.height}
+              value={parseInt(element.height)}
               onChange={functions.handleHeightChange}
             />
           </div>
@@ -26,11 +26,17 @@ export default function LineEl({ element, functions }) {
         <div className="canvasElPos">
           <div className="canvasElX">
             <p>X</p>
-            <input value={element.posX} onChange={functions.handlePosXChange} />
+            <input
+              value={parseInt(element.posX)}
+              onChange={functions.handlePosXChange}
+            />
           </div>
           <div className="canvasElY">
             <p>Y</p>
-            <input value={element.posY} onChange={functions.handlePosYChange} />
+            <input
+              value={parseInt(element.posY)}
+              onChange={functions.handlePosYChange}
+            />
           </div>
         </div>
         <div className="canvasElRot">

@@ -32,6 +32,8 @@ const createCanvasLine = (amount, line) => {
   const myEl = {
     id: `Line ${amount}`,
     type: "line",
+    sWidth: width,
+    sHeight: height,
     width: width,
     height: height,
     posX: maxLeft,

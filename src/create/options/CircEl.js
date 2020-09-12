@@ -10,7 +10,7 @@ export default function CircEl({ element, functions }) {
           <div className="canvasElWidth">
             <p>R</p>
             <input
-              value={element.radius}
+              value={parseInt(element.radius)}
               onChange={(event) => functions.handleRadiusChange(event)}
             />
           </div>
@@ -19,14 +19,14 @@ export default function CircEl({ element, functions }) {
           <div className="canvasElX">
             <p>X</p>
             <input
-              value={element.posX}
+              value={parseInt(element.posX)}
               onChange={(event) => functions.handlePosXChange(event)}
             />
           </div>
           <div className="canvasElY">
             <p>Y</p>
             <input
-              value={element.posY}
+              value={parseInt(element.posY)}
               onChange={(event) => functions.handlePosYChange(event)}
             />
           </div>

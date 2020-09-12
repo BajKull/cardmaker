@@ -1,6 +1,6 @@
 import React from "react";
 import Choice from "../choice/Choice";
-import Birthday from "./birthday/Birthday";
+import Birthday from "./Birthday";
 import { Route, useRouteMatch } from "react-router-dom";
 
 export default function Create() {

@@ -16,6 +16,8 @@ const CanvasElementsReducer = (state = [], action) => {
         ...state.slice(0, action.payload),
         ...state.slice(action.payload + 1),
       ];
+    case "CLEAR_CANVAS_EL":
+      return [];
     default:
       return state;
   }

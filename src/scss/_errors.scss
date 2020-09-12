@@ -15,3 +15,12 @@
   border-radius: 5px;
   color: darken($darkBlue, 25);
 }
+
+.warning {
+  background: $warningColor;
+  border: 1px solid darken($warningColor, 35);
+  border-left: 5px solid darken($warningColor, 35);
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: darken($warningColor, 45);
+}

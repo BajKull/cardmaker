@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addCanvasEl } from "../redux/actions/AddCanvasEl";
 import { editCanvasEl } from "../redux/actions/EditCanvasEl";
@@ -22,6 +22,7 @@ export default function Canvas({ activeBtn, setActiveBtn }) {
   const [action, setAction] = useState(false);
   const [moveOrResize, setMoveOrResize] = useState("move");
   const [newElPos, setNewElPos] = useState(null);
+  const [scale, setScale] = useState(1);
   const [newLine, setNewLine] = useState({
     posX: null,
     posY: null,
@@ -30,26 +31,22 @@ export default function Canvas({ activeBtn, setActiveBtn }) {
     path: [],
   });
   const [selectedElBorder, setSelectedElBorder] = useState(null);
+  const [redraw, setRedraw] = useState(false);
 
   const canvas = useRef(null);
 
   const elements = useSelector((state) => state.canvasEls);
   const elIndex = useSelector((state) => state.canvasElIndex);
+  const canvasResolution = useSelector((state) => state.canvasRes);
   const dispatch = useDispatch();
-
-  const resizeCanvas = () => {
-    const canvasContainer = document.querySelector(".editorView");
-    canvas.current.width = canvasContainer.offsetWidth;
-    canvas.current.height = canvasContainer.offsetHeight;
-  };
 
   const canvasStartAction = (event) => {
     if (activeBtn === "image") return;
     const rect = canvas.current.getBoundingClientRect();
     setAction(true);
     setNewElPos({
-      x: event.clientX - rect.left,
-      y: event.clientY - rect.top,
+      x: (event.clientX - rect.left) / scale,
+      y: (event.clientY - rect.top) / scale,
     });
     if (activeBtn === "select") canvasSelect(event);
   };
@@ -102,8 +99,8 @@ export default function Canvas({ activeBtn, setActiveBtn }) {
     const rect = canvas.current.getBoundingClientRect();
     const startx = newElPos.x;
     const starty = newElPos.y;
-    const width = event.clientX - rect.left - startx;
-    const height = event.clientY - rect.top - starty;
+    const width = (event.clientX - rect.left) / scale - startx;
+    const height = (event.clientY - rect.top) / scale - starty;
     selElBorder(startx, starty, width, height, false, 0);
   };
 
@@ -115,10 +112,10 @@ export default function Canvas({ activeBtn, setActiveBtn }) {
       .find((thing) => {
         if (thing.width) {
           if (
-            event.clientX - rect.left >= thing.posX &&
-            event.clientX - rect.left <= thing.posX + thing.width &&
-            event.clientY - rect.top >= thing.posY &&
-            event.clientY - rect.top <= thing.posY + thing.height
+            (event.clientX - rect.left) / scale >= thing.posX &&
+            (event.clientX - rect.left) / scale <= thing.posX + thing.width &&
+            (event.clientY - rect.top) / scale >= thing.posY &&
+            (event.clientY - rect.top) / scale <= thing.posY + thing.height
           )
             return true;
         }
@@ -142,8 +139,8 @@ export default function Canvas({ activeBtn, setActiveBtn }) {
 
       const rect = canvas.current.getBoundingClientRect();
 
-      const mouseX = event.clientX - rect.left;
-      const mouseY = event.clientY - rect.top;
+      const mouseX = (event.clientX - rect.left) / scale;
+      const mouseY = (event.clientY - rect.top) / scale;
 
       if (
         mouseX >= newEl.posX &&
@@ -174,11 +171,11 @@ export default function Canvas({ activeBtn, setActiveBtn }) {
       )
         setMoveOrResize("bottomleft");
       else {
-        newEl.posX += event.clientX - rect.left - newElPos.x;
-        newEl.posY += event.clientY - rect.top - newElPos.y;
+        newEl.posX += (event.clientX - rect.left) / scale - newElPos.x;
+        newEl.posY += (event.clientY - rect.top) / scale - newElPos.y;
         setNewElPos({
-          x: event.clientX - rect.left,
-          y: event.clientY - rect.top,
+          x: (event.clientX - rect.left) / scale,
+          y: (event.clientY - rect.top) / scale,
         });
         selElBorder(
           newEl.posX,
@@ -200,8 +197,8 @@ export default function Canvas({ activeBtn, setActiveBtn }) {
 
     const rect = canvas.current.getBoundingClientRect();
 
-    const mouseX = event.clientX - rect.left;
-    const mouseY = event.clientY - rect.top;
+    const mouseX = (event.clientX - rect.left) / scale;
+    const mouseY = (event.clientY - rect.top) / scale;
     if (moveOrResize === "topleft") {
       newEl.width += newEl.posX - mouseX;
       newEl.height += newEl.posY - mouseY;
@@ -244,8 +241,8 @@ export default function Canvas({ activeBtn, setActiveBtn }) {
     const rect = canvas.current.getBoundingClientRect();
 
     const newPoint = {
-      x: event.clientX - rect.left - newElPos.x,
-      y: event.clientY - rect.top - newElPos.y,
+      x: (event.clientX - rect.left) / scale - newElPos.x,
+      y: (event.clientY - rect.top) / scale - newElPos.y,
     };
 
     setNewLine({
@@ -277,8 +274,6 @@ export default function Canvas({ activeBtn, setActiveBtn }) {
     const amount = elements.filter((el) => el.type === "rectangle").length;
     const myEl = createCanvasRectangle(amount, newElPos, selectedElBorder);
 
-    console.log(myEl);
-
     dispatch(addCanvasEl(myEl));
     dispatch(setSelectedEl(elements.length));
   };
@@ -290,32 +285,60 @@ export default function Canvas({ activeBtn, setActiveBtn }) {
     dispatch(setSelectedEl(elements.length));
   };
 
-  useEffect(() => {
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
+  const resize = useCallback(() => {
+    const canvasContainer = document.querySelector(".editorView");
+    const canWidth = canvasContainer.offsetWidth;
+    const canHeight = canvasContainer.offsetHeight;
+    const { width, height } = canvasResolution;
+    let ratio = 1;
+    if (height >= canHeight) {
+      ratio = (height + 50) / canHeight;
+    }
+    if (width >= canWidth) {
+      const newRatio = (width + 100) / canWidth;
+      if (newRatio > ratio) ratio = newRatio;
+    }
+    canvas.current.width = width;
+    canvas.current.height = height;
+    canvas.current.style.transform = `scale(${1 / ratio})`;
+    canvasContainer.style.width = width / ratio;
+    canvasContainer.style.height = height / ratio;
+    setRedraw((val) => !val);
+    setScale(1 / ratio);
+  }, [canvasResolution]);
 
-    return () => {
-      window.removeEventListener("resize", resizeCanvas);
-    };
-  }, []);
+  useEffect(() => {
+    window.addEventListener("resize", resize);
+
+    return () => window.removeEventListener("resize", resize);
+  }, [resize]);
+
+  useEffect(() => {
+    resize();
+  }, [canvasResolution, resize]);
 
   useEffect(() => {
     const ctx = canvas.current.getContext("2d");
     ctx.clearRect(0, 0, canvas.current.width, canvas.current.height);
+    ctx.beginPath();
+    ctx.fillStyle = "white";
+    ctx.rect(0, 0, canvas.current.width, canvas.current.height);
+    ctx.closePath();
+    ctx.fill();
 
     elements.forEach((el) => {
       if (el.visible) {
-        if (el.type === "text") drawText(ctx, el);
-        if (el.type === "line") drawLine(ctx, el);
-        if (el.type === "rectangle") drawRectangle(ctx, el);
-        if (el.type === "circle") drawCircle(ctx, el);
-        if (el.type === "image") drawImage(ctx, el);
+        if (el.type === "text") drawText(ctx, el, scale);
+        if (el.type === "line") drawLine(ctx, el, scale);
+        if (el.type === "rectangle") drawRectangle(ctx, el, scale);
+        if (el.type === "circle") drawCircle(ctx, el, scale);
+        if (el.type === "image") drawImage(ctx, el, scale);
       }
     });
 
     if (selectedElBorder) drawBorder(ctx, selectedElBorder);
     if (newLine) drawLine(ctx, newLine);
-  }, [elements, selectedElBorder, newLine]);
+  }, [elements, selectedElBorder, newLine, scale, redraw]);
 
   useEffect(() => {
     if (elIndex !== null)

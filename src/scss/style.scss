@@ -19,10 +19,16 @@
 @import "canvasOptions";
 @import "imageGrid";
 @import "canvasResolution";
+@import "genLink";
 
 html,
 body {
   margin: 0;
   padding: 0;
   font-family: $mainFont;
+}
+
+button {
+  font-family: $mainFont;
+  font-weight: 600;
 }

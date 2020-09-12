@@ -1,5 +1,6 @@
 const createCanvasImage = (amount, event) => {
   const img = new Image();
+  // img.crossOrigin = "anonymous";
   img.src = event.target.src;
   let divider = 1;
   if (img.height > 512 || img.width > 512)

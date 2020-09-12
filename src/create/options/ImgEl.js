@@ -10,14 +10,14 @@ export default function ImgEl({ element, functions }) {
           <div className="canvasElWidth">
             <p>W</p>
             <input
-              value={element.width}
+              value={parseInt(element.width)}
               onChange={(event) => functions.handleWidthChange(event)}
             />
           </div>
           <div className="canvasElHeight">
             <p>H</p>
             <input
-              value={element.height}
+              value={parseInt(element.height)}
               onChange={(event) => functions.handleHeightChange(event)}
             />
           </div>
@@ -26,14 +26,14 @@ export default function ImgEl({ element, functions }) {
           <div className="canvasElX">
             <p>X</p>
             <input
-              value={element.posX}
+              value={parseInt(element.posX)}
               onChange={(event) => functions.handlePosXChange(event)}
             />
           </div>
           <div className="canvasElY">
             <p>Y</p>
             <input
-              value={element.posY}
+              value={parseInt(element.posY)}
               onChange={(event) => functions.handlePosYChange(event)}
             />
           </div>
