@@ -24,7 +24,7 @@ export default function Navbar() {
           <Link to="/about">About</Link>
         </li>
         <li>
-          <Link to="/ideas">Ideas</Link>
+          <Link to="/cards">Browse</Link>
         </li>
       </ul>
       {!user && (

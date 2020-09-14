@@ -24,6 +24,7 @@ export default function UploadScreen({
         new URL(uploadUrl);
         const amount = elements.filter((el) => el.type === "image").length;
         const img = new Image();
+        img.crossOrigin = "anonymous";
         img.onload = () => {
           let divider = 1;
           if (img.height > 512 || img.width > 512)

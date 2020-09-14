@@ -42,6 +42,46 @@
   }
 }
 
+.canRes-enter {
+  opacity: 0;
+}
+
+.canRes-enter-active {
+  opacity: 1;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.canRes-exit {
+  opacity: 1;
+}
+
+.canRes-exit-active {
+  opacity: 0;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.dropDownFilter-enter {
+  height: 0;
+}
+
+.dropDownFilter-enter-active {
+  height: 88px;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+.dropDownFilter-exit {
+  height: 88px;
+}
+
+.dropDownFilter-exit-active {
+  height: 0;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
 .error {
   background: #ffa9a9;
   border: 1px solid #ff5d5d;
@@ -1574,26 +1614,6 @@
           transform: scale(1.1);
 }
 
-.canRes-enter {
-  opacity: 0;
-}
-
-.canRes-enter-active {
-  opacity: 1;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-}
-
-.canRes-exit {
-  opacity: 1;
-}
-
-.canRes-exit-active {
-  opacity: 0;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-}
-
 .genLink {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1703,6 +1723,179 @@
   width: 16px;
   height: 16px;
   cursor: pointer;
+}
+
+.cardBrowser {
+  background-color: #54c1de;
+  min-height: 100vh;
+}
+
+.cardBrowser .cardBrowserCategories {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50%;
+  margin: auto;
+  padding-top: 103px;
+}
+
+.cardBrowser .cardBrowserCategories .categories {
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+
+.cardBrowser .cardBrowserCategories .categories button {
+  background: 0;
+  border: 0;
+  margin: 0 10px;
+  color: #e6e6e6;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 5px;
+  cursor: pointer;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.cardBrowser .cardBrowserCategories .categories button:hover {
+  border-bottom: 1px solid #1c86a0;
+}
+
+.cardBrowser .cardBrowserCategories .categories button:focus {
+  outline: 0;
+  border-bottom: 1px solid #1c86a0;
+}
+
+.cardBrowser .cardBrowserCategories .categories .cardBrowserActiveBtn {
+  color: white;
+  border-bottom: 1px solid #1c86a0;
+  -webkit-transform: scale(1.25);
+          transform: scale(1.25);
+}
+
+.cardBrowser .cardBrowserCategories .sorters {
+  background: 0;
+  border: 0;
+  color: white;
+  position: relative;
+  width: 125px;
+}
+
+.cardBrowser .cardBrowserCategories .sorters .currentSorter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 125px;
+  margin-top: 2px;
+  border: 0;
+  background: 0;
+  color: white;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+
+.cardBrowser .cardBrowserCategories .sorters .currentSorter .currentSorterIcon {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  fill: white;
+  margin-right: 17px;
+}
+
+.cardBrowser .cardBrowserCategories .sorters .currentSorter:focus {
+  outline: none;
+  background-color: #7fd1e6;
+}
+
+.cardBrowser .cardBrowserCategories .sorters .currentSorterButtons {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  top: 24px;
+  width: 125px;
+  right: 0;
+  background-color: #7fd1e6;
+  overflow: hidden;
+}
+
+.cardBrowser .cardBrowserCategories .sorters .currentSorterButtons button {
+  background: 0;
+  border: 0;
+  padding: 3px 15px;
+  color: white;
+  cursor: pointer;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
+.cardBrowser .cardBrowserCategories .sorters .currentSorterButtons button:hover {
+  background-color: #94d8ea;
+}
+
+.cardContainer {
+  width: 60%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.cardContainer a {
+  text-decoration: none;
+}
+
+.cardContainer .cardBrowserCard {
+  width: 25%;
+  margin: 10px auto;
+  padding: 2.5%;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  color: white;
+}
+
+.cardContainer .cardBrowserCard .thumbnail {
+  max-width: 100%;
+  max-height: 160px;
+  display: block;
+  margin: auto;
+}
+
+.cardContainer .cardBrowserCard .cardBrowserCardActions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 15px;
+}
+
+.cardContainer .cardBrowserCard .cardBrowserCardActions button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: 0;
+  border: 0;
+}
+
+.cardContainer .cardBrowserCard .cardBrowserCardActions button .btnIcon {
+  fill: white;
+  padding: 0;
+  height: 32px;
+  width: 32px;
+}
+
+.cardContainer .cardBrowserCard .cardBrowserCardActions p {
+  margin: 0;
+  font-weight: 500;
+  margin-left: 5px;
+  margin-right: 25px;
 }
 
 html,

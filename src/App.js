@@ -36,7 +36,7 @@ function App() {
         />
         <Route path="/signup" component={Register} />
         <Route path="/create" component={Create} />
-        <Route path="/card" component={CardBrowser} />
+        <Route path="/cards" component={CardBrowser} />
       </Switch>
     </Router>
   );

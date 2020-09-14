@@ -25,7 +25,7 @@ const useStorage = (file, uid) => {
         setProgress(percentage);
       },
       (error) => {
-        setError(error);
+        setError(error.message);
       },
       async () => {
         const url = await storageRef.getDownloadURL();

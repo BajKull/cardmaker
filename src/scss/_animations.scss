@@ -18,3 +18,39 @@ $dropDownAnimation: dropDown 0.5s;
     transform: translateX(0);
   }
 }
+
+.canRes-enter {
+  opacity: 0;
+}
+
+.canRes-enter-active {
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.canRes-exit {
+  opacity: 1;
+}
+
+.canRes-exit-active {
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.dropDownFilter-enter {
+  height: 0;
+}
+
+.dropDownFilter-enter-active {
+  height: 88px;
+  transition: 0.25s;
+}
+
+.dropDownFilter-exit {
+  height: 88px;
+}
+
+.dropDownFilter-exit-active {
+  height: 0;
+  transition: 0.25s;
+}

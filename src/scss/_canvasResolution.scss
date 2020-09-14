@@ -164,21 +164,3 @@
     }
   }
 }
-
-.canRes-enter {
-  opacity: 0;
-}
-
-.canRes-enter-active {
-  opacity: 1;
-  transition: 0.5s;
-}
-
-.canRes-exit {
-  opacity: 1;
-}
-
-.canRes-exit-active {
-  opacity: 0;
-  transition: 0.5s;
-}

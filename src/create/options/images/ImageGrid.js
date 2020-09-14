@@ -14,12 +14,14 @@ export default function ImageGrid({
   const dispatch = useDispatch();
   const elements = useSelector((state) => state.canvasEls);
 
-  const addImage = (event) => {
+  const addImage = async (event) => {
     const amount = elements.filter((el) => el.type === "image").length;
-    const myEl = createCanvasImage(amount, event);
-
-    dispatch(addCanvasEl(myEl));
-    dispatch(setSelectedEl(elements.length));
+    createCanvasImage(amount, event)
+      .then((myEl) => {
+        dispatch(addCanvasEl(myEl));
+        dispatch(setSelectedEl(elements.length));
+      })
+      .catch((error) => alert(error));
   };
 
   if (imagesSource === "global") {

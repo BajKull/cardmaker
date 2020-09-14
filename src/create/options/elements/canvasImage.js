@@ -1,27 +1,35 @@
-const createCanvasImage = (amount, event) => {
-  const img = new Image();
-  // img.crossOrigin = "anonymous";
-  img.src = event.target.src;
-  let divider = 1;
-  if (img.height > 512 || img.width > 512)
-    img.height > img.width
-      ? (divider = img.height / 512)
-      : (divider = img.width / 512);
+const createCanvasImage = async (amount, event) => {
+  return new Promise((res, rej) => {
+    const img = new Image();
+    const source = event.target.src;
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      let divider = 1;
+      if (img.height > 512 || img.width > 512)
+        img.height > img.width
+          ? (divider = img.height / 512)
+          : (divider = img.width / 512);
 
-  const myEl = {
-    id: `Image ${amount}`,
-    type: "image",
-    src: event.target.src,
-    image: img,
-    posX: 150,
-    posY: 150,
-    rotation: 0,
-    width: parseInt(img.width / divider),
-    height: parseInt(img.height / divider),
-    visible: true,
-  };
+      const myEl = {
+        id: `Image ${amount}`,
+        type: "image",
+        src: source,
+        image: img,
+        posX: 150,
+        posY: 150,
+        rotation: 0,
+        width: parseInt(img.width / divider),
+        height: parseInt(img.height / divider),
+        visible: true,
+      };
 
-  return myEl;
+      res(myEl);
+    };
+
+    img.onerror = () => rej("There was an error downloading your image.");
+
+    img.src = source;
+  });
 };
 
 export { createCanvasImage };

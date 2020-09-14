@@ -5,7 +5,7 @@ export default function Cards() {
   const cards = [
     {
       title: "Birthday card",
-      desc: "Show someone you care about that you remember about him/her!",
+      desc: "Show someone you care about that you remember about them!",
       img: "img",
       link: "/create/birthday",
     },
