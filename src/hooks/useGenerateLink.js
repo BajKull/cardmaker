@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import useThumbnail from "./useThumbnail";
 import { projectFirestore, timestamp } from "../firebase/Config";
 
-const useGenerateLink = (elements, uid, displayName) => {
+const useGenerateLink = (elements, uid, displayName, resolution) => {
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
 
@@ -26,6 +26,7 @@ const useGenerateLink = (elements, uid, displayName) => {
           date: timestamp(),
           likes: 0,
           views: 0,
+          res: resolution,
           category: "unchecked",
           thumbnail: thumbnailUrl,
         })

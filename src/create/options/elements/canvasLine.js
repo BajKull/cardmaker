@@ -18,17 +18,6 @@ const createCanvasLine = (amount, line) => {
   const width = maxRight - maxLeft;
   const height = maxBottom - maxTop;
 
-  console.log(
-    width,
-    height,
-    maxLeft,
-    maxRight,
-    maxTop,
-    maxBottom,
-    line.posX,
-    line.posY
-  );
-
   const myEl = {
     id: `Line ${amount}`,
     type: "line",

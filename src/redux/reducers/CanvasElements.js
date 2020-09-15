@@ -1,5 +1,7 @@
 const CanvasElementsReducer = (state = [], action) => {
   switch (action.type) {
+    case "SET_CANVAS_EL":
+      return action.payload;
     case "ADD_CANVAS_EL":
       return [...state, action.payload];
     case "EDIT_CANVAS_EL":

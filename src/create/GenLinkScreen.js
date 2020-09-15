@@ -11,7 +11,13 @@ export default function GenLinkScreen({ setGenLinkScreen }) {
 
   const elements = useSelector((state) => state.canvasEls);
   const user = useSelector((state) => state.loginStatus);
-  const { error, url } = useGenerateLink(elements, user.uid, user.displayName);
+  const resolution = useSelector((state) => state.canvasRes);
+  const { error, url } = useGenerateLink(
+    elements,
+    user.uid,
+    user.displayName,
+    resolution
+  );
 
   useEffect(() => {
     if (url) {
@@ -65,7 +71,7 @@ export default function GenLinkScreen({ setGenLinkScreen }) {
             <input
               className="url"
               ref={aLink}
-              value={`https://bnncardmaker.netlify.app/card/${url}`}
+              value={`https://bnncardmaker.netlify.app/cards/${url}`}
               readOnly
             />
             <div>

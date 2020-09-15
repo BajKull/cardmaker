@@ -8,7 +8,7 @@ import Ideas from "./ideas/Ideas";
 import Create from "./create/Create";
 import Login from "./account/Login";
 import Register from "./account/Register";
-import CardBrowser from "./cardbrowser/CardBrowser";
+import CardsRouter from "./cardbrowser/CardsRouter";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -36,7 +36,7 @@ function App() {
         />
         <Route path="/signup" component={Register} />
         <Route path="/create" component={Create} />
-        <Route path="/cards" component={CardBrowser} />
+        <Route path="/cards" component={CardsRouter} />
       </Switch>
     </Router>
   );
