@@ -1,67 +1,116 @@
 .mainPage {
-  @include flexColumn;
-  justify-content: flex-start;
-  font-size: 5vmin;
-  color: white;
-  text-align: center;
-  height: 100vh;
-  position: relative;
+  display: flex;
+  color: rgb(45, 45, 45);
+  height: 750px;
+  overflow: hidden;
+  background-color: lighten($lightBlue, 25);
 
-  .mainBg {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
-    z-index: -5;
+  @include breakpoint(1280px) {
+    height: auto;
   }
 
-  .mainBgFilter {
-    position: absolute;
-    top: 0;
+  a {
+    margin-top: 25px;
+    align-self: flex-start;
+
+    @include breakpoint(1280px) {
+      align-self: center;
+    }
+  }
+
+  .mainContent {
+    padding-top: 125px;
+    display: flex;
     width: 100%;
-    height: 100vh;
-    background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.05) 0%,
-      rgba(84, 84, 84, 0.9) 100%
-    );
-    z-index: -4;
+    max-width: 1920px;
+    margin: 0 auto;
+
+    @include breakpoint(1280px) {
+      flex-direction: column;
+    }
+  }
+
+  .mainText {
+    margin-top: 100px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    min-width: 600px;
+    width: 600px;
+    text-align: start;
+    margin-left: 5%;
+    margin-right: 50px;
+
+    @include breakpoint(1280px) {
+      justify-content: center;
+      text-align: center;
+      width: 90%;
+      min-width: 0;
+      margin: auto;
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 3rem;
+    }
+    h2 {
+      margin: 0;
+    }
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  .mainImgContainer {
+    max-height: 550px;
+    position: relative;
+    padding-bottom: 50px;
+
+    .mainImg {
+      position: absolute;
+      max-height: 550px;
+      object-fit: cover;
+      z-index: 2;
+
+      @include breakpoint(1280px) {
+        position: unset;
+        display: block;
+        max-width: 95%;
+        margin: auto;
+      }
+    }
+
+    .mainBlob {
+      position: absolute;
+      top: -535px;
+      left: 0;
+      height: 1185px;
+      fill: $lightBlue;
+      z-index: 1;
+
+      @include breakpoint(1280px) {
+        display: none;
+      }
+    }
   }
 
   .mainBtn {
-    border: 6px solid white;
-    font-size: inherit;
-    font-family: inherit;
-    font-weight: 500;
     padding: 10px 35px;
-    position: absolute;
-    bottom: 10vh;
-    width: 350px;
-    left: 50%;
-    margin-left: -175px;
     color: white;
-    background: none;
-    border-radius: 50px;
+    border-radius: 5px;
+    border: 0;
+    background: $lightBlue;
     transition: 0.3s;
     cursor: pointer;
-
-    @include breakpoint(600px) {
-      border: 3px solid white;
-      width: 250px;
-      margin-left: -125px;
-    }
+    font-size: 20px;
 
     &:hover {
-      transform: scale(1.1);
+      background: darken($lightBlue, 10);
     }
-  }
 
-  h1 {
-    margin-top: 100px;
-    margin-bottom: 0;
-  }
-  h3 {
-    margin-top: 25px;
+    @include breakpoint(1280px) {
+      margin-bottom: 25px;
+    }
   }
 }

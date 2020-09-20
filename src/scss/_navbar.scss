@@ -2,7 +2,7 @@
   position: absolute;
   top: 0;
   width: 100%;
-  color: white;
+  color: rgb(45, 45, 45);
   font-weight: 500;
   font-size: 1.5em;
   z-index: 999;
@@ -10,7 +10,7 @@
 
   a {
     text-decoration: none;
-    color: white;
+    color: inherit;
   }
 
   ul {
