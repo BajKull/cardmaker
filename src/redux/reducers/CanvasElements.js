@@ -12,6 +12,18 @@ const CanvasElementsReducer = (state = [], action) => {
           ...action.payload.element,
         };
       });
+    case "POSITION_CANVAS_EL":
+      return state
+        .map((item, i) => {
+          if (i === action.payload.start) return [];
+          if (i === action.payload.end)
+            return [
+              item,
+              ...state.slice(action.payload.start, action.payload.start + 1),
+            ];
+          return item;
+        })
+        .flat();
     case "DELETE_CANVAS_EL":
       // payload == index
       return [

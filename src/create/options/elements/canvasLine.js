@@ -1,3 +1,5 @@
+import { v4 } from "uuid";
+
 const createCanvasLine = (amount, line) => {
   let maxLeft = line.posX;
   let maxRight = line.posX;
@@ -19,7 +21,8 @@ const createCanvasLine = (amount, line) => {
   const height = maxBottom - maxTop;
 
   const myEl = {
-    id: `Line ${amount}`,
+    id: v4(),
+    name: `Line ${amount}`,
     type: "line",
     sWidth: width,
     sHeight: height,

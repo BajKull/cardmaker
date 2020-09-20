@@ -8,6 +8,8 @@ export default function Options({ activeBtn }) {
   const elIndex = useSelector((state) => state.canvasElIndex);
   const elements = useSelector((state) => state.canvasEls);
 
+  console.log(elements);
+
   if (activeBtn === "image")
     return (
       <div className="canvasOptions">
@@ -21,7 +23,7 @@ export default function Options({ activeBtn }) {
           <Element element={elements[elIndex]} />
         ) : (
           elements.map((el, i) => (
-            <ElementPreview element={el} key={i} index={i} />
+            <ElementPreview element={el} key={el.id} index={i} />
           ))
         )}
       </div>

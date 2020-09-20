@@ -1,6 +1,9 @@
+import { v4 } from "uuid";
+
 const createCanvasRectangle = (amount, newElPos, selectedElBorder) => {
   const myEl = {
-    id: `Rectangle ${amount}`,
+    id: v4(),
+    name: `Rectangle ${amount}`,
     type: "rectangle",
     posX: newElPos.x,
     posY: newElPos.y,

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { setSelectedEl } from "../../redux/actions/setSelectedEl";
 import { deleteCanvasEl } from "../../redux/actions/DeleteCanvasEl";
 import { editCanvasEl } from "../../redux/actions/EditCanvasEl";
+import { changeCanvasElPos } from "../../redux/actions/ChangeCanvasElPos";
 import TextIcon from "../icons/text.svg";
 import RectangleIcon from "../icons/rectangle.svg";
 import CircleIcon from "../icons/circle.svg";
@@ -13,7 +14,7 @@ import LineIcon from "../icons/pencil.svg";
 import EditIcon from "../icons/edit.svg";
 
 export default function ElementPreview({ element, index }) {
-  const [elId, setElId] = useState(element.id);
+  const [elName, setElName] = useState(element.name);
   const dispatch = useDispatch();
   const textToEdit = useRef(null);
   const selectItem = () => {
@@ -32,26 +33,75 @@ export default function ElementPreview({ element, index }) {
   };
   const editItem = (e) => {
     e.stopPropagation();
+    textToEdit.current.removeAttribute("disabled");
     textToEdit.current.focus();
     textToEdit.current.select();
-    console.log(textToEdit.current);
   };
 
   const checkForEnter = (e) => {
     if (e.keyCode === 13) {
-      updateId();
+      updateName();
+      textToEdit.current.setAttribute("disabled", "");
       textToEdit.current.click();
     }
   };
 
-  const updateId = () => {
+  const updateName = () => {
     const newEl = { ...element };
-    newEl.id = elId;
+    newEl.name = elName;
     dispatch(editCanvasEl({ index, el: newEl }));
   };
 
+  const handleDragStart = (e) => {
+    e.dataTransfer.setData("elementId", index);
+    e.dataTransfer.setData("counter", 1);
+  };
+
+  const handleOnDrag = (e) => {
+    e.preventDefault();
+  };
+
+  const handleOnDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleDragEnter = (e) => {
+    e.preventDefault();
+    const counter = parseInt(e.currentTarget.getAttribute("counter"));
+    e.currentTarget.setAttribute("counter", counter + 1);
+    e.currentTarget.style.borderBottom = "1px solid #54c1de";
+  };
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    const counter = parseInt(e.currentTarget.getAttribute("counter"));
+    e.currentTarget.setAttribute("counter", counter - 1);
+    if (counter === 1)
+      e.currentTarget.style.borderBottom = "1px solid transparent";
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.currentTarget.style.borderBottom = "1px solid transparent";
+    e.currentTarget.setAttribute("counter", 0);
+    const startIndex = parseInt(e.dataTransfer.getData("elementId"));
+    const endIndex = parseInt(e.currentTarget.getAttribute("index"));
+    dispatch(changeCanvasElPos(startIndex, endIndex));
+  };
+
   return (
-    <div className="elementPreview" onClick={selectItem}>
+    <div
+      counter={0}
+      className="elementPreview"
+      onClick={selectItem}
+      onDragStart={handleDragStart}
+      onDrag={handleOnDrag}
+      onDragOver={handleOnDragOver}
+      onDragEnter={handleDragEnter}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
+      draggable
+      index={index}
+    >
       {element.type === "text" && <img src={TextIcon} alt="" />}
       {element.type === "line" && <img src={LineIcon} alt="" />}
       {element.type === "rectangle" && <img src={RectangleIcon} alt="" />}
@@ -60,11 +110,12 @@ export default function ElementPreview({ element, index }) {
       {element.type === "text" && <h1>{element.msg}</h1>}
       {element.type !== "text" && (
         <input
-          value={elId}
+          value={elName}
           ref={textToEdit}
-          onChange={(e) => setElId(e.target.value)}
+          onChange={(e) => setElName(e.target.value)}
           onKeyDown={checkForEnter}
-          onBlur={updateId}
+          onBlur={updateName}
+          disabled
         />
       )}
 

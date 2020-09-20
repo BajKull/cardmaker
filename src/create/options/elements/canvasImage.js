@@ -1,3 +1,5 @@
+import { v4 } from "uuid";
+
 const createCanvasImage = async (amount, event) => {
   return new Promise((res, rej) => {
     const img = new Image();
@@ -11,7 +13,8 @@ const createCanvasImage = async (amount, event) => {
           : (divider = img.width / 512);
 
       const myEl = {
-        id: `Image ${amount}`,
+        id: v4(),
+        name: `Image ${amount}`,
         type: "image",
         src: source,
         image: img,

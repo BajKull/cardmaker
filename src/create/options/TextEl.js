@@ -99,21 +99,64 @@ export default function TextEl({ element, functions }) {
           value={element.font}
           onChange={(event) => functions.handleFontChange(event)}
         >
-          <option>Cambria</option>
-          <option>Georgia</option>
-          <option>Palatino Linotype</option>
-          <option>Times New Roman</option>
-          <option>Arial</option>
-          <option>Calibri</option>
-          <option>Candara</option>
-          <option>Impact</option>
-          <option>Lucida Sans Unicode</option>
-          <option>Quicksand</option>
-          <option>Tahoma</option>
-          <option>Trebuchet MS</option>
-          <option>Verdana</option>
-          <option>Courier</option>
-          <option>Lucida Console</option>
+          <option style={{ fontFamily: "Cambria" }}>Cambria</option>
+          <option style={{ fontFamily: "Georgia" }}>Georgia</option>
+          <option style={{ fontFamily: "Palatino Linotype" }}>
+            Palatino Linotype
+          </option>
+          <option style={{ fontFamily: "Times New Roman" }}>
+            Times New Roman
+          </option>
+          <option style={{ fontFamily: "Arial" }}>Arial</option>
+          <option style={{ fontFamily: "Calibri" }}>Calibri</option>
+          <option style={{ fontFamily: "Candara" }}>Candara</option>
+          <option style={{ fontFamily: "Impact" }}>Impact</option>
+          <option style={{ fontFamily: "Lucida Sans Unicode" }}>
+            Lucida Sans Unicode
+          </option>
+          <option style={{ fontFamily: "Quicksand" }}>Quicksand</option>
+          <option style={{ fontFamily: "Tahoma" }}>Tahoma</option>
+          <option style={{ fontFamily: "Trebuchet MS" }}>Trebuchet MS</option>
+          <option style={{ fontFamily: "Verdana" }}>Verdana</option>
+          <option style={{ fontFamily: "Courier" }}>Courier</option>
+          <option style={{ fontFamily: "Lucida Console" }}>
+            Lucida Console
+          </option>
+          <option style={{ fontFamily: "Rancher" }}>Rancher</option>
+          <option style={{ fontFamily: "Lato" }}>Lato</option>
+          <option style={{ fontFamily: "Oswald" }}>Oswald</option>
+          <option style={{ fontFamily: "Grandstander" }}>Grandstander</option>
+          <option style={{ fontFamily: "Rubik" }}>Rubik</option>
+          <option style={{ fontFamily: "Josefin Sans" }}>Josefin Sans</option>
+          <option style={{ fontFamily: "Inter" }}>Inter</option>
+          <option style={{ fontFamily: "Yanone Kaffeesatz" }}>
+            Yanone Kaffeesatz
+          </option>
+          <option style={{ fontFamily: "Dancing Script" }}>
+            Dancing Script
+          </option>
+          <option style={{ fontFamily: "Grenze Gotisch" }}>
+            Grenze Gotisch
+          </option>
+          <option style={{ fontFamily: "Lobster" }}>Lobster</option>
+          <option style={{ fontFamily: "Pacifico" }}>Pacifico</option>
+          <option style={{ fontFamily: "Indie Flower" }}>Indie Flower</option>
+          <option style={{ fontFamily: "Arvo" }}>Arvo</option>
+          <option style={{ fontFamily: "QuickShadows Into Lightand" }}>
+            Shadows Into Light
+          </option>
+          <option style={{ fontFamily: "Acme" }}>Acme</option>
+          <option style={{ fontFamily: "Amatic SC" }}>Amatic SC</option>
+          <option style={{ fontFamily: "Archtects Daughter" }}>
+            Archtects Daughter
+          </option>
+          <option style={{ fontFamily: "Fredoka One" }}>Fredoka One</option>
+          <option style={{ fontFamily: "Permament Marker" }}>
+            Permament Marker
+          </option>
+          <option style={{ fontFamily: "Hanalei" }}>Hanalei</option>
+          <option style={{ fontFamily: "Caveat" }}>Caveat</option>
+          <option style={{ fontFamily: "Satisfy" }}>Satisfy</option>
         </select>
       </div>
 

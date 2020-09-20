@@ -1,6 +1,9 @@
+import { v4 } from "uuid";
+
 const createCanvasText = (amount, newElPos, selectedElBorder) => {
   const myEl = {
-    id: `Text ${amount}`,
+    id: v4(),
+    name: `Text ${amount}`,
     type: "text",
     msg: "Text",
     font: "Quicksand",

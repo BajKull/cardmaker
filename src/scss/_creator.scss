@@ -1,0 +1,63 @@
+.creator {
+  min-height: 100vh;
+  min-width: 1280px;
+  background-color: $lightBlue;
+
+  .editorExport {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    height: 40px;
+
+    button {
+      max-width: 150px;
+      width: 30%;
+      margin: 0 10px;
+      border: 0;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: $mainFont;
+      cursor: pointer;
+      transition: 0.2s;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+
+  .logoIcon {
+    text-decoration: none;
+    position: absolute;
+    left: 55px;
+    top: 15px;
+
+    .logo {
+      width: 32px;
+      height: 32px;
+      stroke: #38073b;
+    }
+  }
+
+  .creatorLogin {
+    position: absolute;
+    list-style-type: none;
+    display: flex;
+    top: 20px;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    color: white;
+    li {
+      margin-right: 20px;
+
+      &:hover {
+        color: darken($darkBlue, 25);
+        cursor: pointer;
+      }
+    }
+  }
+}

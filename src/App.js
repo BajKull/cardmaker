@@ -18,7 +18,6 @@ function App() {
 
   return (
     <Router>
-      <Navbar />
       {loginScreen === "signin" && <Login />}
       {loginScreen === "signup" && <Register />}
       <Switch>
@@ -27,6 +26,7 @@ function App() {
           exact
           render={(props) => (
             <div className="App">
+              <Navbar />
               <Main />
               <Choice />
               <Steps />

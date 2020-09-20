@@ -1,6 +1,9 @@
+import { v4 } from "uuid";
+
 const createCanvasCircle = (amount, newElPos, selectedElBorder) => {
   const myEl = {
-    id: `Circle ${amount}`,
+    id: v4(),
+    name: `Circle ${amount}`,
     type: "circle",
     posX: newElPos.x,
     posY: newElPos.y,

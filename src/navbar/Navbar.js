@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { ChangeLoginScreen } from "../redux/actions/ChangeLoginScreen";
+import { ReactComponent as LogoIcon } from "./logo4.svg";
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -15,10 +16,9 @@ export default function Navbar() {
     <div className="navbar">
       <ul className="navbarLinks">
         <li>
-          <Link to="/">logo</Link>
-        </li>
-        <li>
-          <Link to="/">Home</Link>
+          <Link to="/">
+            <LogoIcon className="logo" />
+          </Link>
         </li>
         <li>
           <Link to="/about">About</Link>

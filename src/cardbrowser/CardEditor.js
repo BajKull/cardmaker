@@ -14,7 +14,6 @@ export default function CardEditor() {
 
   useEffect(() => {
     if (data) {
-      console.log(data.resolution);
       dispatch(setCanvasEl(data.elements));
       dispatch(setCanvasRes(data.res));
     }

@@ -76,7 +76,7 @@ export default function GenLinkScreen({ setGenLinkScreen }) {
             />
             <div>
               <button onClick={copyLink}>Copy</button>
-              <Link to={`/card/${url}`}>
+              <Link to={`/cards/${url}`}>
                 <button>Go</button>
               </Link>
             </div>

@@ -16,6 +16,7 @@
   ul {
     display: flex;
     list-style-type: none;
+    margin: 15px 0;
 
     li {
       margin: 0 15px 0 15px;
@@ -24,9 +25,15 @@
     a,
     li {
       &:hover {
-        color: $darkBlue;
+        color: darken($darkBlue, 25);
       }
     }
+  }
+
+  .logo {
+    width: 32px;
+    height: 32px;
+    stroke: #38073b;
   }
 
   .navbarLogin {
