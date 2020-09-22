@@ -1,14 +1,136 @@
 .choice {
-  color: white;
-  background: linear-gradient(0deg, $lightBlue 0%, $darkBlue 100%);
-  margin: 0;
   padding: 0;
-  min-height: 100vh;
+  position: relative;
+  color: rgb(45, 45, 45);
+  overflow: hidden;
+  max-width: 1920px;
+  margin: 0 auto;
 
-  h1 {
-    font-size: 4rem;
-    text-align: center;
-    margin-top: 0;
-    padding-top: 0.67em;
+  .choiceBlob {
+    position: absolute;
+    fill: lighten($lightBlue, 35);
+    z-index: -1;
+    top: -125px;
+    left: 100px;
+    height: 115%;
+
+    @include breakpoint(1280px) {
+      display: none;
+    }
+  }
+
+  .choice1,
+  .choice2 {
+    min-height: 550px;
+    width: 90%;
+    margin: auto;
+
+    @include breakpoint(500px) {
+      width: 100%;
+    }
+
+    @include breakpoint(1280px) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  .choiceText {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-top: 25px;
+    min-height: 380px;
+
+    @include breakpoint(1280px) {
+      width: 80%;
+      min-height: 0;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+    h2 {
+      margin: 0;
+      font-size: 1rem;
+    }
+  }
+
+  .choiceBtn {
+    width: 200px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 10px;
+    border: 0;
+    background: $lightBlue;
+    color: white;
+    font-size: 20px;
+    border-radius: 5px;
+    transition: 0.2s;
+    &:hover {
+      background: darken($lightBlue, 10);
+    }
+
+    @include breakpoint(1280px) {
+      margin-bottom: 75px;
+    }
+  }
+
+  .choice1 {
+    padding-top: 100px;
+
+    .choiceText {
+      float: right;
+      @include breakpoint(1280px) {
+        float: none;
+        margin: auto;
+      }
+    }
+    .choiceImg {
+      float: left;
+      @include breakpoint(1280px) {
+        float: none;
+      }
+    }
+  }
+  .choice2 {
+    margin-top: 125px;
+    padding-bottom: 50px;
+
+    @include breakpoint(1280px) {
+      margin-top: 75px;
+    }
+    .choiceText {
+      float: left;
+      @include breakpoint(1280px) {
+        float: none;
+        margin: auto;
+      }
+    }
+    .choiceImg {
+      float: right;
+      @include breakpoint(1280px) {
+        float: none;
+      }
+    }
+  }
+  .choiceImg {
+    max-height: 550px;
+    width: 65%;
+    object-fit: cover;
+    box-shadow: 0px 0px 15px -5px rgba(0, 0, 0, 0.5);
+
+    @include breakpoint(1280px) {
+      width: 100%;
+    }
+  }
+
+  a {
+    align-self: flex-start;
+    @include breakpoint(1280px) {
+      align-self: center;
+    }
   }
 }

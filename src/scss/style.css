@@ -268,8 +268,8 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  min-width: 600px;
-  width: 600px;
+  min-width: 375px;
+  width: 375px;
   text-align: start;
   margin-left: 5%;
   margin-right: 50px;
@@ -362,19 +362,194 @@
 }
 
 .choice {
-  color: white;
-  background: -webkit-gradient(linear, left bottom, left top, from(#54c1de), to(#1c86a0));
-  background: linear-gradient(0deg, #54c1de 0%, #1c86a0 100%);
-  margin: 0;
   padding: 0;
-  min-height: 100vh;
+  position: relative;
+  color: #2d2d2d;
+  overflow: hidden;
+  max-width: 1920px;
+  margin: 0 auto;
 }
 
-.choice h1 {
-  font-size: 4rem;
-  text-align: center;
-  margin-top: 0;
-  padding-top: 0.67em;
+.choice .choiceBlob {
+  position: absolute;
+  fill: #eaf7fb;
+  z-index: -1;
+  top: -125px;
+  left: 100px;
+  height: 115%;
+}
+
+@media only screen and (max-width: 1280px) {
+  .choice .choiceBlob {
+    display: none;
+  }
+}
+
+.choice .choice1,
+.choice .choice2 {
+  min-height: 550px;
+  width: 90%;
+  margin: auto;
+}
+
+@media only screen and (max-width: 500px) {
+  .choice .choice1,
+  .choice .choice2 {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .choice .choice1,
+  .choice .choice2 {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-align: center;
+  }
+}
+
+.choice .choiceText {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 30%;
+  margin-top: 25px;
+  min-height: 380px;
+}
+
+@media only screen and (max-width: 1280px) {
+  .choice .choiceText {
+    width: 80%;
+    min-height: 0;
+  }
+}
+
+.choice .choiceText h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.choice .choiceText h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.choice .choiceBtn {
+  width: 200px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding: 10px;
+  border: 0;
+  background: #54c1de;
+  color: white;
+  font-size: 20px;
+  border-radius: 5px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.choice .choiceBtn:hover {
+  background: #29b2d6;
+}
+
+@media only screen and (max-width: 1280px) {
+  .choice .choiceBtn {
+    margin-bottom: 75px;
+  }
+}
+
+.choice .choice1 {
+  padding-top: 100px;
+}
+
+.choice .choice1 .choiceText {
+  float: right;
+}
+
+@media only screen and (max-width: 1280px) {
+  .choice .choice1 .choiceText {
+    float: none;
+    margin: auto;
+  }
+}
+
+.choice .choice1 .choiceImg {
+  float: left;
+}
+
+@media only screen and (max-width: 1280px) {
+  .choice .choice1 .choiceImg {
+    float: none;
+  }
+}
+
+.choice .choice2 {
+  margin-top: 125px;
+  padding-bottom: 50px;
+}
+
+@media only screen and (max-width: 1280px) {
+  .choice .choice2 {
+    margin-top: 75px;
+  }
+}
+
+.choice .choice2 .choiceText {
+  float: left;
+}
+
+@media only screen and (max-width: 1280px) {
+  .choice .choice2 .choiceText {
+    float: none;
+    margin: auto;
+  }
+}
+
+.choice .choice2 .choiceImg {
+  float: right;
+}
+
+@media only screen and (max-width: 1280px) {
+  .choice .choice2 .choiceImg {
+    float: none;
+  }
+}
+
+.choice .choiceImg {
+  max-height: 550px;
+  width: 65%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-box-shadow: 0px 0px 15px -5px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 15px -5px rgba(0, 0, 0, 0.5);
+}
+
+@media only screen and (max-width: 1280px) {
+  .choice .choiceImg {
+    width: 100%;
+  }
+}
+
+.choice a {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+@media only screen and (max-width: 1280px) {
+  .choice a {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
 }
 
 .cards {
@@ -2053,5 +2228,6 @@ body {
 button {
   font-family: "Quicksand", sans-serif;
   font-weight: 600;
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */
