@@ -1,11 +1,15 @@
-import React from "react";
-import Cards from "./Cards";
+import React, { useEffect } from "react";
 import { Element } from "react-scroll";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ReactComponent as Blob } from "./blob.svg";
 import Screen1 from "./screen1.png";
 
 export default function Choice() {
+  const location = useLocation();
+  useEffect(() => {
+    if (location.pathname === "/create") window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <Element name="choice" className="choice">
       <Blob className="choiceBlob" />
@@ -32,14 +36,12 @@ export default function Choice() {
             If you do not want to use a pattern you can design your card by
             yourself and show your creativity. Sky is the limit!
           </h2>
-          <Link to="/create">
+          <Link to="/create/editor">
             <button className="choiceBtn">Create card</button>
           </Link>
         </div>
         <img src={Screen1} alt="" className="choiceImg" />
       </div>
-
-      {/* <Cards /> */}
     </Element>
   );
 }

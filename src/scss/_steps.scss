@@ -1,41 +1,55 @@
 .steps {
   margin: auto;
+  color: rgb(45, 45, 45);
 
   .stepsTitle {
     text-align: center;
-    width: 80%;
-    margin: 50px 10%;
+    width: 90%;
+    margin: 50px auto;
     font-size: 3rem;
   }
 
   .stepsIntro {
     display: flex;
-    width: 80%;
+    width: 90%;
     margin: 75px auto;
     flex-wrap: wrap;
+    max-width: 1920px;
+
+    @include breakpoint(1280px) {
+      margin: 50px auto;
+    }
 
     @include breakpoint(600px) {
       width: 100%;
     }
 
     .stepsIntroText {
-      width: 40%;
-      margin: 0 auto;
+      margin-left: 50px;
       font-weight: 500;
-      font-size: 1.5rem;
 
-      @include breakpoint(1400px) {
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin-bottom: 25px;
+        max-width: 450px;
+
+        @include breakpoint(1280px) {
+          margin: 0 auto 25px auto;
+        }
+      }
+
+      @include breakpoint(1280px) {
         width: 100%;
         text-align: center;
-        max-width: 1000px;
+        margin: auto;
       }
 
       @include breakpoint(600px) {
         width: 90%;
-      }
-
-      p {
-        margin: 0 auto 50px auto;
       }
     }
   }
@@ -47,13 +61,13 @@
   }
 
   .stepsImg {
-    max-width: 720px;
-    width: 50%;
+    width: 55%;
+    max-height: 450px;
     object-fit: contain;
 
-    @include breakpoint(1400px) {
+    @include breakpoint(1280px) {
       width: 100%;
-      max-width: none;
+      max-height: none;
       margin-bottom: 25px;
     }
   }
@@ -66,53 +80,62 @@
     font-size: 2rem;
     margin: 0;
     padding: 5px 0;
+
+    @include breakpoint(600px) {
+      font-size: 1.5rem;
+    }
+    @include breakpoint(450px) {
+      font-size: 1rem;
+    }
   }
 
   .stepsHelp {
-    width: 80%;
+    width: 90%;
     margin: auto;
-    margin-top: -75px;
+    margin-top: -25px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 1920px;
   }
 
   .stepsBtn {
     display: block;
-    padding: 15px 100px;
-    margin: 0 auto;
+    width: 200px;
+    padding: 10px;
     border: 0;
     background: $lightBlue;
     color: white;
-    font-weight: 500;
-    font-size: 2rem;
-    border-radius: 35px;
-    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
 
     transition: 0.3s;
 
     &:hover {
       background: darken($lightBlue, 10);
-      transform: scale(1.1);
+    }
+
+    @include breakpoint(1280px) {
+      margin: auto;
     }
   }
 
-  .stepsHelpStep {
-    position: relative;
-    min-height: 350px;
-    width: 30%;
-    min-width: 300px;
-    margin: 25px;
+  .stepsBtn2 {
+    margin: 25px auto 0 auto;
+  }
 
-    @include breakpoint(1892px) {
-      margin: 0 25px;
-    }
+  .stepsHelpStep {
+    width: 400px;
+    margin: 15px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
 
     .helpText {
-      font-weight: 500;
+      font-weight: 600;
       font-size: 2rem;
       text-align: center;
-      margin-top: 0;
+      max-width: 300px;
+      margin: 0 auto;
+      margin-top: -25px;
     }
 
     .numberBg {
@@ -120,6 +143,12 @@
       font-size: 10rem;
       color: rgba(0, 0, 0, 0.07);
       margin: 0;
+      margin-top: -15px;
+    }
+
+    p {
+      margin-bottom: 0;
+      padding-bottom: 25px;
     }
   }
 }
