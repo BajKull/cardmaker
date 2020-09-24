@@ -2,32 +2,61 @@
   position: absolute;
   top: 0;
   width: 100%;
+  height: 70px;
   color: rgb(45, 45, 45);
   font-weight: 500;
   font-size: 1.5em;
   z-index: 999;
-  display: flex;
+  overflow: hidden;
+
+  .navbarBtn {
+    display: none;
+  }
+
+  .navbarContent {
+    width: 100%;
+    display: flex;
+  }
+
+  .navbarContainer {
+    display: flex;
+    @include breakpoint(700px) {
+      display: none;
+    }
+
+    .navbarLogin {
+      width: 100%;
+      justify-content: flex-end;
+      margin-right: 25px;
+      li {
+        cursor: pointer;
+      }
+    }
+
+    ul {
+      display: flex;
+      margin: 15px 0;
+
+      li {
+        margin: 0 15px 0 15px;
+        transition: 0.15s;
+      }
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    li {
+      transition: 0.15s;
+      &:hover {
+        color: $darkBlue;
+      }
+    }
+  }
 
   a {
     text-decoration: none;
     color: inherit;
-  }
-
-  ul {
-    display: flex;
-    list-style-type: none;
-    margin: 15px 0;
-
-    li {
-      margin: 0 15px 0 15px;
-    }
-
-    a,
-    li {
-      &:hover {
-        color: darken($darkBlue, 25);
-      }
-    }
   }
 
   .logo {
@@ -36,12 +65,131 @@
     stroke: #38073b;
   }
 
-  .navbarLogin {
-    width: 100%;
-    justify-content: flex-end;
-    margin-right: 25px;
-    li {
-      cursor: pointer;
+  .navbarBurger {
+    display: none;
+    fill: rb(45, 45, 45);
+    width: 36px;
+    position: absolute;
+    top: 15px;
+    right: 45px;
+    cursor: pointer;
+    z-index: 5;
+
+    @include breakpoint(700px) {
+      display: block;
     }
   }
+
+  .navbarContainer2 {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: none;
+    width: 100%;
+
+    @include breakpoint(700px) {
+      display: block;
+    }
+
+    .navbarContent {
+      min-width: 250px;
+      width: 50%;
+      margin-left: auto;
+      height: 100vh;
+      background: white;
+      display: block;
+
+      @include breakpoint(350px) {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+
+    .navbarBg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: -5;
+      animation: $fadeInAnimation;
+    }
+
+    .navbarLinks {
+      margin-top: 0;
+      padding-top: 50px;
+      min-width: 250px;
+    }
+
+    .navbarLogin {
+      margin-top: 0;
+      padding-top: 15px;
+      min-width: 250px;
+
+      li {
+        cursor: pointer;
+      }
+    }
+
+    .logo {
+      display: none;
+    }
+
+    a {
+      display: contents;
+    }
+
+    .navbarBtn {
+      display: block;
+      width: 175px;
+      padding: 10px;
+      border: 0;
+      background: $lightBlue;
+      color: white;
+      font-size: 18px;
+      border-radius: 5px;
+      margin: 15px auto 0 auto;
+
+      transition: 0.3s;
+
+      &:hover {
+        background: darken($lightBlue, 10);
+      }
+    }
+
+    ul {
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      width: 70%;
+      margin: auto;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      padding-bottom: 15px;
+
+      li {
+        padding: 5px;
+        margin: auto;
+      }
+    }
+  }
+}
+
+.page-from-left-enter {
+  transform: translateX(100%);
+}
+
+.page-from-left-enter-active {
+  transform: translateX(0);
+  transition: 0.5s;
+}
+
+.page-from-left-exit {
+  transform: translateX(0);
+}
+
+.page-from-left-exit-active {
+  transform: translateX(100%);
+  transition: 0.5s;
 }
