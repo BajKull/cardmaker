@@ -35,15 +35,7 @@ function App() {
           )}
         />
         <Route path="/signup" component={Register} />
-        <Route
-          path="/create"
-          render={() => (
-            <div>
-              <Navbar />
-              <Create />
-            </div>
-          )}
-        />
+        <Route path="/create" component={Create} />
         <Route path="/cards" component={CardsRouter} />
       </Switch>
     </Router>

@@ -8,8 +8,6 @@ export default function Options({ activeBtn }) {
   const elIndex = useSelector((state) => state.canvasElIndex);
   const elements = useSelector((state) => state.canvasEls);
 
-  console.log(elements);
-
   if (activeBtn === "image")
     return (
       <div className="canvasOptions">

@@ -1,6 +1,7 @@
 $spinAnimation: spin 2s linear infinite;
 $dropDownAnimation: dropDown 0.5s;
 $fadeInAnimation: fadeIn 0.75s;
+$comeFromLeftAnimation: fromLeft 0.5s;
 
 @keyframes spin {
   0% {
@@ -26,6 +27,15 @@ $fadeInAnimation: fadeIn 0.75s;
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes fromLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 

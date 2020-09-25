@@ -4,6 +4,7 @@ import {
   projectFirestore,
   timestamp,
 } from "../firebase/Config";
+import { v4 } from "uuid";
 
 const useStorage = (file, uid) => {
   const [progress, setProgress] = useState(0);
@@ -15,7 +16,7 @@ const useStorage = (file, uid) => {
       setError("You need to sign in first.");
       return;
     }
-    const storageRef = projectStorage.ref(file.name);
+    const storageRef = projectStorage.ref(v4());
     const firestoreRef = projectFirestore.collection(uid);
 
     storageRef.put(file).on(

@@ -16,7 +16,7 @@ export default function ImageGrid({
 
   const addImage = async (event) => {
     const amount = elements.filter((el) => el.type === "image").length;
-    createCanvasImage(amount, event)
+    createCanvasImage(amount, event.target.src)
       .then((myEl) => {
         dispatch(addCanvasEl(myEl));
         dispatch(setSelectedEl(elements.length));

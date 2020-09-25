@@ -9,7 +9,12 @@ export default function GenLinkScreen({ setGenLinkScreen }) {
   const focusWindow = useRef(null);
   const aLink = useRef(null);
 
-  const elements = useSelector((state) => state.canvasEls);
+  const elements = useSelector((state) => state.canvasEls).map((el) => {
+    if (el.type !== "image") return el;
+    const newEl = { ...el };
+    newEl.image = null;
+    return newEl;
+  });
   const user = useSelector((state) => state.loginStatus);
   const resolution = useSelector((state) => state.canvasRes);
   const { error, url } = useGenerateLink(

@@ -1,9 +1,9 @@
 import { v4 } from "uuid";
 
-const createCanvasImage = async (amount, event) => {
+const createCanvasImage = async (amount, src) => {
   return new Promise((res, rej) => {
     const img = new Image();
-    const source = event.target.src;
+    const source = src;
     img.crossOrigin = "anonymous";
     img.onload = () => {
       let divider = 1;

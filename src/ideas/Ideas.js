@@ -6,7 +6,7 @@ import { Element } from "react-scroll";
 export default function Ideas() {
   return (
     <Element name="idea" className="ideas">
-      <h1 className="ideasTitle">Ideas</h1>
+      <h1 className="ideasTitle">Popular</h1>
       <div className="ideasCards">
         {IdeasImgs.images.map((idea, i) => (
           <Idea image={idea} key={i} />
