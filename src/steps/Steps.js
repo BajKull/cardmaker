@@ -1,5 +1,5 @@
 import React from "react";
-import StepsImage from "./portfolio1.jpg";
+import StepsImage from "./bg.jpg";
 import { Link } from "react-router-dom";
 import { Element, Link as Scroll } from "react-scroll";
 

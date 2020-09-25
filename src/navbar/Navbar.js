@@ -13,6 +13,7 @@ function Links({ name, user, handleOnClick, handleMenuClick, showMenu }) {
       {showMenu && (
         <div className="navbarBg" onClick={() => handleMenuClick()}></div>
       )}
+
       <div className="navbarContent">
         <ul className="navbarLinks">
           <li>
@@ -72,6 +73,9 @@ export default function Navbar() {
         name={"navbarContainer"}
       />
       <Burger className="navbarBurger" onClick={handleMenuClick} />
+      <Link to="/">
+        <LogoIcon className="logoAlone" />
+      </Link>
       <CSSTransition
         in={showMenu}
         timeout={500}

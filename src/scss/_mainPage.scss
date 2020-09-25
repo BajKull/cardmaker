@@ -28,6 +28,9 @@
     @include breakpoint(1280px) {
       flex-direction: column;
     }
+    @include breakpoint(700px) {
+      padding-top: 75px;
+    }
   }
 
   .mainText {

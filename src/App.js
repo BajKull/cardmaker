@@ -24,7 +24,7 @@ function App() {
         <Route
           path="/"
           exact
-          render={(props) => (
+          render={() => (
             <div className="App">
               <Navbar />
               <Main />
@@ -35,7 +35,15 @@ function App() {
           )}
         />
         <Route path="/signup" component={Register} />
-        <Route path="/create" component={Create} />
+        <Route
+          path="/create"
+          render={() => (
+            <div>
+              <Navbar />
+              <Create />
+            </div>
+          )}
+        />
         <Route path="/cards" component={CardsRouter} />
       </Switch>
     </Router>

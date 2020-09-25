@@ -9,6 +9,20 @@
   z-index: 999;
   overflow: hidden;
 
+  .logoAlone {
+    display: none;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 15px;
+    left: 55px;
+    stroke: #38073b;
+
+    @include breakpoint(700px) {
+      display: block;
+    }
+  }
+
   .navbarBtn {
     display: none;
   }

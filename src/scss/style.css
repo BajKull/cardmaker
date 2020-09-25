@@ -184,6 +184,22 @@
   overflow: hidden;
 }
 
+.navbar .logoAlone {
+  display: none;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 15px;
+  left: 55px;
+  stroke: #38073b;
+}
+
+@media only screen and (max-width: 700px) {
+  .navbar .logoAlone {
+    display: block;
+  }
+}
+
 .navbar .navbarBtn {
   display: none;
 }
@@ -451,6 +467,12 @@
   }
 }
 
+@media only screen and (max-width: 700px) {
+  .mainPage .mainContent {
+    padding-top: 75px;
+  }
+}
+
 .mainPage .mainText {
   margin-top: 100px;
   display: -webkit-box;
@@ -664,6 +686,12 @@
 
 .choice .choice1 {
   padding-top: 100px;
+}
+
+@media only screen and (max-width: 1280px) {
+  .choice .choice1 {
+    padding-top: 25px;
+  }
 }
 
 .choice .choice1 .choiceText {
@@ -982,9 +1010,9 @@
 .ideas {
   width: 100%;
   margin-top: 125px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#54c1de), to(#1c86a0));
-  background: linear-gradient(180deg, #54c1de 0%, #1c86a0 100%);
-  color: white;
+  background: -webkit-gradient(linear, left top, left bottom, from(#aae0ef), to(#54c1de));
+  background: linear-gradient(180deg, #aae0ef 0%, #54c1de 100%);
+  color: #2d2d2d;
 }
 
 .ideas .ideasCards {
@@ -1756,11 +1784,18 @@
   padding: 10px 0;
   margin: 25px auto;
   border: 0;
-  background: #1c86a0;
+  background: #54c1de;
   border-radius: 5px;
   color: white;
   font-weight: 600;
   cursor: pointer;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.login .submit:hover,
+.register .submit:hover {
+  background: #29b2d6;
 }
 
 .login .closeBtn,
@@ -2279,7 +2314,7 @@
 }
 
 .cardBrowser {
-  background-color: #54c1de;
+  background-color: #bfe8f3;
   min-height: 100vh;
 }
 
@@ -2301,7 +2336,7 @@
   background: 0;
   border: 0;
   margin: 0 10px;
-  color: #e6e6e6;
+  color: #969696;
   border-bottom: 1px solid transparent;
   padding-bottom: 5px;
   cursor: pointer;
@@ -2319,7 +2354,7 @@
 }
 
 .cardBrowser .cardBrowserCategories .categories .cardBrowserActiveBtn {
-  color: white;
+  color: #2d2d2d;
   border-bottom: 1px solid #1c86a0;
   -webkit-transform: scale(1.25);
           transform: scale(1.25);
@@ -2328,7 +2363,7 @@
 .cardBrowser .cardBrowserCategories .sorters {
   background: 0;
   border: 0;
-  color: white;
+  color: #2d2d2d;
   position: relative;
   width: 125px;
 }
@@ -2341,7 +2376,6 @@
   margin-top: 2px;
   border: 0;
   background: 0;
-  color: white;
   padding-bottom: 5px;
   cursor: pointer;
 }
@@ -2350,7 +2384,7 @@
   width: 16px;
   height: 16px;
   padding: 0;
-  fill: white;
+  fill: #2d2d2d;
   margin-right: 17px;
 }
 
@@ -2379,7 +2413,7 @@
   background: 0;
   border: 0;
   padding: 3px 15px;
-  color: white;
+  color: #2d2d2d;
   cursor: pointer;
   -webkit-transition: 0.1s;
   transition: 0.1s;

@@ -79,11 +79,16 @@
     padding: 10px 0;
     margin: 25px auto;
     border: 0;
-    background: $darkBlue;
+    background: $lightBlue;
     border-radius: 5px;
     color: white;
     font-weight: 600;
     cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      background: darken($lightBlue, 10);
+    }
   }
 
   .closeBtn {

@@ -3,6 +3,7 @@ import { Element } from "react-scroll";
 import { Link, useLocation } from "react-router-dom";
 import { ReactComponent as Blob } from "./blob.svg";
 import Screen1 from "./screen1.png";
+import Screen2 from "./screen2.png";
 
 export default function Choice() {
   const location = useLocation();
@@ -40,7 +41,7 @@ export default function Choice() {
             <button className="choiceBtn">Create card</button>
           </Link>
         </div>
-        <img src={Screen1} alt="" className="choiceImg" />
+        <img src={Screen2} alt="" className="choiceImg" />
       </div>
     </Element>
   );

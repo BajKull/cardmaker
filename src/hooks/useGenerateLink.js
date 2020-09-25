@@ -32,7 +32,7 @@ const useGenerateLink = (elements, uid, displayName, resolution) => {
         })
         .then((res) => setUrl(res.id));
     }
-  }, [elements, displayName, uid, thumbnailError, thumbnailUrl]);
+  }, [elements, displayName, resolution, uid, thumbnailError, thumbnailUrl]);
 
   return { url, error };
 };

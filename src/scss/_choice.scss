@@ -81,6 +81,10 @@
   .choice1 {
     padding-top: 100px;
 
+    @include breakpoint(1280px) {
+      padding-top: 25px;
+    }
+
     .choiceText {
       float: right;
       @include breakpoint(1280px) {
