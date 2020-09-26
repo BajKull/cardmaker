@@ -1,14 +1,24 @@
 import { useState, useEffect } from "react";
 import useThumbnail from "./useThumbnail";
 import { projectFirestore, timestamp } from "../firebase/Config";
+import { useSelector } from "react-redux";
 
-const useGenerateLink = (elements, uid, displayName, resolution) => {
+const useGenerateLink = () => {
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
+  const [generated, setGenerated] = useState(false);
 
-  const { thumbnailProgress, thumbnailUrl, thumbnailError } = useThumbnail();
+  const elements = useSelector((state) => state.canvasEls);
+
+  const resolution = useSelector((state) => state.canvasRes);
+  const user = useSelector((state) => state.loginStatus);
+  const uid = user.uid;
+  const displayName = user.displayName;
+
+  const { thumbnailUrl, thumbnailError } = useThumbnail();
 
   useEffect(() => {
+    if (generated) return;
     if (!uid) {
       setError("You need to sign in first.");
       return;
@@ -16,23 +26,44 @@ const useGenerateLink = (elements, uid, displayName, resolution) => {
       setError(thumbnailError);
       return;
     } else if (thumbnailUrl) {
+      console.log("tet");
       const firestoreRef = projectFirestore.collection("cards");
-
-      firestoreRef
-        .add({
+      const els = elements.map((el) => {
+        if (el.type !== "image") return el;
+        const newEl = { ...el };
+        newEl.image = null;
+        return newEl;
+      });
+      const unsub = () =>
+        firestoreRef.add({
           author: uid,
           authorName: displayName,
-          elements,
+          elements: els,
           date: timestamp(),
           likes: 0,
           views: 0,
           res: resolution,
           category: "unchecked",
           thumbnail: thumbnailUrl,
-        })
-        .then((res) => setUrl(res.id));
+        });
+
+      unsub()
+        .then((res) => setUrl(res.id))
+        .catch((er) => console.log(er.message));
+      setGenerated(true);
+
+      // memory leak if you close popup before getting link
+      // needs fix!
     }
-  }, [elements, displayName, resolution, uid, thumbnailError, thumbnailUrl]);
+  }, [
+    elements,
+    resolution,
+    uid,
+    displayName,
+    thumbnailError,
+    thumbnailUrl,
+    generated,
+  ]);
 
   return { url, error };
 };

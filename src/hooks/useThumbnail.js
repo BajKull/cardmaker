@@ -3,7 +3,6 @@ import { projectStorage } from "../firebase/Config";
 import { v4 } from "uuid";
 
 const useThumbnail = () => {
-  const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
@@ -11,22 +10,17 @@ const useThumbnail = () => {
   useEffect(() => {
     if (thumbnail) {
       const storageRef = projectStorage.ref(`thumbnails/${v4()}`);
-
-      storageRef.put(thumbnail).on(
-        "state_changed",
-        (snap) => {
-          const percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
-          setProgress(percentage);
-        },
-        (error) => {
-          console.log(error);
-          setError(error.message);
-        },
-        async () => {
+      storageRef
+        .put(thumbnail)
+        .then(async () => {
           const url = await storageRef.getDownloadURL();
           setUrl(url);
-        }
-      );
+        })
+        .catch(() =>
+          setError(
+            "There was an error connecting to the database. Try again later."
+          )
+        );
     }
   }, [thumbnail]);
 
@@ -42,7 +36,6 @@ const useThumbnail = () => {
   }, []);
 
   return {
-    thumbnailProgress: progress,
     thumbnailUrl: url,
     thumbnailError: error,
   };
