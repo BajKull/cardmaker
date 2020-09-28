@@ -21,8 +21,10 @@ function Links({ name, user, handleOnClick, handleMenuClick, showMenu }) {
               <LogoIcon className="logo" />
             </Link>
           </li>
-          <li>
-            <Link to="/about">About</Link>
+          <li className="navbarCreate">
+            <Link to="/create/editor">
+              <button>Create</button>
+            </Link>
           </li>
           <li>
             <Link to="/cards">Browse</Link>

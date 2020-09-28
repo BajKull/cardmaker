@@ -51,9 +51,27 @@
       display: flex;
       margin: 15px 0;
 
+      .navbarCreate {
+        margin-top: -4px;
+      }
+
       li {
         margin: 0 15px 0 15px;
         transition: 0.15s;
+
+        button {
+          border: 0;
+          background: $lightBlue;
+          border-radius: 5px;
+          width: 100px;
+          height: 29px;
+          color: white;
+          transition: 0.2s;
+
+          &:hover {
+            background: darken($lightBlue, 10);
+          }
+        }
       }
     }
   }
