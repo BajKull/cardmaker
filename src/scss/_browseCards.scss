@@ -19,7 +19,8 @@
       button {
         background: 0;
         border: 0;
-        margin: 0 10px;
+        margin: 0;
+        margin-right: 15px;
         color: rgb(150, 150, 150);
         border-bottom: 1px solid transparent;
         padding-bottom: 5px;
@@ -112,7 +113,7 @@
   }
 
   .cardContainerCol {
-    padding-left: 15px;
+    padding-right: 15px;
 
     div {
       margin-bottom: 15px;

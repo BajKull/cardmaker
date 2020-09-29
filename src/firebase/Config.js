@@ -18,5 +18,6 @@ const projectStorage = firebase.storage();
 const projectFirestore = firebase.firestore();
 const auth = firebase.auth();
 const timestamp = firebase.firestore.FieldValue.serverTimestamp;
+const increment = firebase.firestore.FieldValue.increment(1);
 
-export { auth, projectFirestore, projectStorage, timestamp };
+export { auth, projectFirestore, projectStorage, timestamp, increment };

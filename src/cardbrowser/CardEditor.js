@@ -16,6 +16,7 @@ export default function CardEditor() {
 
   useEffect(() => {
     if (data) {
+      console.log(data);
       setCounter(data.elements.filter((el) => el.type === "image").length);
 
       setElements(

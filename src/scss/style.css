@@ -2406,7 +2406,8 @@
 .cardBrowser .cardBrowserCategories .categories button {
   background: 0;
   border: 0;
-  margin: 0 10px;
+  margin: 0;
+  margin-right: 15px;
   color: #969696;
   border-bottom: 1px solid transparent;
   padding-bottom: 5px;
@@ -2514,7 +2515,7 @@
 }
 
 .cardContainer .cardContainerCol {
-  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .cardContainer .cardContainerCol div {
