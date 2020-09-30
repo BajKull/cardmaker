@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import useFirestore from "../hooks/useFirestore";
 import CardCreator from "../create/CardCreator";
+import NotFound from "../notfound/NotFound";
 import { useDispatch } from "react-redux";
 import { setCanvasEl } from "../redux/actions/SetCanvasEl";
 import { setCanvasRes } from "../redux/actions/setCanvasRes";
@@ -12,13 +13,11 @@ export default function CardEditor() {
   const [counter, setCounter] = useState(undefined);
   const [elements, setElements] = useState([]);
 
-  const { data } = useFirestore(location.pathname.split("/").pop());
+  const { data, error } = useFirestore(location.pathname.split("/").pop());
 
   useEffect(() => {
     if (data) {
-      console.log(data);
       setCounter(data.elements.filter((el) => el.type === "image").length);
-
       setElements(
         data.elements.map((el) => {
           if (el.type !== "image") return el;
@@ -42,9 +41,7 @@ export default function CardEditor() {
     if (counter === 0) dispatch(setCanvasEl(elements));
   }, [counter, elements, dispatch]);
 
-  return (
-    <div>
-      <CardCreator />
-    </div>
-  );
+  if (error) return <NotFound />;
+  else if (data) return <CardCreator />;
+  else return null;
 }
