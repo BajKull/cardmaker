@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import useThumbnail from "./useThumbnail";
+import incrementCounter from "../firebase/IncrementCounter";
 import { projectFirestore, timestamp } from "../firebase/Config";
 import { useSelector } from "react-redux";
 
@@ -26,7 +27,6 @@ const useGenerateLink = () => {
       setError(thumbnailError);
       return;
     } else if (thumbnailUrl) {
-      console.log("tet");
       const firestoreRef = projectFirestore.collection("cards");
       const els = elements.map((el) => {
         if (el.type !== "image") return el;
@@ -51,6 +51,7 @@ const useGenerateLink = () => {
         .then((res) => setUrl(res.id))
         .catch((er) => console.log(er.message));
       setGenerated(true);
+      incrementCounter("counter");
 
       // memory leak if you close popup before getting link
       // needs fix!
