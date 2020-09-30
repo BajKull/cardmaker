@@ -18,7 +18,7 @@
     left: 55px;
     stroke: #38073b;
 
-    @include breakpoint(700px) {
+    @include breakpoint(750px) {
       display: block;
     }
   }
@@ -34,7 +34,7 @@
 
   .navbarContainer {
     display: flex;
-    @include breakpoint(700px) {
+    @include breakpoint(750px) {
       display: none;
     }
 
@@ -107,7 +107,7 @@
     cursor: pointer;
     z-index: 5;
 
-    @include breakpoint(700px) {
+    @include breakpoint(750px) {
       display: block;
     }
   }
@@ -119,8 +119,12 @@
     display: none;
     width: 100%;
 
-    @include breakpoint(700px) {
+    @include breakpoint(750px) {
       display: block;
+    }
+
+    .navbarCreate {
+      display: none;
     }
 
     .navbarContent {

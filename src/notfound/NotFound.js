@@ -30,11 +30,14 @@ export default function NotFound() {
         </div>
         <div className="rightBar">
           <div className="id"></div>
-          <div className="option1"></div>
-          <div className="option2"></div>
-          <div className="option3"></div>
-          <div className="option4"></div>
-          <div className="option5"></div>
+          <div className="options">
+            <div className="option1 option"></div>
+            <div className="option2 option"></div>
+            <div className="option3 option"></div>
+            <div className="option4 option"></div>
+            <div className="option5 option"></div>
+            <div className="option6 option"></div>
+          </div>
         </div>
       </div>
     </div>

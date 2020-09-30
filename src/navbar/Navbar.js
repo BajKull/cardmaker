@@ -21,10 +21,8 @@ function Links({ name, user, handleOnClick, handleMenuClick, showMenu }) {
               <LogoIcon className="logo" />
             </Link>
           </li>
-          <li className="navbarCreate">
-            <Link to="/create/editor">
-              <button>Create</button>
-            </Link>
+          <li>
+            <Link to="/about">About</Link>
           </li>
           <li>
             <Link to="/cards">Browse</Link>
@@ -32,12 +30,22 @@ function Links({ name, user, handleOnClick, handleMenuClick, showMenu }) {
         </ul>
         {!user && (
           <ul className="navbarLogin">
+            <li className="navbarCreate">
+              <Link to="/create/editor">
+                <button>Create</button>
+              </Link>
+            </li>
             <li onClick={() => handleOnClick("signin")}>Sign in</li>
             <li onClick={() => handleOnClick("signup")}>Sign up</li>
           </ul>
         )}
         {user && (
           <ul className="navbarLogin">
+            <li className="navbarCreate">
+              <Link to="/create/editor">
+                <button>Create</button>
+              </Link>
+            </li>
             <li>{user.displayName}</li>
           </ul>
         )}
