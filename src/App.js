@@ -10,12 +10,14 @@ import Login from "./account/Login";
 import Register from "./account/Register";
 import CardsRouter from "./cardbrowser/CardsRouter";
 import NotFound from "./notfound/NotFound";
+import userAuth from "./firebase/UserAuth";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function App() {
   const loginScreen = useSelector((state) => state.loginScreen);
+  userAuth();
 
   return (
     <Router>

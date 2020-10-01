@@ -1092,8 +1092,7 @@
 }
 
 .ideas .idea {
-  width: 30%;
-  min-width: 530px;
+  width: 530px;
   max-height: 300px;
   position: relative;
   margin: 15px auto;
