@@ -1,0 +1,139 @@
+.about {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+
+  .aboutBg {
+    height: 100vh;
+    width: 100%;
+    background-color: lighten($lightBlue, 25);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .aboutLogo {
+    width: clamp(350px, 25vw, 750px);
+    position: absolute;
+    right: 10%;
+    top: 100px;
+    z-index: 5;
+    stroke: #38073b;
+
+    @include breakpoint(1000px) {
+      display: none;
+    }
+    @include breakpoint(1300px) {
+      right: 5%;
+    }
+  }
+
+  .aboutWave {
+    width: 150%;
+    min-width: 1920px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    fill: lighten($lightBlue, 23);
+    z-index: 2;
+  }
+
+  .aboutContent {
+    width: 80%;
+    position: absolute;
+    top: 100px;
+    left: 10%;
+    color: rgb(45, 45, 45);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+
+    @include breakpoint(600px) {
+      text-align: center;
+    }
+
+    .icons {
+      display: flex;
+      padding-bottom: 50px;
+
+      @include breakpoint(600px) {
+        display: block;
+        margin: auto;
+      }
+
+      a {
+        margin-right: 15px;
+
+        @include breakpoint(600px) {
+          margin-right: 10px;
+          margin-left: 10px;
+        }
+        img {
+          height: 32px;
+        }
+      }
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 3em;
+      position: relative;
+      width: auto;
+      align-self: flex-start;
+      transition: 0.5s;
+
+      @include breakpoint(600px) {
+        align-self: center;
+      }
+
+      &:hover {
+        .line {
+          width: 100%;
+        }
+
+        color: darken($darkBlue, 20);
+      }
+
+      .line {
+        position: absolute;
+        top: -5px;
+        left: 0;
+        width: 75px;
+        height: 7px;
+        border-radius: 10px;
+        background-color: $lightBlue;
+
+        transition: 0.5s;
+
+        &:hover {
+          width: 100%;
+        }
+
+        @include breakpoint(600px) {
+          display: none;
+        }
+      }
+    }
+
+    p {
+      margin: 5px 0 75px 0;
+      width: 60%;
+      max-width: 750px;
+      font-weight: 600;
+
+      @include breakpoint(1000px) {
+        width: auto;
+      }
+
+      a {
+        text-decoration: none;
+        color: $darkBlue;
+      }
+
+      b {
+        color: black;
+      }
+    }
+  }
+}

@@ -6,6 +6,7 @@ import Navbar from "./navbar/Navbar";
 import Steps from "./steps/Steps";
 import Ideas from "./ideas/Ideas";
 import Create from "./create/Create";
+import About from "./about/About";
 import Login from "./account/Login";
 import Register from "./account/Register";
 import CardsRouter from "./cardbrowser/CardsRouter";
@@ -36,6 +37,16 @@ function App() {
               <Ideas />
             </div>
           )}
+        />
+        <Route
+          path="/about"
+          render={() => (
+            <div>
+              <Navbar />
+              <About />
+            </div>
+          )}
+          // component={About}
         />
         <Route path="/signup" component={Register} />
         <Route path="/create" component={Create} />

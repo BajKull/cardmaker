@@ -625,6 +625,175 @@
   }
 }
 
+.about {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.about .aboutBg {
+  height: 100vh;
+  width: 100%;
+  background-color: #bfe8f3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.about .aboutLogo {
+  width: clamp(350px, 25vw, 750px);
+  position: absolute;
+  right: 10%;
+  top: 100px;
+  z-index: 5;
+  stroke: #38073b;
+}
+
+@media only screen and (max-width: 1000px) {
+  .about .aboutLogo {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .about .aboutLogo {
+    right: 5%;
+  }
+}
+
+.about .aboutWave {
+  width: 150%;
+  min-width: 1920px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  fill: #b6e5f1;
+  z-index: 2;
+}
+
+.about .aboutContent {
+  width: 80%;
+  position: absolute;
+  top: 100px;
+  left: 10%;
+  color: #2d2d2d;
+  z-index: 5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+@media only screen and (max-width: 600px) {
+  .about .aboutContent {
+    text-align: center;
+  }
+}
+
+.about .aboutContent .icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-bottom: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+  .about .aboutContent .icons {
+    display: block;
+    margin: auto;
+  }
+}
+
+.about .aboutContent .icons a {
+  margin-right: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+  .about .aboutContent .icons a {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}
+
+.about .aboutContent .icons a img {
+  height: 32px;
+}
+
+.about .aboutContent h1 {
+  margin: 0;
+  font-size: 3em;
+  position: relative;
+  width: auto;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+@media only screen and (max-width: 600px) {
+  .about .aboutContent h1 {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
+}
+
+.about .aboutContent h1:hover {
+  color: #0d3d49;
+}
+
+.about .aboutContent h1:hover .line {
+  width: 100%;
+}
+
+.about .aboutContent h1 .line {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 75px;
+  height: 7px;
+  border-radius: 10px;
+  background-color: #54c1de;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.about .aboutContent h1 .line:hover {
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .about .aboutContent h1 .line {
+    display: none;
+  }
+}
+
+.about .aboutContent p {
+  margin: 5px 0 75px 0;
+  width: 60%;
+  max-width: 750px;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 1000px) {
+  .about .aboutContent p {
+    width: auto;
+  }
+}
+
+.about .aboutContent p a {
+  text-decoration: none;
+  color: #1c86a0;
+}
+
+.about .aboutContent p b {
+  color: black;
+}
+
 .choice {
   padding: 0;
   position: relative;

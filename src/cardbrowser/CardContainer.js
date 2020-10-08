@@ -19,22 +19,60 @@ export default function CardContainer({ category, sorter }) {
   const location = useLocation();
 
   useEffect(() => {
-    projectFirestore
-      .collection("cards")
-      .where("category", "==", "unchecked")
-      .orderBy(sorter)
-      .limit(limit)
-      .limitToLast(18)
-      .get()
-      .then((data) => {
-        const els = [];
-        data.forEach((doc) => {
-          const el = { ...doc.data(), id: doc.id };
-          els.push(el);
+    setCards([]);
+    setLoading(true);
+    let order;
+    switch (sorter) {
+      case "datedesc":
+        order = ["date", "desc"];
+        break;
+      case "date":
+        order = ["date"];
+        break;
+      case "likes":
+        order = ["likes", "desc"];
+        break;
+      case "views":
+        order = ["views", "desc"];
+        break;
+      default:
+        order = ["date", "desc"];
+    }
+
+    // cant use != and orderBy in a single query in firebase on different fields(ex. category, views), so i need this if statement
+    if (category === "all")
+      projectFirestore
+        .collection("cards")
+        .orderBy(...order)
+        .limit(limit)
+        .limitToLast(18)
+        .get()
+        .then((data) => {
+          const els = [];
+          data.forEach((doc) => {
+            const el = { ...doc.data(), id: doc.id };
+            els.push(el);
+          });
+          setLoading(false);
+          setCards(els);
         });
-        setLoading(false);
-        setCards(els);
-      });
+    else
+      projectFirestore
+        .collection("cards")
+        .where("category", "==", category)
+        .orderBy(...order)
+        .limit(limit)
+        .limitToLast(18)
+        .get()
+        .then((data) => {
+          const els = [];
+          data.forEach((doc) => {
+            const el = { ...doc.data(), id: doc.id };
+            els.push(el);
+          });
+          setLoading(false);
+          setCards(els);
+        });
   }, [category, sorter, limit]);
 
   if (loading) return <div className="loadingBig" />;

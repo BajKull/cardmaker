@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { ChangeLoginScreen } from "../redux/actions/ChangeLoginScreen";
-import { ReactComponent as LogoIcon } from "./logo4.svg";
+import { ReactComponent as LogoIcon } from "./logo.svg";
 import { ReactComponent as Burger } from "./burger.svg";
 import { CSSTransition } from "react-transition-group";
 

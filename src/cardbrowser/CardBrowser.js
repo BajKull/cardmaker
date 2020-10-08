@@ -4,8 +4,8 @@ import { ReactComponent as SortIcon } from "./sort.svg";
 import { CSSTransition } from "react-transition-group";
 
 export default function CardBrowser() {
-  const [category, setCategory] = useState("*");
-  const [sorter, setSorter] = useState("date");
+  const [category, setCategory] = useState("all");
+  const [sorter, setSorter] = useState("datedesc");
   const [showSorters, setShowSorters] = useState(false);
 
   const categories = useRef(null);
@@ -16,13 +16,10 @@ export default function CardBrowser() {
         return "Newest";
       case "date":
         return "Oldest";
-
       case "likes":
         return "Most liked";
-
       case "views":
         return "Most viewed";
-
       default:
         return "Newest";
     }
@@ -42,7 +39,7 @@ export default function CardBrowser() {
         <div className="categories" ref={categories}>
           <button
             className="cardBrowserActiveBtn"
-            onClick={(e) => categorySwitch(e, "*")}
+            onClick={(e) => categorySwitch(e, "all")}
           >
             All
           </button>
@@ -77,8 +74,8 @@ export default function CardBrowser() {
             unmountOnExit
           >
             <div className="currentSorterButtons">
-              <button onClick={() => setSorter("date")}>Newest</button>
-              <button onClick={() => setSorter("datedesc")}>Oldest</button>
+              <button onClick={() => setSorter("datedesc")}>Newest</button>
+              <button onClick={() => setSorter("date")}>Oldest</button>
               <button onClick={() => setSorter("likes")}>Most liked</button>
               <button onClick={() => setSorter("views")}>Most viewed</button>
             </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Editor from "./Editor";
 import GenLinkScreen from "./GenLinkScreen";
-import { ReactComponent as LogoIcon } from "../navbar/logo4.svg";
+import { ReactComponent as LogoIcon } from "../navbar/logo.svg";
 import { Link } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import { useDispatch, useSelector } from "react-redux";
