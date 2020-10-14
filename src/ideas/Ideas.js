@@ -9,7 +9,6 @@ export default function Ideas() {
   useEffect(() => {
     projectFirestore
       .collection("cards")
-      .where("category", "==", "unchecked")
       .orderBy("views", "desc")
       .limit(3)
       .get()

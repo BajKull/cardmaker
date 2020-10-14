@@ -90,7 +90,7 @@
       top: -535px;
       left: 0;
       height: 1185px;
-      fill: $lightBlue;
+      fill: lighten($lightBlue, 15);
       z-index: 1;
 
       @include breakpoint(1280px) {

@@ -105,6 +105,32 @@
   }
 }
 
+@-webkit-keyframes fromBottom {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(50%);
+            transform: translateY(50%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes fromBottom {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(50%);
+            transform: translateY(50%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
 .canRes-enter {
   opacity: 0;
 }
@@ -123,6 +149,26 @@
   opacity: 0;
   -webkit-transition: 0.5s;
   transition: 0.5s;
+}
+
+.navUserName-enter {
+  opacity: 0;
+}
+
+.navUserName-enter-active {
+  opacity: 1;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+}
+
+.navUserName-exit {
+  opacity: 1;
+}
+
+.navUserName-exit-active {
+  opacity: 0;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
 }
 
 .dropDownFilter-enter {
@@ -203,7 +249,6 @@
   font-weight: 500;
   font-size: 1.5em;
   z-index: 999;
-  overflow: hidden;
 }
 
 .navbar .logoAlone {
@@ -243,6 +288,39 @@
   .navbar .navbarContainer {
     display: none;
   }
+}
+
+.navbar .navbarContainer .navbarUserOptions {
+  position: absolute;
+  top: 70px;
+  right: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  z-index: 10000;
+  background-color: white;
+  width: 200px;
+  height: 160px;
+  padding: 0;
+  margin: 0;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  overflow: hidden;
+}
+
+.navbar .navbarContainer .navbarUserOptions li {
+  width: 170px;
+  margin: 0;
+  padding: 10px 15px;
+}
+
+.navbar .navbarContainer .navbarUserOptions li:hover {
+  background-color: whitesmoke;
 }
 
 .navbar .navbarContainer .navbarLogin {
@@ -593,7 +671,7 @@
   top: -535px;
   left: 0;
   height: 1185px;
-  fill: #54c1de;
+  fill: #94d8ea;
   z-index: 1;
 }
 
@@ -642,12 +720,12 @@
 }
 
 .about .aboutLogo {
-  width: clamp(350px, 25vw, 750px);
+  width: 40vw;
   position: absolute;
-  right: 10%;
+  right: 5%;
   top: 100px;
   z-index: 5;
-  stroke: #38073b;
+  stroke: #38073b0f;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -658,7 +736,7 @@
 
 @media only screen and (max-width: 1300px) {
   .about .aboutLogo {
-    right: 5%;
+    right: 2.5%;
   }
 }
 
@@ -673,10 +751,10 @@
 }
 
 .about .aboutContent {
-  width: 80%;
+  width: 45%;
   position: absolute;
   top: 100px;
-  left: 10%;
+  left: 5%;
   color: #2d2d2d;
   z-index: 5;
   display: -webkit-box;
@@ -686,6 +764,12 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+@media only screen and (max-width: 1000px) {
+  .about .aboutContent {
+    width: 90%;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -774,15 +858,8 @@
 
 .about .aboutContent p {
   margin: 5px 0 75px 0;
-  width: 60%;
-  max-width: 750px;
+  width: 100%;
   font-weight: 600;
-}
-
-@media only screen and (max-width: 1000px) {
-  .about .aboutContent p {
-    width: auto;
-  }
 }
 
 .about .aboutContent p a {
@@ -2690,7 +2767,6 @@
   display: -ms-flexbox;
   display: flex;
   padding-bottom: 50px;
-  background-color: #b2e3f0;
 }
 
 @media only screen and (max-width: 350px) {
@@ -2700,7 +2776,8 @@
 }
 
 .cardContainer .cardContainerCol {
-  padding-right: 15px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .cardContainer .cardContainerCol div {
@@ -2732,7 +2809,6 @@
       -ms-flex-align: center;
           align-items: center;
   padding-top: 5px;
-  background-color: #b2e3f0;
 }
 
 .cardContainer .cardBrowserCard .cardBrowserCardActions h1 {
@@ -2981,6 +3057,338 @@
   width: 50%;
 }
 
+.profile {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #aae0ef;
+  color: #2d2d2d;
+}
+
+.profile .profileContent {
+  width: 100%;
+  padding-top: 70px;
+}
+
+.profile .profileContent .profilePanel {
+  width: 100%;
+  background-color: #bfe8f3;
+  padding: 25px 0;
+  min-height: 50vh;
+}
+
+.profile .profileContent .profilePanel .profilePanelP {
+  width: 80%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 25px;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profileSection {
+  padding: 25px;
+  background: #aae0ef;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 75px;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profileSection .progressBar {
+  height: 85px;
+  width: 25%;
+  min-width: 265px;
+  margin-left: 75px;
+  text-align: center;
+  position: relative;
+  margin-top: -20px;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profileSection .progressBar h1 {
+  -webkit-animation: fromBottom 0.5s;
+          animation: fromBottom 0.5s;
+  color: #376c22;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profileSection .progressBar .bar {
+  border-radius: 10px;
+  height: 5px;
+  background-color: #1c86a0;
+  position: absolute;
+  bottom: 0;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profileSection .progressBar .barComplete {
+  background-color: #4b932f;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profileSection .profileText {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 50px;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profileSection .profileText p {
+  margin-top: 0;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profileEditIcon {
+  width: 24px;
+  height: 24px;
+  padding: 8px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profileLabel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profileLabel input {
+  margin-bottom: 20px;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profilePicture .profileLogo {
+  width: 128px;
+  height: 128px;
+  border: 4px solid white;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profilePicture .profileLogo h1 {
+  font-size: 64px;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profileBackground .profileBackgroundBg {
+  height: 128px;
+  max-width: 500px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profileSettings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  min-height: 325px;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profileSettings .settingsFlex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profileSettings .settingsFlex input {
+  border-radius: 5px 0 0 5px;
+  padding: 0 15px;
+  width: 235px;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profileSettings .closeContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #7fd1e6;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profileSettings .closeContainer:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.profile .profileContent .profilePanel .profilePanelP .profileSettings .closeContainer .closeClass {
+  width: 16px;
+  height: 16px;
+  fill: #69c9e2;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .passwordPanel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+  margin-left: 100px;
+  width: 350px;
+}
+
+.profile .profileContent .profilePanel .profilePanelP .passwordPanel button {
+  margin-left: 34px;
+  margin-top: 35px;
+}
+
+.profile .profileContent .profilePanel .profilePanelP button {
+  width: 200px;
+  height: 40px;
+  background: #54c1de;
+  border: 0;
+  margin: 15px 50px 15px 0;
+  border-radius: 5px;
+  font-size: 16px;
+  color: black;
+  font-weight: 700;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.profile .profileContent .profilePanel .profilePanelP button:focus {
+  outline: none;
+  -webkit-box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.5);
+}
+
+.profile .profileContent .profilePanel .profilePanelP button:hover {
+  background: #2eb8da;
+}
+
+.profile .profileContent .profilePanel .profilePanelP input {
+  width: 250px;
+  height: 40px;
+  margin: 0;
+  border: 0;
+  background-color: rgba(0, 0, 0, 0.03);
+  color: #5a5a5a;
+  border-radius: 5px;
+  padding-left: 15px;
+  font-weight: 600;
+  font-family: "Quicksand", sans-serif;
+  font-size: 16px;
+}
+
+.profile .profileContent .profilePanel .profilePanelP input:focus {
+  outline: none;
+  -webkit-box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.5);
+  color: #2d2d2d;
+}
+
+.profile .profileContent .profileLabel {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.profile .profileContent .profileLogo {
+  width: 80px;
+  height: 80px;
+  background-color: #54c1de;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 50%;
+}
+
+.profile .profileContent .profileLogo h1 {
+  margin: 0;
+  color: white;
+}
+
+.profile .profileContent .profileUser {
+  width: 60%;
+  margin: 11px auto 15px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.profile .profileContent .profileUser .profileUserInfo {
+  margin-left: 25px;
+  height: 80px;
+  font-size: 0.85em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.profile .profileContent .profileUser .profileUserInfo h1,
+.profile .profileContent .profileUser .profileUserInfo h2 {
+  margin: 0;
+}
+
+.profile .profileContent .background {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.profile .profileContent .background .bgImg {
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.profile .profileContent .tabs {
+  width: 100%;
+  height: 70px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.profile .profileContent .tabs button {
+  width: 250px;
+  height: 100%;
+  border: 0;
+  background: 0;
+  font-weight: 700;
+  font-size: 18px;
+}
+
 html,
 body {
   margin: 0;
@@ -2991,6 +3399,7 @@ body {
 button {
   font-family: "Quicksand", sans-serif;
   font-weight: 600;
+  color: #2d2d2d;
   cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */

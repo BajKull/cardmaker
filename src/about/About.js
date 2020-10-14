@@ -12,6 +12,7 @@ export default function About() {
     <div className="about">
       <div className="aboutBg"></div>
       <Logo className="aboutLogo" />
+
       <Wave className="aboutWave" />
       <div className="aboutContent">
         <h1>

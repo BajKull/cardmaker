@@ -2,6 +2,7 @@ $spinAnimation: spin 2s linear infinite;
 $dropDownAnimation: dropDown 0.5s;
 $fadeInAnimation: fadeIn 0.75s;
 $comeFromLeftAnimation: fromLeft 0.5s;
+$comeFromBottomAnimation: fromBottom 0.5s;
 
 @keyframes spin {
   0% {
@@ -39,6 +40,17 @@ $comeFromLeftAnimation: fromLeft 0.5s;
   }
 }
 
+@keyframes fromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .canRes-enter {
   opacity: 0;
 }
@@ -55,6 +67,24 @@ $comeFromLeftAnimation: fromLeft 0.5s;
 .canRes-exit-active {
   opacity: 0;
   transition: 0.5s;
+}
+
+.navUserName-enter {
+  opacity: 0;
+}
+
+.navUserName-enter-active {
+  opacity: 1;
+  transition: 0.25s;
+}
+
+.navUserName-exit {
+  opacity: 1;
+}
+
+.navUserName-exit-active {
+  opacity: 0;
+  transition: 0.25s;
 }
 
 .dropDownFilter-enter {

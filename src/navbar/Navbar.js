@@ -1,13 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { ChangeLoginStatus } from "../redux/actions/ChangeLoginStatus";
 import { ChangeLoginScreen } from "../redux/actions/ChangeLoginScreen";
 import { ReactComponent as LogoIcon } from "./logo.svg";
 import { ReactComponent as Burger } from "./burger.svg";
 import { CSSTransition } from "react-transition-group";
+import { auth } from "../firebase/Config";
 
-function Links({ name, user, handleOnClick, handleMenuClick, showMenu }) {
+function Links({ name, handleMenuClick, showMenu }) {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.loginStatus);
+  const [userMenu, setUserMenu] = useState(false);
+  const handleOnClick = (screen) => {
+    dispatch(ChangeLoginScreen(screen));
+  };
+
+  const handleSignOut = () => {
+    auth
+      .signOut()
+      .then(() => dispatch(ChangeLoginStatus(null)))
+      .catch((error) => console.log(error));
+  };
+
+  const handleHideUserMenu = useCallback(
+    (e) => {
+      if (e.target.classList.contains("userNameBtn")) return;
+      if (userMenu) setUserMenu(false);
+    },
+    [userMenu]
+  );
+
+  useEffect(() => {
+    window.addEventListener("click", handleHideUserMenu);
+
+    return () => window.removeEventListener("click", handleHideUserMenu);
+  }, [handleHideUserMenu]);
+
   return (
     <div className={name}>
       {showMenu && (
@@ -46,7 +76,28 @@ function Links({ name, user, handleOnClick, handleMenuClick, showMenu }) {
                 <button>Create</button>
               </Link>
             </li>
-            <li>{user.displayName}</li>
+            <li onClick={() => setUserMenu(!userMenu)} className="userNameBtn">
+              {user.displayName}
+            </li>
+            <CSSTransition
+              in={userMenu}
+              timeout={250}
+              unmountOnExit
+              classNames="navUserName"
+            >
+              <ul className="navbarUserOptions">
+                <Link to="/profile">
+                  <li>Profile</li>
+                </Link>
+                <Link to="/profile/cards">
+                  <li>My cards</li>
+                </Link>
+                <Link to="/profile/images">
+                  <li>My images</li>
+                </Link>
+                <li onClick={handleSignOut}>Sign out</li>
+              </ul>
+            </CSSTransition>
           </ul>
         )}
         <Link to="/create">
@@ -60,13 +111,7 @@ function Links({ name, user, handleOnClick, handleMenuClick, showMenu }) {
 }
 
 export default function Navbar() {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.loginStatus);
   const [showMenu, setShowMenu] = useState(false);
-
-  const handleOnClick = (screen) => {
-    dispatch(ChangeLoginScreen(screen));
-  };
 
   const handleMenuClick = () => {
     if (showMenu) document.body.style.overflow = "auto";
@@ -77,11 +122,7 @@ export default function Navbar() {
 
   return (
     <div className="navbar">
-      <Links
-        user={user}
-        handleOnClick={handleOnClick}
-        name={"navbarContainer"}
-      />
+      <Links name={"navbarContainer"} />
       <Burger className="navbarBurger" onClick={handleMenuClick} />
       <Link to="/">
         <LogoIcon className="logoAlone" />
@@ -93,8 +134,6 @@ export default function Navbar() {
         classNames="page-from-left"
       >
         <Links
-          user={user}
-          handleOnClick={handleOnClick}
           name={"navbarContainer2"}
           handleMenuClick={handleMenuClick}
           showMenu={showMenu}

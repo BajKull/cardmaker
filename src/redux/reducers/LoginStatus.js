@@ -1,4 +1,4 @@
-const LoginStatus = (state = false, action) => {
+const LoginStatus = (state = null, action) => {
   switch (action.type) {
     case "CHANGE_LOGIN_STATUS":
       return action.payload;

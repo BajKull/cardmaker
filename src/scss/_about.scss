@@ -14,18 +14,18 @@
   }
 
   .aboutLogo {
-    width: clamp(350px, 25vw, 750px);
+    width: 40vw;
     position: absolute;
-    right: 10%;
+    right: 5%;
     top: 100px;
     z-index: 5;
-    stroke: #38073b;
+    stroke: #38073b0f;
 
     @include breakpoint(1000px) {
       display: none;
     }
     @include breakpoint(1300px) {
-      right: 5%;
+      right: 2.5%;
     }
   }
 
@@ -40,14 +40,18 @@
   }
 
   .aboutContent {
-    width: 80%;
+    width: 45%;
     position: absolute;
     top: 100px;
-    left: 10%;
+    left: 5%;
     color: rgb(45, 45, 45);
     z-index: 5;
     display: flex;
     flex-direction: column;
+
+    @include breakpoint(1000px) {
+      width: 90%;
+    }
 
     @include breakpoint(600px) {
       text-align: center;
@@ -118,13 +122,8 @@
 
     p {
       margin: 5px 0 75px 0;
-      width: 60%;
-      max-width: 750px;
+      width: 100%;
       font-weight: 600;
-
-      @include breakpoint(1000px) {
-        width: auto;
-      }
 
       a {
         text-decoration: none;

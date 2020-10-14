@@ -7,7 +7,7 @@
   font-weight: 500;
   font-size: 1.5em;
   z-index: 999;
-  overflow: hidden;
+  // overflow: hidden;
 
   .logoAlone {
     display: none;
@@ -36,6 +36,34 @@
     display: flex;
     @include breakpoint(750px) {
       display: none;
+    }
+
+    .navbarUserOptions {
+      position: absolute;
+      top: 70px;
+      right: 40px;
+      display: flex;
+      flex-direction: column;
+      z-index: 10000;
+      background-color: white;
+      width: 200px;
+      height: 160px;
+      padding: 0;
+      margin: 0;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: 600;
+      overflow: hidden;
+
+      li {
+        width: 170px;
+        margin: 0;
+        padding: 10px 15px;
+
+        &:hover {
+          background-color: rgb(245, 245, 245);
+        }
+      }
     }
 
     .navbarLogin {

@@ -107,6 +107,5 @@ export default function CardContainer({ category, sorter }) {
           </Link>
         ))}
       </Masonry>
-      // </div>
     );
 }

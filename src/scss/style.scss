@@ -23,6 +23,7 @@
 @import "genLink";
 @import "browseCards";
 @import "notFound";
+@import "profile";
 
 html,
 body {
@@ -34,5 +35,6 @@ body {
 button {
   font-family: $mainFont;
   font-weight: 600;
+  color: rgb(45, 45, 45);
   cursor: pointer;
 }

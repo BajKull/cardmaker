@@ -7,6 +7,7 @@ import Steps from "./steps/Steps";
 import Ideas from "./ideas/Ideas";
 import Create from "./create/Create";
 import About from "./about/About";
+import Profile from "./profile/Profile";
 import Login from "./account/Login";
 import Register from "./account/Register";
 import CardsRouter from "./cardbrowser/CardsRouter";
@@ -46,9 +47,18 @@ function App() {
               <About />
             </div>
           )}
-          // component={About}
+        />
+        <Route
+          path="/profile"
+          render={() => (
+            <div>
+              <Navbar />
+              <Profile />
+            </div>
+          )}
         />
         <Route path="/signup" component={Register} />
+        <Route path="/signin" component={Login} />
         <Route path="/create" component={Create} />
         <Route path="/cards" component={CardsRouter} />
         <Route path="/" component={NotFound} />

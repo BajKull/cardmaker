@@ -6,7 +6,7 @@ import {
 } from "../firebase/Config";
 import { v4 } from "uuid";
 
-const useStorage = (file, uid) => {
+const useStorage = (file, uid, addFire = true) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
@@ -31,11 +31,12 @@ const useStorage = (file, uid) => {
       async () => {
         const url = await storageRef.getDownloadURL();
         const time = timestamp();
-        await firestoreRef.add({ name: file.name, url, date: time });
+        if (addFire)
+          await firestoreRef.add({ name: file.name, url, date: time });
         setUrl(url);
       }
     );
-  }, [file, uid]);
+  }, [file, addFire, uid]);
 
   return { progress, url, error };
 };
