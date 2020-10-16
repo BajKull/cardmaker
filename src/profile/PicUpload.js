@@ -1,17 +1,22 @@
 import React, { useEffect } from "react";
 import useStorage from "../hooks/useStorage";
 import { useSelector } from "react-redux";
-import { auth } from "../firebase/Config";
+import { auth, projectFirestore } from "../firebase/Config";
 
-export default function PicUpload({ file }) {
+export default function PicUpload({ file, type }) {
   const user = useSelector((state) => state.loginStatus);
   const { progress, url, error } = useStorage(file, user.uid, false);
 
   useEffect(() => {
-    if (url) auth.currentUser.updateProfile({ photoURL: url });
-  }, [url]);
-
-  console.log(url);
+    if (url) {
+      if (type === "avatar") auth.currentUser.updateProfile({ photoURL: url });
+      else if (type === "background")
+        projectFirestore
+          .collection(user.uid)
+          .doc("background")
+          .set({ url: url });
+    }
+  }, [type, url, user.uid]);
 
   if (error) return <p className="error">{error}</p>;
   else

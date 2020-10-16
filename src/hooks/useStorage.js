@@ -12,6 +12,7 @@ const useStorage = (file, uid, addFire = true) => {
   const [url, setUrl] = useState(null);
 
   useEffect(() => {
+    console.log(file);
     if (!uid) {
       setError("You need to sign in first.");
       return;
