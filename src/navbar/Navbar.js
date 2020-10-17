@@ -58,7 +58,7 @@ function Links({ name, handleMenuClick, showMenu }) {
             <Link to="/cards">Browse</Link>
           </li>
         </ul>
-        {!user && (
+        {user === "noUser" && (
           <ul className="navbarLogin">
             <li className="navbarCreate">
               <Link to="/create/editor">
@@ -69,7 +69,7 @@ function Links({ name, handleMenuClick, showMenu }) {
             <li onClick={() => handleOnClick("signup")}>Sign up</li>
           </ul>
         )}
-        {user && (
+        {user && user !== "noUser" && (
           <ul className="navbarLogin">
             <li className="navbarCreate">
               <Link to="/create/editor">
