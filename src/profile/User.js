@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link, useRouteMatch, useLocation } from "react-router-dom";
 import { projectFirestore } from "../firebase/Config";
 
 export default function User() {
   const [bg, setBg] = useState(null);
   const location = useRouteMatch().path;
+  const path = useLocation();
   const user = useSelector((state) => state.loginStatus);
+
+  const tabsRef = useRef();
 
   useEffect(() => {
     projectFirestore
@@ -21,6 +24,22 @@ export default function User() {
         else setBg(bg.data().url);
       });
   }, [user.uid]);
+
+  useEffect(() => {
+    const tabs = Array.from(
+      document.getElementsByClassName("tabs")[0].childNodes
+    );
+    const currentTab = tabs.find(
+      (el) => el.href.replace(/.*\/\/[^/]*/, "") === path.pathname
+    );
+
+    tabs.forEach((el) => el.classList.remove("activeTab"));
+
+    console.log(currentTab);
+
+    currentTab.classList.add("activeTab");
+  }, [path.pathname]);
+
   return (
     <div className="background">
       <img src={bg} alt="" className="bgImg" />
@@ -38,7 +57,7 @@ export default function User() {
           <h2>Created 19 cards</h2>
         </div>
       </div>
-      <div className="tabs">
+      <div className="tabs" ref={tabsRef}>
         <Link to={location}>
           <button>Profile</button>
         </Link>

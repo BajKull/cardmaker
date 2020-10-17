@@ -48,7 +48,10 @@ export default function BackgroundPicture({ user, setError }) {
           className="hiddenInput hiddenBackground"
           onChange={backgroundUpload}
         />
-        <p>Picture has to be formatted as .jpg, .jpeg or .png</p>
+        <p>
+          Picture has to be formatted as .jpg, .jpeg or .png. Optimal size is
+          1920x300
+        </p>
       </div>
       {backgroundPic && <PicUpload file={backgroundPic} type="background" />}
     </div>

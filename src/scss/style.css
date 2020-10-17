@@ -3076,280 +3076,6 @@
   min-height: 50vh;
 }
 
-.profile .profileContent .profilePanel .profilePanelP {
-  width: 80%;
-  margin: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  padding: 25px;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .errorScreen {
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .errorScreen .errorContent {
-  width: 25%;
-  min-width: 250px;
-  padding: 35px;
-  background-color: white;
-  border-radius: 5px;
-  position: relative;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .errorScreen .errorContent .errorClose {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  width: 16px;
-  cursor: pointer;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .errorScreen .errorBg {
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  cursor: pointer;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profileSection {
-  padding: 25px;
-  background: #aae0ef;
-  border-radius: 5px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-bottom: 75px;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profileSection .progressBar {
-  height: 85px;
-  width: 25%;
-  min-width: 265px;
-  margin-left: 75px;
-  text-align: center;
-  position: relative;
-  margin-top: -20px;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profileSection .progressBar h1 {
-  -webkit-animation: fromBottom 0.5s;
-          animation: fromBottom 0.5s;
-  color: #376c22;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profileSection .progressBar .bar {
-  border-radius: 10px;
-  height: 5px;
-  background-color: #1c86a0;
-  position: absolute;
-  bottom: 0;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profileSection .progressBar .barComplete {
-  background-color: #4b932f;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profileSection .profileText {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  margin-left: 50px;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profileSection .profileText p {
-  margin-top: 0;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profileEditIcon {
-  width: 24px;
-  height: 24px;
-  padding: 8px;
-  background-color: rgba(0, 0, 0, 0.05);
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profileLabel {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profileLabel input {
-  margin-bottom: 20px;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profilePicture .profileLogo {
-  width: 128px;
-  height: 128px;
-  border: 4px solid white;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profilePicture .profileLogo h1 {
-  font-size: 64px;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profileBackground .profileBackgroundBg {
-  height: 100px;
-  width: 640px;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profileSettings {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  min-height: 325px;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profileSettings .settingsFlex {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profileSettings .settingsFlex input {
-  border-radius: 5px 0 0 5px;
-  padding: 0 15px;
-  width: 235px;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profileSettings .closeContainer {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 2px solid #7fd1e6;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  cursor: pointer;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profileSettings .closeContainer:hover {
-  background-color: rgba(0, 0, 0, 0.03);
-}
-
-.profile .profileContent .profilePanel .profilePanelP .profileSettings .closeContainer .closeClass {
-  width: 16px;
-  height: 16px;
-  fill: #69c9e2;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .passwordPanel {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  position: relative;
-  margin-left: 100px;
-  width: 350px;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .passwordPanel .passwordChanged {
-  color: #6cc549;
-}
-
-.profile .profileContent .profilePanel .profilePanelP .passwordPanel button {
-  margin-left: 34px;
-  margin-top: 35px;
-}
-
-.profile .profileContent .profilePanel .profilePanelP button {
-  width: 200px;
-  height: 40px;
-  background: #54c1de;
-  border: 0;
-  margin: 15px 50px 15px 0;
-  border-radius: 5px;
-  font-size: 16px;
-  color: black;
-  font-weight: 700;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-}
-
-.profile .profileContent .profilePanel .profilePanelP button:focus {
-  outline: none;
-  -webkit-box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.5);
-          box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.5);
-}
-
-.profile .profileContent .profilePanel .profilePanelP button:hover {
-  background: #2eb8da;
-}
-
-.profile .profileContent .profilePanel .profilePanelP input {
-  width: 250px;
-  height: 40px;
-  margin: 0;
-  border: 0;
-  background-color: rgba(0, 0, 0, 0.03);
-  color: #5a5a5a;
-  border-radius: 5px;
-  padding-left: 15px;
-  font-weight: 600;
-  font-family: "Quicksand", sans-serif;
-  font-size: 16px;
-}
-
-.profile .profileContent .profilePanel .profilePanelP input:focus {
-  outline: none;
-  -webkit-box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.5);
-          box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.5);
-  color: #2d2d2d;
-}
-
 .profile .profileContent .profileLabel {
   margin-bottom: 10px;
   font-weight: 600;
@@ -3429,13 +3155,445 @@
           justify-content: center;
 }
 
+.profile .profileContent .tabs .activeTab {
+  -webkit-box-shadow: inset 0px -30px 10px -30px #1c86a0;
+          box-shadow: inset 0px -30px 10px -30px #1c86a0;
+}
+
+.profile .profileContent .tabs a {
+  width: 20%;
+  max-width: 250px;
+}
+
 .profile .profileContent .tabs button {
-  width: 250px;
+  width: 100%;
   height: 100%;
   border: 0;
   background: 0;
   font-weight: 700;
   font-size: 18px;
+}
+
+.profile .profileContent .tabs button:focus {
+  outline: none;
+}
+
+.profilePanelP {
+  width: 80%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 25px;
+}
+
+.profilePanelP .errorScreen {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.profilePanelP .errorScreen .errorContent {
+  width: 25%;
+  min-width: 250px;
+  padding: 35px;
+  background-color: white;
+  border-radius: 5px;
+  position: relative;
+}
+
+.profilePanelP .errorScreen .errorContent .errorClose {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 16px;
+  cursor: pointer;
+}
+
+.profilePanelP .errorScreen .errorBg {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.profilePanelP .profileSection {
+  padding: 25px;
+  background: #aae0ef;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 75px;
+}
+
+.profilePanelP .profileSection .progressBar {
+  height: 85px;
+  width: 25%;
+  min-width: 265px;
+  margin-left: 75px;
+  text-align: center;
+  position: relative;
+  margin-top: -20px;
+}
+
+.profilePanelP .profileSection .progressBar h1 {
+  -webkit-animation: fromBottom 0.5s;
+          animation: fromBottom 0.5s;
+  color: #376c22;
+}
+
+.profilePanelP .profileSection .progressBar .bar {
+  border-radius: 10px;
+  height: 5px;
+  background-color: #1c86a0;
+  position: absolute;
+  bottom: 0;
+}
+
+.profilePanelP .profileSection .progressBar .barComplete {
+  background-color: #4b932f;
+}
+
+.profilePanelP .profileSection .profileText {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 50px;
+}
+
+.profilePanelP .profileSection .profileText p {
+  margin-top: 0;
+}
+
+.profilePanelP .profileEditIcon {
+  width: 24px;
+  height: 24px;
+  padding: 8px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.profilePanelP .profileLabel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.profilePanelP .profileLabel input {
+  margin-bottom: 20px;
+}
+
+.profilePanelP .profilePicture .profileLogo {
+  width: 128px;
+  height: 128px;
+  border: 4px solid white;
+}
+
+.profilePanelP .profilePicture .profileLogo h1 {
+  font-size: 64px;
+}
+
+@media only screen and (max-width: 755px) {
+  .profilePanelP .profilePicture .profileText {
+    text-align: center;
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 755px) {
+  .profilePanelP .profilePicture .profileText button {
+    width: auto;
+    height: auto;
+    margin: 25px auto;
+    padding: 10px 15px;
+  }
+}
+
+@media only screen and (max-width: 755px) {
+  .profilePanelP .profilePicture {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+.profilePanelP .profileBackground .profileBackgroundBg {
+  height: 100px;
+  width: 640px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media only screen and (max-width: 1000px) {
+  .profilePanelP .profileBackground .profileBackgroundBg {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 1616px) {
+  .profilePanelP .profileBackground {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+@media only screen and (max-width: 1616px) {
+  .profilePanelP .profileBackground .profileText {
+    text-align: center;
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 1616px) {
+  .profilePanelP .profileBackground .profileText button {
+    width: auto;
+    height: auto;
+    margin: 25px auto;
+    padding: 10px 15px;
+  }
+}
+
+.profilePanelP .profileSettings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  min-height: 340px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .profilePanelP .profileSettings {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+.profilePanelP .profileSettings .profileOverview .settingsFlex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.profilePanelP .profileSettings .profileOverview .settingsFlex input {
+  border-radius: 5px 0 0 5px;
+  padding: 0 15px;
+  width: 235px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .profilePanelP .profileSettings .profileOverview .profileLabel {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .profilePanelP .profileSettings .profileOverview .profileLabel input {
+    width: calc(100% - 57px);
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .profilePanelP .profileSettings .profileOverview button {
+    margin: auto;
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .profilePanelP .profileSettings .profileOverview {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 90%;
+    margin: auto;
+  }
+}
+
+.profilePanelP .profileSettings .closeContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #7fd1e6;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.profilePanelP .profileSettings .closeContainer:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.profilePanelP .profileSettings .closeContainer .closeClass {
+  width: 16px;
+  height: 16px;
+  fill: #69c9e2;
+}
+
+.profilePanelP .passwordPanel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+  margin-left: 100px;
+  width: 350px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .profilePanelP .passwordPanel {
+    width: 90%;
+    margin: auto;
+    padding-top: 35px;
+    margin-top: 15px;
+  }
+}
+
+.profilePanelP .passwordPanel .passwordChanged {
+  color: #6cc549;
+}
+
+.profilePanelP .passwordPanel input {
+  margin-bottom: 10px;
+}
+
+.profilePanelP .passwordPanel button {
+  margin-left: 34px;
+  margin-top: 35px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .profilePanelP .passwordPanel button {
+    margin: 25px auto;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .profilePanelP .passwordPanel input {
+    width: calc(100% - 57px);
+  }
+}
+
+.profilePanelP button {
+  width: 200px;
+  height: 40px;
+  background: #54c1de;
+  border: 0;
+  margin: 15px 50px 15px 0;
+  border-radius: 5px;
+  font-size: 16px;
+  color: black;
+  font-weight: 700;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.profilePanelP button:focus {
+  outline: none;
+  -webkit-box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.5);
+}
+
+.profilePanelP button:hover {
+  background: #2eb8da;
+}
+
+.profilePanelP input {
+  width: 250px;
+  height: 40px;
+  margin: 0;
+  border: 0;
+  background-color: rgba(0, 0, 0, 0.03);
+  color: #5a5a5a;
+  border-radius: 5px;
+  padding-left: 15px;
+  font-weight: 600;
+  font-family: "Quicksand", sans-serif;
+  font-size: 16px;
+}
+
+.profilePanelP input:focus {
+  outline: none;
+  -webkit-box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.5);
+  color: #2d2d2d;
 }
 
 html,

@@ -47,7 +47,7 @@ export default function ProfileSettings({ user, setError }) {
 
   return (
     <div className="profileSettings profileSection">
-      <div>
+      <div className="profileOverview">
         <div className="profileLabel">
           <label className="profileLabel">Display name</label>
           <div className="settingsFlex">
@@ -68,11 +68,8 @@ export default function ProfileSettings({ user, setError }) {
           <label className="profileLabel">Email</label>
           <input value={user.email} disabled />
         </div>
-        <div className="profilePassword">
-          <button onClick={() => setPasswordPanel(true)}>
-            Change password
-          </button>
-        </div>
+
+        <button onClick={() => setPasswordPanel(true)}>Change password</button>
       </div>
       <CSSTransition
         in={passwordPanel}
