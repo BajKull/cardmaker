@@ -250,6 +250,148 @@
     }
   }
 
+  .profileRemoval {
+    button {
+      background: darken($errorColor, 10);
+      color: darken($errorColor, 45);
+
+      &:hover {
+        background: darken($errorColor, 15);
+      }
+    }
+
+    .profileRemovalConfirmation {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .background {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .profileRemovalContainer {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        border-radius: 5px;
+        position: relative;
+        max-width: 600px;
+        @include breakpoint(650px) {
+          width: 90%;
+        }
+
+        .profileRemovalInfo {
+          padding: 25px;
+          background: darken($errorColor, 15);
+          color: white;
+          border-radius: 5px 5px 0 0;
+
+          @include breakpoint(650px) {
+            text-align: center;
+            padding: 15px;
+          }
+
+          h1 {
+            font-size: 1.5em;
+          }
+
+          span {
+            margin-right: 5px;
+          }
+        }
+
+        .profileRemovalMain {
+          padding: 25px;
+          display: flex;
+          flex-direction: column;
+
+          @include breakpoint(650px) {
+            padding: 15px;
+          }
+
+          p {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: rgb(155, 155, 155);
+            font-weight: 600;
+          }
+
+          label {
+            color: rgb(45, 45, 45);
+            font-weight: 600;
+            margin-bottom: 20px;
+
+            b {
+              color: black;
+            }
+          }
+
+          input {
+            color: darken($errorColor, 20);
+
+            @include breakpoint(650px) {
+              width: calc(100% - 15px);
+            }
+
+            &::placeholder {
+              color: rgb(175, 175, 175);
+            }
+          }
+
+          .profileRemovalActions {
+            display: flex;
+            justify-content: center;
+
+            button {
+              margin: 0 15px;
+              margin-top: 25px;
+              background: rgba(0, 0, 0, 0.1);
+              color: rgb(45, 45, 45);
+
+              &:hover {
+                background: rgba(0, 0, 0, 0.15);
+              }
+
+              &:disabled {
+                background: rgba(0, 0, 0, 0.05);
+                color: rgb(135, 135, 135);
+                cursor: auto;
+              }
+            }
+
+            .deleteBtn {
+              background: darken($errorColor, 10);
+              color: darken($errorColor, 45);
+
+              &:hover:enabled {
+                background: darken($errorColor, 15);
+              }
+            }
+          }
+        }
+
+        .closeClass {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          width: 16px;
+          fill: white;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
   .passwordPanel {
     display: flex;
     flex-direction: column;

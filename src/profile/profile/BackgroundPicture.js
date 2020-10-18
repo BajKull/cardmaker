@@ -30,7 +30,7 @@ export default function BackgroundPicture({ user, setError }) {
       .doc("background")
       .get()
       .then((data) => {
-        if (data.data() === null)
+        if (data.data() === undefined)
           setBg(
             "https://firebasestorage.googleapis.com/v0/b/cardmaker-e6704.appspot.com/o/global%20background.png?alt=media&token=80fb2371-17e9-4cca-8748-2aaf432b3140"
           );

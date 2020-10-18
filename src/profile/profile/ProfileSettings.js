@@ -68,7 +68,6 @@ export default function ProfileSettings({ user, setError }) {
           <label className="profileLabel">Email</label>
           <input value={user.email} disabled />
         </div>
-
         <button onClick={() => setPasswordPanel(true)}>Change password</button>
       </div>
       <CSSTransition

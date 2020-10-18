@@ -21,7 +21,7 @@ export default function UserProfile() {
         <h1>Profile settings</h1>
         <ProfileSettings user={user} setError={setError} />
         <h1>Account removal</h1>
-        <AccountRemoval />
+        <AccountRemoval user={user} setError={setError} />
         {error && (
           <div className="errorScreen">
             <div className="errorBg" onClick={() => setError(null)} />

@@ -5,6 +5,7 @@ import { projectFirestore } from "../firebase/Config";
 
 export default function User() {
   const [bg, setBg] = useState(null);
+  const [cards, setCards] = useState(0);
   const location = useRouteMatch().path;
   const path = useLocation();
   const user = useSelector((state) => state.loginStatus);
@@ -16,12 +17,19 @@ export default function User() {
       .collection(user.uid)
       .doc("background")
       .get()
-      .then((bg) => {
-        if (bg === undefined)
+      .then((background) => {
+        if (background.data() === undefined)
           setBg(
             "https://firebasestorage.googleapis.com/v0/b/cardmaker-e6704.appspot.com/o/global%20background.png?alt=media&token=80fb2371-17e9-4cca-8748-2aaf432b3140"
           );
-        else setBg(bg.data().url);
+        else setBg(background.data().url);
+      });
+    projectFirestore
+      .collection("cards")
+      .where("author", "==", user.uid)
+      .get()
+      .then((docs) => {
+        setCards(docs.size);
       });
   }, [user.uid]);
 
@@ -34,8 +42,6 @@ export default function User() {
     );
 
     tabs.forEach((el) => el.classList.remove("activeTab"));
-
-    console.log(currentTab);
 
     currentTab.classList.add("activeTab");
   }, [path.pathname]);
@@ -54,7 +60,7 @@ export default function User() {
         )}
         <div className="profileUserInfo">
           <h1>{user.displayName}</h1>
-          <h2>Created 19 cards</h2>
+          <h2>Created {cards} cards</h2>
         </div>
       </div>
       <div className="tabs" ref={tabsRef}>

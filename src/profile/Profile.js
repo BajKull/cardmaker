@@ -14,10 +14,12 @@ export default function Profile() {
   const path = useRouteMatch().path;
 
   useEffect(() => {
+    console.log(user);
     if (user === "noUser") dispatch(ChangeLoginScreen("signin"));
   }, [dispatch, user]);
 
-  if (user)
+  if (user === "noUser") return <Redirect to="/" />;
+  else if (user)
     return (
       <div className="profile">
         <div className="profileContent">
@@ -30,6 +32,5 @@ export default function Profile() {
         </div>
       </div>
     );
-  else if (user === "noUser") return <Redirect to="/" />;
   else return null;
 }
