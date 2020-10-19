@@ -37,6 +37,7 @@ export default function UserCards() {
         breakpointCols={breakpoints}
         className="cardContainer"
         columnClassName="cardContainerCol"
+        style={{ paddingTop: "25px" }}
       >
         {cards.map((card) => (
           <Link

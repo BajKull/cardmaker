@@ -11,7 +11,7 @@
     .profilePanel {
       width: 100%;
       background-color: lighten($lightBlue, 25);
-      padding: 25px 0;
+      padding-bottom: 25px;
       min-height: 50vh;
     }
 
@@ -61,24 +61,29 @@
 
       .bgImg {
         width: 100%;
-        max-height: 300px;
+        max-height: 20vw;
         object-fit: contain;
       }
     }
 
     .tabs {
       width: 100%;
-      height: 70px;
+      height: 50px;
       display: flex;
       justify-content: center;
 
       .activeTab {
-        box-shadow: inset 0px -30px 10px -30px $darkBlue;
+        transition: 0.25s;
+        box-shadow: inset 0px -30px 10px -33px $darkBlue;
       }
 
       a {
         width: 20%;
         max-width: 250px;
+
+        @include breakpoint(540px) {
+          width: 33%;
+        }
       }
 
       button {
