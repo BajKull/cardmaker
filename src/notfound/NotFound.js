@@ -1,9 +1,17 @@
 import React from "react";
 import Navbar from "../navbar/Navbar";
+import { Helmet } from "react-helmet";
 
 export default function NotFound() {
   return (
     <div className="notFound">
+      <Helmet>
+        <title>Bnn Card Maker - 404</title>
+        <meta
+          name="description"
+          content="Bnn Card Maker error 404 page not found."
+        />
+      </Helmet>
       <div className="topBar"></div>
       <Navbar />
       <div className="content">

@@ -13,11 +13,18 @@ import Register from "./account/Register";
 import CardsRouter from "./cardbrowser/CardsRouter";
 import NotFound from "./notfound/NotFound";
 import userAuth from "./firebase/UserAuth";
+import { Helmet } from "react-helmet";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function App() {
+  const helmetMainContent =
+    "Bnn Card Maker is a free online service which allows you to design your own card from scratch or choose a template share it for free or download the image directly to your device! Create your own card. Easy, fast and pretty.";
+  const helmetAboutContent =
+    "What is Bnn Card Maker? CardMaker is a free online service which allows users to create cards from nothing using built in editor, browse public templates, create your own templates and share them or simply downloading created cards as a file.";
+  const helmetProfileContent =
+    "Change your profile settings within Bnn Card Maker. Choose profile picture, avatar, background. Change your password. Delete your account. Browse cards that you created and images that you uploaded.";
   const loginScreen = useSelector((state) => state.loginScreen);
   userAuth();
 
@@ -31,6 +38,10 @@ function App() {
           exact
           render={() => (
             <div className="App">
+              <Helmet>
+                <title>Bnn Card Maker</title>
+                <meta name="description" content={helmetMainContent} />
+              </Helmet>
               <Navbar />
               <Main />
               <Choice />
@@ -43,6 +54,10 @@ function App() {
           path="/about"
           render={() => (
             <div>
+              <Helmet>
+                <title>Bnn Card Maker - About</title>
+                <meta name="description" content={helmetAboutContent} />
+              </Helmet>
               <Navbar />
               <About />
             </div>
@@ -52,6 +67,10 @@ function App() {
           path="/profile"
           render={() => (
             <div>
+              <Helmet>
+                <title>Bnn Card Maker - Profile</title>
+                <meta name="description" content={helmetProfileContent} />
+              </Helmet>
               <Navbar />
               <Profile />
             </div>
