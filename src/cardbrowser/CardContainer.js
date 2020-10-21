@@ -7,7 +7,7 @@ import Masonry from "react-masonry-css";
 
 export default function CardContainer({ category, sorter }) {
   const [cards, setCards] = useState([]);
-  const [limit, setLimit] = useState(18);
+  // const [limit, setLimit] = useState(18);
   const [loading, setLoading] = useState(true);
   const breakpoints = {
     default: 4,
@@ -22,6 +22,7 @@ export default function CardContainer({ category, sorter }) {
     setCards([]);
     setLoading(true);
     let order;
+    let cat;
     switch (sorter) {
       case "datedesc":
         order = ["date", "desc"];
@@ -39,15 +40,10 @@ export default function CardContainer({ category, sorter }) {
         order = ["date", "desc"];
     }
 
-    // cant use != and orderBy in a single query in firebase on different fields(ex. category, views), so i need this if statement
     if (category === "all")
       projectFirestore
         .collection("cards")
-        .orderBy("category")
         .orderBy(...order)
-        .where("category", "!=", "unchecked")
-        .limit(limit)
-        // .limitToLast(18)
         .get()
         .then((data) => {
           const els = [];
@@ -63,8 +59,6 @@ export default function CardContainer({ category, sorter }) {
         .collection("cards")
         .where("category", "==", category)
         .orderBy(...order)
-        .limit(limit)
-        .limitToLast(18)
         .get()
         .then((data) => {
           const els = [];
@@ -75,7 +69,7 @@ export default function CardContainer({ category, sorter }) {
           setLoading(false);
           setCards(els);
         });
-  }, [category, sorter, limit]);
+  }, [category, sorter]);
 
   if (loading) return <div className="loadingBig" />;
   else

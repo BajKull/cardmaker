@@ -27,7 +27,7 @@ const useGenerateLink = () => {
       setError(thumbnailError);
       return;
     } else if (thumbnailUrl) {
-      const firestoreRef = projectFirestore.collection("cards");
+      const firestoreRef = projectFirestore.collection("newcards");
       const els = elements.map((el) => {
         if (el.type !== "image") return el;
         const newEl = { ...el };

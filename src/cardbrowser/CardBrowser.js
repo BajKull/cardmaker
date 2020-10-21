@@ -55,6 +55,7 @@ export default function CardBrowser() {
           <button onClick={(e) => categorySwitch(e, "thankyou")}>
             Thank you
           </button>
+          <button onClick={(e) => categorySwitch(e, "post")}>Posts</button>
         </div>
         <div className="sorters">
           <button

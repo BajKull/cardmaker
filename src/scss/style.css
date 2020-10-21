@@ -2661,38 +2661,63 @@
   background: linear-gradient(360deg, #b2e3f0 0%, #eaf7fb 100%);
 }
 
+@media only screen and (max-width: 905px) {
+  .cardBrowser .cardBrowserCategories {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 .cardBrowser .cardBrowserCategories .categories {
-  margin-right: auto;
-  margin-bottom: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 auto 10px 10px;
 }
 
 .cardBrowser .cardBrowserCategories .categories button {
   background: 0;
-  border: 0;
+  border: 2px solid #1c86a0;
+  padding: 5px 10px;
+  color: #2d2d2d;
+  font-weight: 700;
   margin: 0;
+  border-radius: 15px;
   margin-right: 15px;
-  color: #969696;
-  border-bottom: 1px solid transparent;
-  padding-bottom: 5px;
   cursor: pointer;
   -webkit-transition: 0.2s;
   transition: 0.2s;
 }
 
 .cardBrowser .cardBrowserCategories .categories button:hover {
-  border-bottom: 1px solid #1c86a0;
+  background: #b0e4f1;
 }
 
 .cardBrowser .cardBrowserCategories .categories button:focus {
   outline: 0;
-  border-bottom: 1px solid #1c86a0;
+}
+
+@media only screen and (max-width: 905px) {
+  .cardBrowser .cardBrowserCategories .categories button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
 }
 
 .cardBrowser .cardBrowserCategories .categories .cardBrowserActiveBtn {
-  color: #2d2d2d;
-  border-bottom: 1px solid #1c86a0;
-  -webkit-transform: scale(1.25);
-          transform: scale(1.25);
+  background: #1c86a0;
+  color: white;
+}
+
+.cardBrowser .cardBrowserCategories .categories .cardBrowserActiveBtn:hover {
+  background: #1c86a0;
 }
 
 .cardBrowser .cardBrowserCategories .sorters {
@@ -2701,6 +2726,13 @@
   color: #2d2d2d;
   position: relative;
   width: 125px;
+  margin-right: 10px;
+}
+
+@media only screen and (max-width: 905px) {
+  .cardBrowser .cardBrowserCategories .sorters {
+    margin: auto;
+  }
 }
 
 .cardBrowser .cardBrowserCategories .sorters .currentSorter {

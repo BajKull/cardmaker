@@ -12,35 +12,51 @@
       lighten($lightBlue, 35) 100%
     );
 
+    @include breakpoint(905px) {
+      flex-direction: column;
+      // width: 90%;
+      // padding: 100px 5% 15px 5%;
+    }
+
     .categories {
-      margin-right: auto;
-      margin-bottom: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0 auto 10px 10px;
 
       button {
         background: 0;
-        border: 0;
+        border: 2px solid $darkBlue;
+        padding: 5px 10px;
+        color: rgb(45, 45, 45);
+        font-weight: 700;
         margin: 0;
+        border-radius: 15px;
         margin-right: 15px;
-        color: rgb(150, 150, 150);
-        border-bottom: 1px solid transparent;
-        padding-bottom: 5px;
         cursor: pointer;
         transition: 0.2s;
 
         &:hover {
-          border-bottom: 1px solid $darkBlue;
+          background: lighten($darkBlue, 45);
         }
 
         &:focus {
           outline: 0;
-          border-bottom: 1px solid $darkBlue;
+        }
+
+        @include breakpoint(905px) {
+          margin-right: 10px;
+          margin-bottom: 10px;
         }
       }
 
       .cardBrowserActiveBtn {
-        color: rgb(45, 45, 45);
-        border-bottom: 1px solid $darkBlue;
-        transform: scale(1.25);
+        background: $darkBlue;
+        color: white;
+
+        &:hover {
+          background: $darkBlue;
+        }
       }
     }
 
@@ -50,6 +66,11 @@
       color: rgb(45, 45, 45);
       position: relative;
       width: 125px;
+      margin-right: 10px;
+
+      @include breakpoint(905px) {
+        margin: auto;
+      }
 
       .currentSorter {
         display: flex;
