@@ -14,6 +14,7 @@ export default function Birthday() {
   const [genLinkScreen, setGenLinkScreen] = useState(false);
 
   const dispatch = useDispatch();
+  const elements = useSelector((state) => state.canvasEls);
   const res = useSelector((state) => state.canvasRes);
   const user = useSelector((state) => state.loginStatus);
 
@@ -24,6 +25,18 @@ export default function Birthday() {
     download.href = img;
     download.download = "card-creator.png";
     download.click();
+  };
+
+  const newCardConfirm = () => {
+    if (elements.length !== 0) {
+      if (
+        window.confirm(
+          "Are you sure you want to delete current card and create new one?"
+        )
+      ) {
+        newCard();
+      }
+    } else newCard();
   };
 
   const newCard = () => {
@@ -44,7 +57,7 @@ export default function Birthday() {
         <LogoIcon className="logo" />
       </Link>
       <div className="editorExport">
-        <button onClick={newCard}>New card</button>
+        <button onClick={newCardConfirm}>New card</button>
         <button onClick={generateLink}>Generate link</button>
         <button onClick={downloadCanvas}>Download</button>
       </div>
