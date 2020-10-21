@@ -3352,6 +3352,15 @@
 }
 
 @media only screen and (max-width: 755px) {
+  .profilePanelP .profilePicture .progressBar {
+    min-width: 0;
+    width: 90%;
+    margin: auto;
+    font-size: 0.75em;
+  }
+}
+
+@media only screen and (max-width: 755px) {
   .profilePanelP .profilePicture {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -3388,6 +3397,15 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+  }
+}
+
+@media only screen and (max-width: 1616px) {
+  .profilePanelP .profileBackground .progressBar {
+    min-width: 0;
+    width: 90%;
+    margin: auto;
+    font-size: 0.75em;
   }
 }
 
@@ -3429,6 +3447,35 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    padding: 15px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .profilePanelP .profileSettings button {
+    margin: auto;
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .profilePanelP .profileSettings button {
+    margin: auto;
+    display: block;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .profilePanelP .profileSettings input {
+    width: calc(100% - 10px);
+    padding-left: 10px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .profilePanelP .profileSettings .profileOverview {
+    width: 100%;
   }
 }
 
@@ -3440,26 +3487,17 @@
 
 .profilePanelP .profileSettings .profileOverview .settingsFlex input {
   border-radius: 5px 0 0 5px;
-  padding: 0 15px;
-  width: 235px;
+}
+
+@media only screen and (max-width: 500px) {
+  .profilePanelP .profileSettings .profileOverview .settingsFlex input {
+    padding-left: 10px;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
   .profilePanelP .profileSettings .profileOverview .profileLabel {
     width: 100%;
-  }
-}
-
-@media only screen and (max-width: 1024px) {
-  .profilePanelP .profileSettings .profileOverview .profileLabel input {
-    width: calc(100% - 57px);
-  }
-}
-
-@media only screen and (max-width: 1024px) {
-  .profilePanelP .profileSettings .profileOverview button {
-    margin: auto;
-    display: block;
   }
 }
 
@@ -3480,6 +3518,58 @@
             align-items: center;
     width: 90%;
     margin: auto;
+  }
+}
+
+.profilePanelP .profileSettings .passwordPanel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+  margin-left: 100px;
+  width: 350px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .profilePanelP .profileSettings .passwordPanel {
+    width: 90%;
+    margin: auto;
+    padding-top: 35px;
+    margin-top: 50px;
+  }
+}
+
+.profilePanelP .profileSettings .passwordPanel .passwordChanged {
+  color: #6cc549;
+}
+
+.profilePanelP .profileSettings .passwordPanel input {
+  margin-bottom: 10px;
+}
+
+.profilePanelP .profileSettings .passwordPanel button {
+  margin-left: 34px;
+  margin-top: 35px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .profilePanelP .profileSettings .passwordPanel button {
+    margin: 25px auto;
+  }
+}
+
+.profilePanelP .profileSettings .passwordPanel h1 {
+  margin-top: 50px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 1024px) {
+  .profilePanelP .profileSettings .passwordPanel h1 {
+    margin-top: 25px;
   }
 }
 
@@ -3694,53 +3784,6 @@
   cursor: pointer;
 }
 
-.profilePanelP .passwordPanel {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  position: relative;
-  margin-left: 100px;
-  width: 350px;
-}
-
-@media only screen and (max-width: 1024px) {
-  .profilePanelP .passwordPanel {
-    width: 90%;
-    margin: auto;
-    padding-top: 35px;
-    margin-top: 15px;
-  }
-}
-
-.profilePanelP .passwordPanel .passwordChanged {
-  color: #6cc549;
-}
-
-.profilePanelP .passwordPanel input {
-  margin-bottom: 10px;
-}
-
-.profilePanelP .passwordPanel button {
-  margin-left: 34px;
-  margin-top: 35px;
-}
-
-@media only screen and (max-width: 1024px) {
-  .profilePanelP .passwordPanel button {
-    margin: 25px auto;
-  }
-}
-
-@media only screen and (max-width: 1024px) {
-  .profilePanelP .passwordPanel input {
-    width: calc(100% - 57px);
-  }
-}
-
 .profilePanelP button {
   width: 200px;
   height: 40px;
@@ -3768,6 +3811,8 @@
 .profilePanelP input {
   width: 250px;
   height: 40px;
+  padding: 0;
+  padding-left: 15px;
   margin: 0;
   border: 0;
   background-color: rgba(0, 0, 0, 0.03);
