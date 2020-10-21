@@ -57,13 +57,25 @@ export default function About() {
             {" "}
             <img src={GmailIcon} alt="" />
           </a>
-          <a href="https://github.com/bajkull">
+          <a
+            href="https://github.com/bajkull"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img src={GithubIcon} alt="" />
           </a>
-          <a href="https://www.linkedin.com/in/dawid-banachowski-24639a1b3/">
+          <a
+            href="https://www.linkedin.com/in/dawid-banachowski-24639a1b3/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img src={LinkedinIcon} alt="" />
           </a>
-          <a href="https://dbanachowski.netlify.app/">
+          <a
+            href="https://dbanachowski.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img src={WebIcon} alt="" />
           </a>
         </div>

@@ -43,9 +43,11 @@ export default function CardContainer({ category, sorter }) {
     if (category === "all")
       projectFirestore
         .collection("cards")
+        .orderBy("category")
         .orderBy(...order)
+        .where("category", "!=", "unchecked")
         .limit(limit)
-        .limitToLast(18)
+        // .limitToLast(18)
         .get()
         .then((data) => {
           const els = [];

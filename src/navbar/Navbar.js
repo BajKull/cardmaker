@@ -38,6 +38,10 @@ function Links({ name, handleMenuClick, showMenu }) {
     return () => window.removeEventListener("click", handleHideUserMenu);
   }, [handleHideUserMenu]);
 
+  useEffect(() => {
+    return () => (document.body.style.overflow = "auto");
+  }, []);
+
   return (
     <div className={name}>
       {showMenu && (

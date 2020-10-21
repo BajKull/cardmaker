@@ -1290,7 +1290,8 @@
   text-align: center;
   max-width: 300px;
   margin: 0 auto;
-  margin-top: -25px;
+  margin-top: -40px;
+  padding: 15px;
 }
 
 .steps .stepsHelpStep .numberBg {
