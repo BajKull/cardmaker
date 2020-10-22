@@ -34,11 +34,39 @@
     position: absolute;
     left: 55px;
     top: 15px;
+    z-index: 999;
 
     .logo {
       width: 32px;
       height: 32px;
       stroke: #38073b;
+    }
+  }
+
+  .navbar {
+    width: 300px;
+    right: 25px;
+
+    .navbarLogin {
+      margin-right: 0;
+
+      .navbarUserOptions {
+        li {
+          &:hover {
+            color: $darkBlue;
+          }
+        }
+      }
+    }
+
+    li {
+      &:hover {
+        color: white;
+      }
+    }
+
+    button {
+      display: none;
     }
   }
 

@@ -8,8 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearCanvasEl } from "../redux/actions/ClearCanvasEl";
 import { setSelectedEl } from "../redux/actions/setSelectedEl";
 import { setCanvasRes } from "../redux/actions/setCanvasRes";
-import { ChangeLoginScreen } from "../redux/actions/ChangeLoginScreen";
 import { Helmet } from "react-helmet";
+
+import UserPanel from "../navbar/UserPanel";
 
 export default function Birthday() {
   const [genLinkScreen, setGenLinkScreen] = useState(false);
@@ -17,7 +18,6 @@ export default function Birthday() {
   const dispatch = useDispatch();
   const elements = useSelector((state) => state.canvasEls);
   const res = useSelector((state) => state.canvasRes);
-  const user = useSelector((state) => state.loginStatus);
   const helmetContent =
     "Bnn Card Maker creator is a tool used for creating free cards online. Use it if you want to create a card share it or download the image to your device.";
 
@@ -68,17 +68,14 @@ export default function Birthday() {
         <button onClick={generateLink}>Generate link</button>
         <button onClick={downloadCanvas}>Download</button>
       </div>
-      {!user && (
-        <ul className="creatorLogin">
-          <li onClick={() => dispatch(ChangeLoginScreen("signin"))}>Sign in</li>
-          <li onClick={() => dispatch(ChangeLoginScreen("signup"))}>Sign up</li>
-        </ul>
-      )}
-      {user && (
-        <ul className="creatorLogin">
-          <li>{user.displayName}</li>
-        </ul>
-      )}
+
+      <div className="navbar">
+        <div className="navbarContainer">
+          <div className="navbarContent">
+            <UserPanel />
+          </div>
+        </div>
+      </div>
       <Editor />
 
       <CSSTransition

@@ -335,6 +335,21 @@
   cursor: pointer;
 }
 
+.navbar .navbarContainer .navbarLogin li button {
+  border: 0;
+  background: #54c1de;
+  border-radius: 5px;
+  width: 100px;
+  height: 29px;
+  color: white;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.navbar .navbarContainer .navbarLogin li button:hover {
+  background: #29b2d6;
+}
+
 .navbar .navbarContainer ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -350,21 +365,6 @@
   margin: 0 15px 0 15px;
   -webkit-transition: 0.15s;
   transition: 0.15s;
-}
-
-.navbar .navbarContainer ul li button {
-  border: 0;
-  background: #54c1de;
-  border-radius: 5px;
-  width: 100px;
-  height: 29px;
-  color: white;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
-}
-
-.navbar .navbarContainer ul li button:hover {
-  background: #29b2d6;
 }
 
 .navbar ul {
@@ -1534,12 +1534,34 @@
   position: absolute;
   left: 55px;
   top: 15px;
+  z-index: 999;
 }
 
 .creator .logoIcon .logo {
   width: 32px;
   height: 32px;
   stroke: #38073b;
+}
+
+.creator .navbar {
+  width: 300px;
+  right: 25px;
+}
+
+.creator .navbar .navbarLogin {
+  margin-right: 0;
+}
+
+.creator .navbar .navbarLogin .navbarUserOptions li:hover {
+  color: #1c86a0;
+}
+
+.creator .navbar li:hover {
+  color: white;
+}
+
+.creator .navbar button {
+  display: none;
 }
 
 .creator .creatorLogin {

@@ -5,6 +5,7 @@ import { auth } from "./Config";
 
 const useAuth = () => {
   const dispatch = useDispatch();
+  console.log("TET");
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -13,6 +14,7 @@ const useAuth = () => {
         auth.signInAnonymously().catch((error) => console.log(error));
       } else if (user) {
         if (user.isAnonymous === false) dispatch(ChangeLoginStatus(user));
+        else dispatch(ChangeLoginStatus("noUser"));
       }
     });
   }, [dispatch]);
