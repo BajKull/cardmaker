@@ -31,7 +31,11 @@ export default function About() {
         </h1>
         <p>
           CardMaker is developed by{" "}
-          <a href="https://www.linkedin.com/in/dawid-banachowski-24639a1b3/">
+          <a
+            href="https://www.linkedin.com/in/dawid-banachowski-24639a1b3/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {" "}
             Dawid Banachowski.
           </a>{" "}
@@ -42,8 +46,15 @@ export default function About() {
         </h1>
         <p>
           CardMaker is my project developed for my{" "}
-          <a href="https://dbanachowski.netlify.app/">portfolio.</a> Its main
-          cause is to show what skills and technologies I'm familiar with.
+          <a
+            href="https://dbanachowski.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            portfolio.
+          </a>{" "}
+          Its main cause is to show what skills and technologies I'm familiar
+          with.
         </p>
         <h1>
           Contact <div className="line"></div>
