@@ -8,9 +8,11 @@ const useAuth = () => {
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      if (user === null) dispatch(ChangeLoginStatus("noUser"));
-      else if (user) {
-        dispatch(ChangeLoginStatus(user));
+      if (user === null) {
+        dispatch(ChangeLoginStatus("noUser"));
+        auth.signInAnonymously().catch((error) => console.log(error));
+      } else if (user) {
+        if (user.isAnonymous === false) dispatch(ChangeLoginStatus(user));
       }
     });
   }, [dispatch]);

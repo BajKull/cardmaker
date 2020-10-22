@@ -22,7 +22,6 @@ export default function CardContainer({ category, sorter }) {
     setCards([]);
     setLoading(true);
     let order;
-    let cat;
     switch (sorter) {
       case "datedesc":
         order = ["date", "desc"];

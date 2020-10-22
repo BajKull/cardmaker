@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Bnn Card Maker",
+  "name": "Free online service for creating cards with just a few clicks. Browse and edit patterns or create your own cards from scratch.",
   "icons": [
     {
       "src": "favicon.ico",
