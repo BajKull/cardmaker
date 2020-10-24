@@ -67,14 +67,24 @@
       }
 
       a {
-        margin-right: 15px;
+        margin-right: 5px;
 
         @include breakpoint(600px) {
           margin-right: 10px;
           margin-left: 10px;
         }
-        img {
-          height: 32px;
+
+        .emailIcon {
+          margin-right: 4px;
+        }
+
+        .icon {
+          height: 48px;
+          width: 48px;
+          transition: 0.2s;
+          &:hover {
+            fill: $darkBlue;
+          }
         }
       }
     }

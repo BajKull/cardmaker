@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import GithubIcon from "./github logo.png";
-import GmailIcon from "./gmail logo.png";
-import LinkedinIcon from "./linkedin logo.png";
-import WebIcon from "./web logo.png";
+import { ReactComponent as GithubIcon } from "./github.svg";
+import { ReactComponent as GmailIcon } from "./email.svg";
+import { ReactComponent as LinkedinIcon } from "./linkedin2.svg";
+import { ReactComponent as WebIcon } from "./db.svg";
 import { ReactComponent as Wave } from "./wave.svg";
 import { ReactComponent as Logo } from "../navbar/logo.svg";
 
@@ -66,28 +66,28 @@ export default function About() {
         <div className="icons">
           <a href="mailto:bajkull@gmail.com">
             {" "}
-            <img src={GmailIcon} alt="" />
+            <GmailIcon className="icon emailIcon" />
           </a>
           <a
             href="https://github.com/bajkull"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={GithubIcon} alt="" />
+            <GithubIcon className="icon" />
           </a>
           <a
             href="https://www.linkedin.com/in/dawid-banachowski-24639a1b3/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={LinkedinIcon} alt="" />
+            <LinkedinIcon className="icon" />
           </a>
           <a
             href="https://dbanachowski.netlify.app/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={WebIcon} alt="" />
+            <WebIcon className="icon" />
           </a>
         </div>
       </div>

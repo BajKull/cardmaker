@@ -793,7 +793,7 @@
 }
 
 .about .aboutContent .icons a {
-  margin-right: 15px;
+  margin-right: 5px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -803,8 +803,19 @@
   }
 }
 
-.about .aboutContent .icons a img {
-  height: 32px;
+.about .aboutContent .icons a .emailIcon {
+  margin-right: 4px;
+}
+
+.about .aboutContent .icons a .icon {
+  height: 48px;
+  width: 48px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.about .aboutContent .icons a .icon:hover {
+  fill: #1c86a0;
 }
 
 .about .aboutContent h1 {

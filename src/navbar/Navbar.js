@@ -9,8 +9,18 @@ import UserPanel from "./UserPanel";
 
 function Links({ name, handleMenuClick, showMenu }) {
   useEffect(() => {
-    return () => (document.body.style.overflow = "auto");
-  }, []);
+    const resize = () => {
+      if (window.innerWidth >= 750) document.body.style.overflow = "auto";
+      if (showMenu && window.innerWidth < 750)
+        document.body.style.overflow = "hidden";
+    };
+
+    window.addEventListener("resize", resize);
+    return () => {
+      document.body.style.overflow = "auto";
+      window.removeEventListener("resize", resize);
+    };
+  }, [showMenu]);
 
   return (
     <div className={name}>

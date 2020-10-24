@@ -5,7 +5,6 @@ import { auth } from "./Config";
 
 const useAuth = () => {
   const dispatch = useDispatch();
-  console.log("TET");
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
