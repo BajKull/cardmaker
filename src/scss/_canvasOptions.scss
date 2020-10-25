@@ -27,6 +27,13 @@
   .buttonsContainer {
     width: 80%;
     margin: 10px auto;
+
+    .uploadBtn {
+      display: block;
+      width: 90%;
+      margin: 10px auto;
+    }
+
     button {
       width: 45%;
       font-size: 14px;

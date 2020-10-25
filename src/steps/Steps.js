@@ -1,15 +1,18 @@
 import React from "react";
-import StepsImage from "./bg3.jpg";
+import StepsImage from "./bg.png";
 import { Link } from "react-router-dom";
 import { Element, Link as Scroll } from "react-scroll";
 import useCardsCounter from "../hooks/useCardsCounter";
+import TextShadow from "./TextShadow";
 
 export default function Steps() {
   const { error, cards } = useCardsCounter();
 
   return (
     <Element name="steps" className="steps">
-      <h1 className="stepsTitle">Create your card within a minute!</h1>
+      <h1 className="stepsTitle">
+        Create your <TextShadow>card</TextShadow> within a minute!
+      </h1>
       <div className="stepsIntro">
         <img className="stepsImg" src={StepsImage} alt="" />
         <div className="stepsIntroText">
@@ -31,7 +34,9 @@ export default function Steps() {
         </h1>
       </div>
       <Element name="stepsHelp">
-        <h1 className="stepsTitle">How to</h1>
+        <h1 className="stepsTitle">
+          <TextShadow>How</TextShadow> to
+        </h1>
       </Element>
       <div className="stepsHelp">
         <div className="stepsHelpStep">

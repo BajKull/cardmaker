@@ -83,7 +83,8 @@ export default function ElementImage() {
         uid={user.uid}
       />
       <div className="buttonsContainer">
-        <button onClick={uploadLink}>Image from link</button>
+        {/* option disabled due to canvas taint/no cors */}
+        {/* <button onClick={uploadLink}>Image from link</button> */}
         <input
           className="hiddenInput uploadFile"
           ref={uploadFileRef}
@@ -92,7 +93,9 @@ export default function ElementImage() {
           name="file"
           accept=".jpg, .jpeg, .png"
         />
-        <button onClick={uploadFileReFun}>Upload file</button>
+        <button className="uploadBtn" onClick={uploadFileReFun}>
+          Upload file
+        </button>
       </div>
       {error && <p className="error">{error}</p>}
       {file && <ProgressBar file={file} setFile={setFile} />}

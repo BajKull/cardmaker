@@ -1,0 +1,15 @@
+.shadowHidden {
+  display: none;
+}
+
+.shadowRel {
+  position: relative;
+}
+.shadow {
+  color: $lightBlue;
+  opacity: 0.15;
+  position: absolute;
+  top: -30px;
+  left: -15px;
+  animation: $shadowRiseAnimation;
+}

@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { ReactComponent as Blob } from "./blob.svg";
 import Screen1 from "./screen1.png";
 import Screen2 from "./screen2.png";
+import TextShadow from "../steps/TextShadow";
 
 export default function Choice() {
   const location = useLocation();
@@ -17,7 +18,9 @@ export default function Choice() {
       <div className="choiceBg"></div>
       <div className="choice1">
         <div className="choiceText">
-          <h1>Browse free and available patterns</h1>
+          <h1>
+            <TextShadow>Browse</TextShadow> free and available patterns
+          </h1>
           <h2>
             There are many various cards which you can browse and choose
             whichever one pleases and suits your needs. Every card is free for
@@ -32,7 +35,9 @@ export default function Choice() {
       </div>
       <div className="choice2">
         <div className="choiceText">
-          <h1>Create your own card from scratch</h1>
+          <h1>
+            <TextShadow>Create</TextShadow> your own card from scratch
+          </h1>
           <h2>
             If you do not want to use a pattern you can design your card by
             yourself and show your creativity. Sky is the limit!

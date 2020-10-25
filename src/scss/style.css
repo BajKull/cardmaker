@@ -131,6 +131,32 @@
   }
 }
 
+@-webkit-keyframes shadowRise {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(50%) translateX(25%);
+            transform: translateY(50%) translateX(25%);
+  }
+  100% {
+    opacity: 0.15;
+    -webkit-transform: translateY(0) translateX(0);
+            transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes shadowRise {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(50%) translateX(25%);
+            transform: translateY(50%) translateX(25%);
+  }
+  100% {
+    opacity: 0.15;
+    -webkit-transform: translateY(0) translateX(0);
+            transform: translateY(0) translateX(0);
+  }
+}
+
 .canRes-enter {
   opacity: 0;
 }
@@ -1134,7 +1160,7 @@
 }
 
 .steps {
-  margin: auto;
+  margin-top: 150px;
   color: #2d2d2d;
 }
 
@@ -1154,6 +1180,10 @@
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   max-width: 1920px;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 @media only screen and (max-width: 1280px) {
@@ -1210,17 +1240,18 @@
 }
 
 .steps .stepsImg {
-  width: 55%;
   max-height: 450px;
   -o-object-fit: contain;
      object-fit: contain;
+  margin-right: 50px;
 }
 
 @media only screen and (max-width: 1280px) {
   .steps .stepsImg {
     width: 100%;
-    max-height: none;
+    max-height: 550px;
     margin-bottom: 25px;
+    margin-right: 0;
   }
 }
 
@@ -2208,6 +2239,12 @@
 
 .canvasImageOptions .buttonsContainer {
   width: 80%;
+  margin: 10px auto;
+}
+
+.canvasImageOptions .buttonsContainer .uploadBtn {
+  display: block;
+  width: 90%;
   margin: 10px auto;
 }
 
@@ -3894,6 +3931,24 @@
   -webkit-box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.5);
           box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.5);
   color: #2d2d2d;
+}
+
+.shadowHidden {
+  display: none;
+}
+
+.shadowRel {
+  position: relative;
+}
+
+.shadow {
+  color: #54c1de;
+  opacity: 0.15;
+  position: absolute;
+  top: -30px;
+  left: -15px;
+  -webkit-animation: shadowRise 0.75s;
+          animation: shadowRise 0.75s;
 }
 
 html,

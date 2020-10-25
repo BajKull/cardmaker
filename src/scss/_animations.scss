@@ -3,6 +3,7 @@ $dropDownAnimation: dropDown 0.5s;
 $fadeInAnimation: fadeIn 0.75s;
 $comeFromLeftAnimation: fromLeft 0.5s;
 $comeFromBottomAnimation: fromBottom 0.5s;
+$shadowRiseAnimation: shadowRise 0.75s;
 
 @keyframes spin {
   0% {
@@ -48,6 +49,17 @@ $comeFromBottomAnimation: fromBottom 0.5s;
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes shadowRise {
+  0% {
+    opacity: 0;
+    transform: translateY(50%) translateX(25%);
+  }
+  100% {
+    opacity: 0.15;
+    transform: translateY(0) translateX(0);
   }
 }
 
