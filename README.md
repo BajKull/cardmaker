@@ -1,5 +1,9 @@
 # BnnCardMaker
 
+BnnCardMaker is an online application which allows users to create free cards in built in editor, share them through generated URL or download them to local storage.
+Users can create cards from scratch or edit available templates.
+See the site live [here](https://bnncardmaker.netlify.app/)
+
 ## Functionality
 
 ### `Authorization`
@@ -35,13 +39,13 @@ First they need to choose which resolution they want the card to be.
 **Logged user** can:
 
 - all that _unregistered user_ can
-- upload images from local disc to **Firebase** storage
+- upload images from local storage to **Firebase** storage
 - search all of the uploaded images by self and import them to canvas
 - generate link which is sent to administrator for a review
 
 ### `Browse templates`
 
-Users can browse verified cards, import them into their canvas, edit them or download them to their local disc.
+Users can browse verified cards, import them into their canvas, edit them or download them to their local storage.
 Each card has a views indicator which displays how many times each cards was viewed by different users.
 
 Users may filter the cards by their styles which are:
