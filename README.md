@@ -14,7 +14,7 @@ Once the user decides to log in, he stays logged in after closing application an
 ### `Profile setup`
 
 Once user is logged in they can browse their profile, change avatar, change background, browse uploaded cards and images or see how many cards they created.
-User can change their display name and password or delete their account after re-entering password.
+User can change their display name and password or delete their account upon re-entering password.
 
 ### `Crete card`
 
